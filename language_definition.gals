@@ -46,7 +46,7 @@ identificador_de_float: f_{letra} {alfa}*
 identificador_de_string: s_{letra} {alfa}*
 identificador_de_bool: b_{letra} {alfa}*
 constante_int: {digito}+
-constante_float: {digito},{digito}+
+constante_float: {digito}+,{digito}+
 constante_string: \"[^\"\n]*\"
 
 // Palavras Reservadas
