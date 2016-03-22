@@ -1,0 +1,66 @@
+#Options
+GenerateScanner = true
+GenerateParser = false
+Language = Java
+ScannerName = Lexico
+ScannerCaseSensitive = true
+ScannerTable = Compact
+Input = Stream
+#RegularDefinitions
+digito: [0-9]
+mai: [A-Z]
+min: [a-z]
+letra: {mai}|{min}
+alfa: {digito}|{letra}
+#Tokens
+// Pontuação
+","
+":"
+";"
+"["
+"]"
+"("
+")"
+"{"
+"}"
+"+"
+"-"
+"*"
+"/"
+"<-"
+"="
+"!="
+"<"
+"<="
+">"
+">="
+
+// Caracteres de formatação
+:[\s\t\n]
+:/\*([^\*]|(\*)+[^\*/])*\*+/
+
+// Tokens
+palavra_reservada : {min} ( {min} | {mai} {min} )*
+identificador_de_int: i_{letra} {alfa}*
+identificador_de_float: f_{letra} {alfa}*
+identificador_de_string: s_{letra} {alfa}*
+identificador_de_bool: b_{letra} {alfa}*
+constante_int: {digito}+
+constante_float: {digito},{digito}+
+constante_string: \"[^\"\n]*\"
+
+// Palavras Reservadas
+and = palavra_reservada : "and"
+false = palavra_reservada : "false"
+if = palavra_reservada : "if"
+in = palavra_reservada : "in"
+isFalseDo = palavra_reservada : "isFalseDo"
+isTrueDo = palavra_reservada : "isTrueDo"
+main = palavra_reservada : "main"
+module = palavra_reservada : "module"
+not = palavra_reservada : "not"
+or = palavra_reservada : "or"
+out = palavra_reservada : "out"
+true = palavra_reservada : "true"
+while = palavra_reservada : "while"
+
