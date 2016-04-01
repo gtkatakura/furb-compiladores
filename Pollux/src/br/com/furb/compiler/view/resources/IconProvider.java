@@ -18,7 +18,7 @@ public enum IconProvider {
 	private ImageIcon icon;
 
 	IconProvider(String path) {
-		URL resource = getClass().getResource("/icon/" + path);
+		URL resource = getClass().getResource("/resources/" + path);
 		icon = new ImageIcon(resource.getPath().substring(1));
 	}
 
