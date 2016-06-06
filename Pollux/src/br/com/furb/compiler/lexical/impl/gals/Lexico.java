@@ -56,7 +56,7 @@ public class Lexico implements Constants {
 				lexeme = input.substring(start, position);
 			}
 			
-			throw new LexicalError(SCANNER_ERROR[lastState], startLine, lexeme);
+			throw new LexicalError(SCANNER_ERROR[lastState], start, lexeme);
 		}
 
 		position = end;
@@ -71,10 +71,10 @@ public class Lexico implements Constants {
 			token = lookupToken(token, lexeme);
 			
 			if (token == EKind.PALAVRA_RESERVADA.getId()) {
-				throw new LexicalError(EKind.PALAVRA_RESERVADA.getDescription(), startLine, lexeme);
+				throw new LexicalError(EKind.PALAVRA_RESERVADA.getDescription(), start, lexeme);
 			}
 		
-			return new Token(EKind.getClasseById(token), lexeme, startLine);
+			return new Token(EKind.getClasseById(token), lexeme, start);
 		}
 	}
 

@@ -66,4 +66,9 @@ public class SyntaticTest {
 		System.out.println(message);
 		assertEquals(message, "Erro na linha 1 - encontrado ; esperado identificador");
 	}
+
+	/*
+	main module {
+		if (i_teste > i_teste2
+  	*/
 }

@@ -57,7 +57,7 @@ public class Sintatico implements Constants
             }
             else
             {
-            	String message = "Erro na linha " + currentToken.getLine() + " - encontrado " + currentToken.getLexeme() + " " + PARSER_ERROR[x];
+            	String message = "encontrado " + currentToken.getLexeme() + " " + PARSER_ERROR[x];
                 throw new SyntaticError(message, currentToken.getPosition());
             }
         }
@@ -66,7 +66,7 @@ public class Sintatico implements Constants
             if (pushProduction(x, a))
                 return false;
             else {
-            	String message = "Erro na linha " + currentToken.getLine() + " - encontrado " + currentToken.getLexeme() + " " + PARSER_ERROR[x];
+            	String message = "encontrado " + currentToken.getLexeme() + " " + PARSER_ERROR[x];
                 throw new SyntaticError(message, currentToken.getPosition());
             }
         }

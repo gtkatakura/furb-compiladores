@@ -16,9 +16,9 @@ public class LexicalError extends AnalysisError
     @Override
     public String getMessage() {
     	if (lexeme != null) {
-    		return "Erro na linha " + this.getPosition() + " - " + this.lexeme + " " + super.getMessage();
+    		return this.lexeme + " " + super.getMessage();
     	}
     	
-		return "Erro na linha " + this.getPosition() + " - " + super.getMessage();
+		return super.getMessage();
     }
 }

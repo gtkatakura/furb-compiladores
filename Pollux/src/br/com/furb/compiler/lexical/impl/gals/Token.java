@@ -19,7 +19,7 @@ public class Token implements IToken {
 	}
 
 	public String getLexeme() {
-		return lexeme;
+		return kind.getId() == 1 ? "fim do programa" : lexeme;
 	}
 	
 	public int getPosition()

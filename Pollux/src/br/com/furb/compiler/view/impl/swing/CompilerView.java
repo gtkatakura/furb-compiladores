@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -245,20 +246,39 @@ public class CompilerView implements IView {
 		toolbar.addAction(key, Tool.COMPILE, new AbstractAction(COMPILE.caption, IconProvider.COMPILE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				String input = editor.getContent();
 				try {
 					Lexico lexico = new Lexico();
 					Sintatico sintatico = new Sintatico();
 
-					lexico.setInput(editor.getContent());
+					lexico.setInput(input);
 					sintatico.parse(lexico);
 				
 					messageArea.update("Programado compilado com sucesso");
 				} catch (LexicalError | SyntaticError error) {
-					messageArea.update(error.getMessage());
+					int line = CompilerView.getNumberLine(input, error.getPosition());
+					messageArea.update("Erro na linha " + line + " - " + error.getMessage());
 				}
 			}
 		});
 
+	}
+	
+	private static int getNumberLine(String input, int positionError) {
+		int line = 1;
+		char[] chars = input.toCharArray();
+		
+		for (int position = 0; position < chars.length; position++) {
+			if (chars[position] == '\n') {
+				line++;
+			}
+			
+			if (position >= positionError) {
+				return line;
+			}
+		}
+		
+		return line;
 	}
 
 	private void generateCodeAction() {
