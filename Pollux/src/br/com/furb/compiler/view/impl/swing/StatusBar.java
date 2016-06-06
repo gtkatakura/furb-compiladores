@@ -29,12 +29,16 @@ public class StatusBar implements IStatusBar {
 
 	@Override
 	public void notModified(String file) {
-		lblStatus.setText(EDITOR_NOT_MODIFIED + pathDescription(file));
+		this.update(EDITOR_NOT_MODIFIED + pathDescription(file));
 	}
 
 	@Override
 	public void modified(String file) {
-		lblStatus.setText(MODIFIED + pathDescription(file));
+		this.update(MODIFIED + pathDescription(file));
+	}
+	
+	private void update(String message) {
+		lblStatus.setText(message);
 	}
 
 	private String pathDescription(String file) {

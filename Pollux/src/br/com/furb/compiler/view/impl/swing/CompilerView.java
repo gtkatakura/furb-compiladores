@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
@@ -31,6 +33,12 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import br.com.furb.compiler.io.SourceUtils;
+import br.com.furb.compiler.lexical.ILexico;
+import br.com.furb.compiler.lexical.IToken;
+import br.com.furb.compiler.lexical.impl.gals.LexicalError;
+import br.com.furb.compiler.lexical.impl.gals.Lexico;
+import br.com.furb.compiler.lexical.impl.gals.LexicoAdapter;
+import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.view.IEditor;
 import br.com.furb.compiler.view.IMessageArea;
 import br.com.furb.compiler.view.IStatusBar;
@@ -234,10 +242,38 @@ public class CompilerView implements IView {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0);
 		toolbar.addAction(key, Tool.COMPILE, new AbstractAction(COMPILE.caption, IconProvider.COMPILE.get()) {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				messageArea.update("Compilação de programas ainda não foi implementada");
+			public void actionPerformed(ActionEvent event) {
+				try {
+					LexicoAdapter lexico = new LexicoAdapter(editor.getContent());
+					String message = CompilerView.this.messageFromLexico(lexico);
+				
+					messageArea.update(message);
+				} catch (LexicalError error) {
+					messageArea.update(error.getMessage());
+				}
 			}
 		});
+
+	}
+	
+	private String messageFromLexico(ILexico lexico) {
+		List<IToken> tokens = lexico.getTokens();
+		
+		if (tokens.size() == 0) {
+			return "nenhum programa para compilar";
+		}
+		
+		return tokens.stream()
+			.map(this::lineFromToken)
+			.collect(Collectors.joining("\n")) + "\n\nPrograma compilado com sucesso";
+	}
+	
+	private String lineFromToken(IToken token) {
+		return (
+			"Linha: " + token.getLine() + "   " +
+			"Classe: " + token.getKind().getDescription() + "   " +
+			"Lexema: " + token.getLexeme()
+		);
 	}
 
 	private void generateCodeAction() {
