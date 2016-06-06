@@ -1489,7 +1489,7 @@ public interface ScannerConstants
         "simbolo inválido",
         "",
         "esperava \"!=\"",
-        "constante string não finalizada",
+        "constante string inválida", // "constante string não finalizada",
         "",
         "",
         "",

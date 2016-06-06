@@ -21,6 +21,11 @@ public class Token implements IToken {
 	public String getLexeme() {
 		return lexeme;
 	}
+	
+	public int getPosition()
+    {
+        return line;
+    }
 
 	public int getLine() {
 		return line;

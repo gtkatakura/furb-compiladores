@@ -5,6 +5,7 @@ import java.util.Arrays;
 import br.com.furb.compiler.lexical.IKind;
 
 public enum EKind implements IKind {
+	DOLLAR(1, "símbolo especial"),
 	VIRGULA(2, "símbolo especial"),
 	DOIS_PONTOS(3, "símbolo especial"),
 	PONTO_E_VIRGULA(4, "símbolo especial"),

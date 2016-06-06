@@ -38,6 +38,8 @@ import br.com.furb.compiler.lexical.IToken;
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
 import br.com.furb.compiler.lexical.impl.gals.Lexico;
 import br.com.furb.compiler.lexical.impl.gals.LexicoAdapter;
+import br.com.furb.compiler.lexical.impl.gals.Sintatico;
+import br.com.furb.compiler.lexical.impl.gals.SyntaticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.view.IEditor;
 import br.com.furb.compiler.view.IMessageArea;
@@ -244,36 +246,19 @@ public class CompilerView implements IView {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
-					LexicoAdapter lexico = new LexicoAdapter(editor.getContent());
-					String message = CompilerView.this.messageFromLexico(lexico);
+					Lexico lexico = new Lexico();
+					Sintatico sintatico = new Sintatico();
+
+					lexico.setInput(editor.getContent());
+					sintatico.parse(lexico);
 				
-					messageArea.update(message);
-				} catch (LexicalError error) {
+					messageArea.update("Programado compilado com sucesso");
+				} catch (LexicalError | SyntaticError error) {
 					messageArea.update(error.getMessage());
 				}
 			}
 		});
 
-	}
-	
-	private String messageFromLexico(ILexico lexico) {
-		List<IToken> tokens = lexico.getTokens();
-		
-		if (tokens.size() == 0) {
-			return "nenhum programa para compilar";
-		}
-		
-		return tokens.stream()
-			.map(this::lineFromToken)
-			.collect(Collectors.joining("\n")) + "\n\nPrograma compilado com sucesso";
-	}
-	
-	private String lineFromToken(IToken token) {
-		return (
-			"Linha: " + token.getLine() + "   " +
-			"Classe: " + token.getKind().getDescription() + "   " +
-			"Lexema: " + token.getLexeme()
-		);
 	}
 
 	private void generateCodeAction() {
