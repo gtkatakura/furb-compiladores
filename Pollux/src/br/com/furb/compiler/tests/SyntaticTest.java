@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
 import br.com.furb.compiler.lexical.impl.gals.Lexico;
+import br.com.furb.compiler.lexical.impl.gals.SemanticError;
+import br.com.furb.compiler.lexical.impl.gals.Semantico;
 import br.com.furb.compiler.lexical.impl.gals.Sintatico;
 import br.com.furb.compiler.lexical.impl.gals.SyntaticError;
 
@@ -15,11 +17,12 @@ public class SyntaticTest {
 		try {
 			Lexico lexico = new Lexico();
 			Sintatico sintatico = new Sintatico();
+			Semantico semantico = new Semantico();
 
 			lexico.setInput(input);
-			sintatico.parse(lexico);
+			sintatico.parse(lexico, semantico);
 			return null;
-		} catch (SyntaticError | LexicalError error) {
+		} catch (SyntaticError | LexicalError | SemanticError error) {
 			return error.getMessage();
 		}
 	}

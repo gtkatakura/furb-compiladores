@@ -8,6 +8,7 @@ public class Sintatico implements Constants
     private Token currentToken;
     private Token previousToken;
     private Lexico scanner;
+    private Semantico semanticAnalyser;
 
     private static final boolean isTerminal(int x)
     {
@@ -24,7 +25,7 @@ public class Sintatico implements Constants
         return x >= FIRST_SEMANTIC_ACTION;
     }
 
-    private boolean step() throws LexicalError, SyntaticError
+    private boolean step() throws LexicalError, SyntaticError, SemanticError
     {
         if (currentToken == null)
         {
@@ -72,6 +73,7 @@ public class Sintatico implements Constants
         }
         else // isSemanticAction(x)
         {
+        	semanticAnalyser.executeAction(x-FIRST_SEMANTIC_ACTION, previousToken);
             return false;
         }
     }
@@ -93,9 +95,10 @@ public class Sintatico implements Constants
             return false;
     }
 
-    public void parse(Lexico scanner) throws LexicalError, SyntaticError
+    public void parse(Lexico scanner, Semantico semanticAnalyser) throws LexicalError, SyntaticError, SemanticError
     {
         this.scanner = scanner;
+        this.semanticAnalyser = semanticAnalyser;
 
         stack.clear();
         stack.push(new Integer(DOLLAR));

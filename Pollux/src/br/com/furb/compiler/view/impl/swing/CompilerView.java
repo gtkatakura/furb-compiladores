@@ -39,6 +39,8 @@ import br.com.furb.compiler.lexical.IToken;
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
 import br.com.furb.compiler.lexical.impl.gals.Lexico;
 import br.com.furb.compiler.lexical.impl.gals.LexicoAdapter;
+import br.com.furb.compiler.lexical.impl.gals.SemanticError;
+import br.com.furb.compiler.lexical.impl.gals.Semantico;
 import br.com.furb.compiler.lexical.impl.gals.Sintatico;
 import br.com.furb.compiler.lexical.impl.gals.SyntaticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
@@ -250,12 +252,13 @@ public class CompilerView implements IView {
 				try {
 					Lexico lexico = new Lexico();
 					Sintatico sintatico = new Sintatico();
+					Semantico semantico = new Semantico();
 
 					lexico.setInput(input);
-					sintatico.parse(lexico);
+					sintatico.parse(lexico, semantico);
 				
 					messageArea.update("Programado compilado com sucesso");
-				} catch (LexicalError | SyntaticError error) {
+				} catch (LexicalError | SyntaticError | SemanticError error) {
 					int line = CompilerView.getNumberLine(input, error.getPosition());
 					messageArea.update("Erro na linha " + line + " - " + error.getMessage());
 				}
