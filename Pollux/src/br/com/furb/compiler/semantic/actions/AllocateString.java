@@ -9,6 +9,7 @@ public class AllocateString extends ActionSemantic {
 	}
 
 	public String execute(Token token) {
+		this.getSymbolTable().getTypes().push("string");
 		return "ldstr " + token.getLexeme() + "\n";
 	}
 }

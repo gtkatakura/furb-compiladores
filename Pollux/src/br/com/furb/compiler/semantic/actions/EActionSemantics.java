@@ -12,7 +12,7 @@ public enum EActionSemantics {
 	Number4(4, DivideExpression.class),
 	Number5(5, AllocateInt.class),
 	Number6(6, AllocateFloat.class),
-	Number7(7, NullActionSemantic.class),
+	Number7(7, PositiveExpression.class),
 	Number8(8, NegateExpression.class),
 	Number12(12, HeaderCode.class),
 	Number13(13, FooterCode.class),
@@ -47,6 +47,6 @@ public enum EActionSemantics {
 		return Arrays.asList(EActionSemantics.values()).stream()
 			.filter(record -> record.getAction() == action)
 			.findAny()
-			.get();
+			.orElse(null);
 	}
 }

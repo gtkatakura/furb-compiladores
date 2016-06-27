@@ -9,6 +9,7 @@ public class AllocateFloat extends ActionSemantic {
 	}
 
 	public String execute(Token token) {
+		this.getSymbolTable().getTypes().push("float64");
 		return "ldc.r8 " + this.formatLexeme(token.getLexeme()) + "\n";
 	}
 	

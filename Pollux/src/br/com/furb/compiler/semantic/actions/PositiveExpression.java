@@ -1,13 +1,11 @@
 package br.com.furb.compiler.semantic.actions;
 
-import java.util.Stack;
-
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class NegateExpression extends ActionSemantic {
-	public NegateExpression(SymbolTable symbolTable) {
+public class PositiveExpression extends ActionSemantic {
+	public PositiveExpression(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
@@ -16,14 +14,11 @@ public class NegateExpression extends ActionSemantic {
 		
 		if (type != "float64" && type != "int64") {
 			throw new SemanticError(
-				"O Operador Unário (-) só aceita os tipos int e float.",
+				"O Operador Unário (+) só aceita os tipos int e float.",
 				token.getPosition()
 			);
 		}
 		
-		return (
-			"ldc.i8 -1\n" +
-			"mul\n"
-		);
+		return null;
 	}
 }

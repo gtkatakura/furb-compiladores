@@ -13,6 +13,25 @@ import br.com.furb.compiler.lexical.impl.gals.SyntaticError;
 
 public class SemanticTest {
 	
+	public String verificaMensagemDeErro(String programaFonte) {
+		try {
+			Lexico lexico = new Lexico();
+			Sintatico sintatico = new Sintatico();
+			Semantico semantico = new Semantico();
+
+			lexico.setInput(programaFonte);
+			sintatico.parse(lexico, semantico);
+			return null;
+		} catch (SyntaticError | LexicalError | SemanticError error) {
+			return error.getMessage();
+		}
+	}
+	
+	private void verificaMensagemDeErro(String[] programaFonte, String mensagemDeErroEsperado) {
+		String mensagem = verificaMensagemDeErro(String.join("\n", programaFonte));
+		assertEquals(mensagemDeErroEsperado, mensagem);
+	}
+	
 	private String cabecalho() {
 		String[] codigoObjeto = new String[] {
 			".assembly extern mscorlib {}",
@@ -187,6 +206,26 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testSomaIntComFloat() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : f_primeiro;",
+			"{",
+				"f_primeiro <- 1 + 2,5;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (float64 f_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.r8 2.5",
+		 	"add",
+		 	"stloc f_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testSubtraiConstantes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : i_primeiro;",
@@ -244,5 +283,74 @@ public class SemanticTest {
 		};
 		
 		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testDivideTiposDiferentes() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- 1 / 2,5;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.r8 2.5",
+		 	"div",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testNegativarString() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- -\"Palavra\";",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "O Operador Unário (-) só aceita os tipos int e float.");
+	}
+	
+	@Test
+	public void testPositivarString() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- +\"Palavra\";",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "O Operador Unário (+) só aceita os tipos int e float.");
+	}
+	
+	@Test
+	public void testPositivarIdentificadorString() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : s_primeiro, i_primeiro;",
+			"{",
+				"s_primeiro <- \"Palavra\";",
+				"i_primeiro <- +s_primeiro;",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "O Operador Unário (+) só aceita os tipos int e float.");
+	}
+	
+	@Test
+	public void testPositivarIdentificadorStrin() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : s_primeiro, i_primeiro;",
+			"{",
+				"s_primeiro <- 1 / \"Palavra\";",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "Operadores Binários só aceitam operandos do tipo int e/ou float.");
 	}
 }

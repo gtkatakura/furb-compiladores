@@ -1,6 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class AllocateIdentifier extends ActionSemantic {
@@ -10,7 +11,11 @@ public class AllocateIdentifier extends ActionSemantic {
 
 	@Override
 	public String execute(Token token) {
-		this.getSymbolTable().setIdentifier(token.getLexeme());
+		SymbolTable symbolTable = this.getSymbolTable();
+		Identifier identifier = new Identifier(token.getLexeme());
+
+		symbolTable.setIdentifier(identifier);
+		symbolTable.getTypes().push(identifier.getType());
 		return null;
 	}
 
