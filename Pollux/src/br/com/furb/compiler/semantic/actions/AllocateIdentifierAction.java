@@ -4,8 +4,8 @@ import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class AllocateIdentifier extends ActionSemantic {
-	public AllocateIdentifier(SymbolTable symbolTable) {
+public class AllocateIdentifierAction extends ActionSemantic {
+	public AllocateIdentifierAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 

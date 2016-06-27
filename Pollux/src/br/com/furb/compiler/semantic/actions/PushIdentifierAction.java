@@ -4,8 +4,8 @@ import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class PushIdentifier extends ActionSemantic {
-	public PushIdentifier(SymbolTable symbolTable) {
+public class PushIdentifierAction extends ActionSemantic {
+	public PushIdentifierAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 

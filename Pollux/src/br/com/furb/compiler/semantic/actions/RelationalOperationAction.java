@@ -6,8 +6,8 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class RelationalOperation extends ActionSemantic {
-	public RelationalOperation(SymbolTable symbolTable) {
+public class RelationalOperationAction extends ActionSemantic {
+	public RelationalOperationAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 

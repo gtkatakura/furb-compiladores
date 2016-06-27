@@ -4,15 +4,13 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class SubtractionOperator extends BinaryOperator {
-	public SubtractionOperator(SymbolTable symbolTable) {
+public class MultiplicationOperatorAction extends BinaryOperatorAction {
+	public MultiplicationOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
-	@Override
 	public String execute(Token token) throws SemanticError {
 		super.execute(token);
-		return "sub\n";
+		return "mul\n";
 	}
-
 }

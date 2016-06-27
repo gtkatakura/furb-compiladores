@@ -4,8 +4,8 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class UnaryPlusOperator extends ActionSemantic {
-	public UnaryPlusOperator(SymbolTable symbolTable) {
+public class UnaryNegationOperatorAction extends ActionSemantic {
+	public UnaryNegationOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
@@ -14,11 +14,14 @@ public class UnaryPlusOperator extends ActionSemantic {
 		
 		if (type != "float64" && type != "int64") {
 			throw new SemanticError(
-				"Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'.",
+				"Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'.",
 				token.getPosition()
 			);
 		}
 		
-		return null;
+		return (
+			"ldc.i8 -1\n" +
+			"mul\n"
+		);
 	}
 }

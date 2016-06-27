@@ -3,8 +3,8 @@ package br.com.furb.compiler.semantic.actions;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class PushRelationalOperator extends ActionSemantic {
-	public PushRelationalOperator(SymbolTable symbolTable) {
+public class PushRelationalOperatorAction extends ActionSemantic {
+	public PushRelationalOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
