@@ -6,7 +6,7 @@ import java.util.Arrays;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public enum EActionSemantics {
-	Number1(1, AdditionOperator.class),
+	Number1(1, AdditionOperatorAction.class),
 	Number2(2, SubtractionOperatorAction.class),
 	Number3(3, MultiplicationOperatorAction.class),
 	Number4(4, DivisionOperatorAction.class),
