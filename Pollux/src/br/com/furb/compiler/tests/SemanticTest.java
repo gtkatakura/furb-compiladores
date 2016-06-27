@@ -304,6 +304,46 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testOperadorIgualdade() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- 1 = 1;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.i8 1",
+		 	"ceq",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testOperadorMaiorQue() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- 2 > 1;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i8 2",
+		 	"ldc.i8 1",
+		 	"cgt",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testSomaConstantes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : i_primeiro;",
@@ -518,5 +558,17 @@ public class SemanticTest {
 		};
 		
 		verificaMensagemDeErro(programaFonte, "Operador Unário (not) só aceita expressões booleanas.");
+	}
+	
+	@Test
+	public void testOperadorRelacionalDiferente() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- 1 = 1,5;",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em expressão relacional");
 	}
 }

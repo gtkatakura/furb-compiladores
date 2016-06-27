@@ -14,6 +14,8 @@ public enum EActionSemantics {
 	Number6(6, AllocateFloat.class),
 	Number7(7, PositiveExpression.class),
 	Number8(8, NegativeExpression.class),
+	Number9(9, RelationalOperation.class),
+	Number10(10, PushRelationalOperator.class),
 	Number11(11, OutAction.class),
 	Number12(12, HeaderCode.class),
 	Number13(13, FooterCode.class),

@@ -12,6 +12,7 @@ public class DeallocateIdentifier extends ActionSemantic {
 	@Override
 	public String execute(Token token) {
 		Identifier identifier = this.getSymbolTable().getIdentifiers().pop();
+		this.getSymbolTable().getTypes().push(identifier.getType());
 		return "ldloc " + identifier + "\n";
 	}
 
