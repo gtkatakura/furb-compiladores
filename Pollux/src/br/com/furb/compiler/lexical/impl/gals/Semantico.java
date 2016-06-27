@@ -25,20 +25,16 @@ public class Semantico implements Constants
 			this.codigoObjeto.append(actionSemantic.buildObjectCode(token));
 			break;
 		case 12:
-			this.codigoObjeto.append(".assembly extern mscorlib {}\n");
-			this.codigoObjeto.append(".assembly codigo_objeto {}\n");
-			this.codigoObjeto.append(".module codigo_objeto.exe\n");
-			this.codigoObjeto.append(".class public _Principal {\n");
-			this.codigoObjeto.append(".method static public void _principal() {\n");
-			this.codigoObjeto.append(".entrypoint\n");
+			actionSemantic = EActionSemantics.Number12.getActionSemantic();
+			this.codigoObjeto.append(actionSemantic.buildObjectCode(token));
 			break;
 		case 13:
-			this.codigoObjeto.append("ret\n");
-			this.codigoObjeto.append("}\n");
-			this.codigoObjeto.append("}");
+			actionSemantic = EActionSemantics.Number13.getActionSemantic();
+			this.codigoObjeto.append(actionSemantic.buildObjectCode(token));
 			break;
 		case 19:
-			this.codigoObjeto.append("ldstr " + token.getLexeme() + "\n");
+			actionSemantic = EActionSemantics.Number19.getActionSemantic();
+			this.codigoObjeto.append(actionSemantic.buildObjectCode(token));
 			break;
 		case 21:
 			this.identificador = token.getLexeme();
