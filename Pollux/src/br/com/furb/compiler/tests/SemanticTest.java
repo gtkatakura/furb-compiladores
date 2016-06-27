@@ -107,4 +107,84 @@ public class SemanticTest {
 		
 		verificaCodigoGerado(programaFonte, codigoObjeto);
 	}
+	
+	@Test
+	public void testSomaConstantes() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- 1 + 2;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.i8 2",
+		 	"add",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testSubtraiConstantes() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- 1 - 2;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.i8 2",
+		 	"sub",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testMultiplicaConstantes() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- 1 * 2;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.i8 2",
+		 	"mul",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testDivideConstantes() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- 1 / 2;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.i8 2",
+		 	"div",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
 }

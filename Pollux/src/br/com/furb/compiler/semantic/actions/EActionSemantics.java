@@ -6,6 +6,10 @@ import java.util.Arrays;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public enum EActionSemantics {
+	Number1(1, AddExpression.class),
+	Number2(2, SubtractExpression.class),
+	Number3(3, MultiplyExpression.class),
+	Number4(4, DivideExpression.class),
 	Number5(5, AllocateInt.class),
 	Number6(6, AllocateFloat.class),
 	Number12(12, HeaderCode.class),
