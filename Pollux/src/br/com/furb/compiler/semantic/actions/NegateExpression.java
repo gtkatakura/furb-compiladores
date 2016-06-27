@@ -12,18 +12,17 @@ public class NegateExpression extends ActionSemantic {
 	}
 
 	public String execute(Token token) throws SemanticError {
-		String type = this.getSymbolTable().getTypes().lastElement();
+		Stack<String> types = this.getSymbolTable().getTypes();
+		String type = types.pop();
 		
-		if (type != "float64" && type != "int64") {
+		if (type != "bool") {
 			throw new SemanticError(
-				"O Operador Unário (-) só aceita os tipos int e float.",
+				"Operador Unário (not) só aceita expressões booleanas.",
 				token.getPosition()
 			);
 		}
 		
-		return (
-			"ldc.i8 -1\n" +
-			"mul\n"
-		);
+		types.push("bool");
+		return "ldc.i4.1 xor\n";
 	}
 }
