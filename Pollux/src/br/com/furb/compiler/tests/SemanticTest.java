@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.junit.Test;
@@ -75,8 +76,16 @@ public class SemanticTest {
 		 
 	private void criarArquivoTest(String codigo) {
 		File cd = new File("C:\\temp\\");
+		if(!cd.exists()){
+			try {
+				cd.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		File[] b = cd.listFiles((FilenameFilter) (dir, name) -> name.contains("remove"));
 		if(b != null || b.length > 0){
+			
 			for (File file : cd.listFiles()) {
 				file.delete();
 			}
