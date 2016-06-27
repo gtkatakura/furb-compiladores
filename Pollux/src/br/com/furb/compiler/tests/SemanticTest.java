@@ -1,6 +1,11 @@
 package br.com.furb.compiler.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
+import java.io.PrintWriter;
 
 import org.junit.Test;
 
@@ -62,10 +67,32 @@ public class SemanticTest {
 
 		lexico.setInput(programaFonte);
 		sintatico.parse(lexico, semantico);
-		
-		assertEquals(cabecalho() + "\n" + codigoObjetoEsperado + "\n" + rodape(), semantico.getObjectCode());
-	}
 	
+		String codigo = cabecalho() + "\n" + codigoObjetoEsperado + "\n" + rodape();
+		assertEquals(codigo, semantico.getObjectCode());
+		criarArquivoTest(codigo);
+	 }
+		 
+	private void criarArquivoTest(String codigo) {
+		File cd = new File("C:\\temp\\");
+		File[] b = cd.listFiles((FilenameFilter) (dir, name) -> name.contains("remove"));
+		if(b != null || b.length > 0){
+			for (File file : cd.listFiles()) {
+				file.delete();
+			}
+		}
+		b = cd.listFiles((FilenameFilter) (dir, name) -> name.contains("teste"));
+		String name = cd.getAbsolutePath()+"\\teste"+b.length+".txt";
+		try {
+			PrintWriter writer = new PrintWriter(name);
+			String[] cod = codigo.split("\n");
+			writer.write(codigo);
+			writer.flush();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void verificaCodigoGerado(String[] programaFonte, String[] codigoObjetoEsperado) throws LexicalError, SyntaticError, SemanticError {
 		verificaCodigoGerado(
 			String.join("\n", programaFonte),
