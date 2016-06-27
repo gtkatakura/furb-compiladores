@@ -7,11 +7,11 @@ import br.com.furb.compiler.semantic.actions.EActionSemantics;
 
 public class Semantico implements Constants
 {
-	private StringBuilder codigoObjeto = new StringBuilder();
+	private StringBuilder objectCode = new StringBuilder();
 	private SymbolTable symbolTable = new SymbolTable();
 	
-	public String getCodigoObjeto() {
-		return this.codigoObjeto.toString();
+	public String getObjectCode() {
+		return this.objectCode.toString();
 	}
 
 	public void executeAction(int action, Token token) throws SemanticError
@@ -19,10 +19,10 @@ public class Semantico implements Constants
 		ActionSemantic actionSemantic = ActionSemanticFactory.create(action, symbolTable);
 		
 		if (actionSemantic != null) {
-			String codigoGerado = actionSemantic.execute(token);
+			String generatedCode = actionSemantic.execute(token);
 
-			if (codigoGerado != null) {
-				this.codigoObjeto.append(codigoGerado);
+			if (generatedCode != null) {
+				this.objectCode.append(generatedCode);
 			}
 		} else {
 			System.out.println("Ação ainda não implementada: " + action);

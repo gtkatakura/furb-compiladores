@@ -44,7 +44,7 @@ public class SemanticTest {
 		lexico.setInput(programaFonte);
 		sintatico.parse(lexico, semantico);
 		
-		assertEquals(cabecalho() + "\n" + codigoObjetoEsperado + "\n" + rodape(), semantico.getCodigoObjeto());
+		assertEquals(cabecalho() + "\n" + codigoObjetoEsperado + "\n" + rodape(), semantico.getObjectCode());
 	}
 	
 	private void verificaCodigoGerado(String[] programaFonte, String[] codigoObjetoEsperado) throws LexicalError, SyntaticError, SemanticError {
