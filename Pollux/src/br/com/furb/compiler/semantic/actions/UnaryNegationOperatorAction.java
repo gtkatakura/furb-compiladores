@@ -14,7 +14,7 @@ public class UnaryNegationOperatorAction extends ActionSemantic {
 		
 		if (type != "float64" && type != "int64") {
 			throw new SemanticError(
-				"Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'.",
+				"Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'",
 				token.getPosition()
 			);
 		}

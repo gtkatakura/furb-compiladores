@@ -17,7 +17,7 @@ public class LogicalNegationOperatorAction extends ActionSemantic {
 		
 		if (type != "bool") {
 			throw new SemanticError(
-				"Operador 'not' só pode ser aplicado sobre expressões booleanas.",
+				"Operador 'not' só pode ser aplicado sobre operandos de tipo 'bool'",
 				token.getPosition()
 			);
 		}
