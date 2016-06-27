@@ -319,18 +319,18 @@ public class SemanticTest {
 	@Test
 	public void testDivideConstantes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
-			"main module : i_primeiro;",
+			"main module : f_primeiro;",
 			"{",
-				"i_primeiro <- 1 / 2;",
+				"f_primeiro <- 1 / 2;",
 			"}"
 		};
 		
 		String[] codigoObjeto = new String[] {
-		 	".locals (int64 i_primeiro)",
+		 	".locals (float64 f_primeiro)",
 		 	"ldc.i8 1",
 		 	"ldc.i8 2",
 		 	"div",
-		 	"stloc i_primeiro"
+		 	"stloc f_primeiro"
 		};
 		
 		verificaCodigoGerado(programaFonte, codigoObjeto);
@@ -339,18 +339,18 @@ public class SemanticTest {
 	@Test
 	public void testDivideTiposDiferentes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
-			"main module : i_primeiro;",
+			"main module : f_primeiro;",
 			"{",
-				"i_primeiro <- 1 / 2,5;",
+				"f_primeiro <- 1 / 2,5;",
 			"}"
 		};
 		
 		String[] codigoObjeto = new String[] {
-		 	".locals (int64 i_primeiro)",
+		 	".locals (float64 f_primeiro)",
 		 	"ldc.i8 1",
 		 	"ldc.r8 2.5",
 		 	"div",
-		 	"stloc i_primeiro"
+		 	"stloc f_primeiro"
 		};
 		
 		verificaCodigoGerado(programaFonte, codigoObjeto);
@@ -403,5 +403,17 @@ public class SemanticTest {
 		};
 		
 		verificaMensagemDeErro(programaFonte, "Operadores Binários só aceitam operandos do tipo int e/ou float.");
+	}
+
+	@Test
+	public void testVariavelIntRecebeFloat() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- 1,5;",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em comando de atribuição");
 	}
 }
