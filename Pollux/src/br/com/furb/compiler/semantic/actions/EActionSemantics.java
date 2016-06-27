@@ -1,6 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 import br.com.furb.compiler.semantic.SymbolTable;
 
@@ -36,27 +37,10 @@ public enum EActionSemantics {
 		this.classe = classe;
 	}
 	
-	// TODO: Refatorar para ser de forma dinâmica
 	public static EActionSemantics find(int action) {
-		switch (action) {
-		case 5:
-			return EActionSemantics.Number5;
-		case 6:
-			return EActionSemantics.Number6;
-		case 12:
-			return EActionSemantics.Number12;
-		case 13:
-			return EActionSemantics.Number13;
-		case 19:
-			return EActionSemantics.Number19;
-		case 21:
-			return EActionSemantics.Number21;
-		case 22:
-			return EActionSemantics.Number22;
-		case 25:
-			return EActionSemantics.Number25;
-		default:
-			return null;
-		}
+		return Arrays.asList(EActionSemantics.values()).stream()
+			.filter(record -> record.getAction() == action)
+			.findAny()
+			.get();
 	}
 }
