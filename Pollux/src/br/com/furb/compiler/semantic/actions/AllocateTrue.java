@@ -10,6 +10,6 @@ public class AllocateTrue extends ActionSemantic {
 
 	public String execute(Token token) {
 		this.getSymbolTable().getTypes().push("bool");
-		return "ldc.i4 1\n";
+		return "ldc.i4.1\n";
 	}
 }

@@ -232,7 +232,7 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (bool b_primeiro)",
-		 	"ldc.i4 1",
+		 	"ldc.i4.1",
 		 	"stloc b_primeiro"
 		};
 		
@@ -250,7 +250,26 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (bool b_primeiro)",
-		 	"ldc.i4 0",
+		 	"ldc.i4.0",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testNegacaoBooleana() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- not false;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i4.0",
+		 	"ldc.i4.1 xor",
 		 	"stloc b_primeiro"
 		};
 		
@@ -460,5 +479,17 @@ public class SemanticTest {
 		};
 		
 		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em comando de atribuição");
+	}
+	
+	@Test
+	public void testNegandoNaoBooleano() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- not 1,5;",
+			"}"
+		};
+		
+		verificaMensagemDeErro(programaFonte, "Operador Unário (not) só aceita expressões booleanas.");
 	}
 }

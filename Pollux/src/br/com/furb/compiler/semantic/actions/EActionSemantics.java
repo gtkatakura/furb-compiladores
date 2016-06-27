@@ -18,6 +18,7 @@ public enum EActionSemantics {
 	Number13(13, FooterCode.class),
 	Number16(16, AllocateTrue.class),
 	Number17(17, AllocateFalse.class),
+	Number18(18, NegativeExpression.class),
 	Number19(19, AllocateString.class),
 	Number21(21, AllocateIdentifier.class),
 	Number22(22, DeclareVariable.class),
