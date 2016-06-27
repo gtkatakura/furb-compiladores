@@ -130,12 +130,12 @@ while = palavra_reservada : "while"
 <vetor_uso> ::= î | #27 "[" <expressao> "]";
 <identificador_para_expressao2> ::= î | #27 "[" <expressao> "]";
 
-<entrada_de_dados> ::= in "(" <lista_de_identificadores> ")" ";" #34;
+<entrada_de_dados> ::= in "(" <lista_de_identificadores> ")" ";";
 
 <lista_de_identificadores> ::= <identificador_para_expressao> #23 <lista_de_identificadores2>;
 <lista_de_identificadores2> ::= "," <lista_de_identificadores> | î;
 
-<saida_de_dados> ::= out "(" <lista_de_expressoes> ")" ";" #35;
+<saida_de_dados> ::= out "(" <lista_de_expressoes> ")" ";";
 
 <lista_de_expressoes> ::= <expressao> #11 <lista_de_expressoes2>;
 <lista_de_expressoes2> ::= "," <lista_de_expressoes> | î;
