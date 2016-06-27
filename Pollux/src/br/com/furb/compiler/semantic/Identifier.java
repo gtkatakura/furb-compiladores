@@ -19,6 +19,8 @@ public class Identifier {
 			return "float64";
 		case "s_":
 			return "string";
+		case "b_":
+			return "bool";
 		default:
 			return null;
 		}

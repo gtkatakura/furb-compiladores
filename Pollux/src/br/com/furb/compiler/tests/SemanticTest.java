@@ -222,6 +222,42 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testDeclaraBooleanoSetaTrue() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- true;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i4 1",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testDeclaraBooleanoSetaFalse() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- false;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i4 0",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testSomaConstantes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : i_primeiro;",
