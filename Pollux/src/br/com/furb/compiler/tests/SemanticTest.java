@@ -73,6 +73,44 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testDeclaraIntSetaValorPositivado() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- +1;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testDeclaraIntSetaValorNegativado() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro;",
+			"{",
+				"i_primeiro <- -1;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 1",
+		 	"ldc.i8 -1",
+		 	"mul",
+		 	"stloc i_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testDeclaraFloatSetaValor() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : f_primeiro;",
@@ -84,6 +122,26 @@ public class SemanticTest {
 		String[] codigoObjeto = new String[] {
 		 	".locals (float64 f_primeiro)",
 		 	"ldc.r8 0.0",
+		 	"stloc f_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testDeclaraFloatSetaValorNegativado() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : f_primeiro;",
+			"{",
+				"f_primeiro <- -1,0;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (float64 f_primeiro)",
+		 	"ldc.r8 1.0",
+		 	"ldc.i8 -1",
+		 	"mul",
 		 	"stloc f_primeiro"
 		};
 		
