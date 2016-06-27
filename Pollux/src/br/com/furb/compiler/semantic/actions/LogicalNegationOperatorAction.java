@@ -23,6 +23,9 @@ public class LogicalNegationOperatorAction extends ActionSemantic {
 		}
 		
 		types.push("bool");
-		return "ldc.i4.1 xor\n";
+		return (
+			"ldc.i4.1\n" +
+			"xor\n"
+		);
 	}
 }

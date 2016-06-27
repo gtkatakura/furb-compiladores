@@ -296,7 +296,8 @@ public class SemanticTest {
 		String[] codigoObjeto = new String[] {
 		 	".locals (bool b_primeiro)",
 		 	"ldc.i4.0",
-		 	"ldc.i4.1 xor",
+		 	"ldc.i4.1",
+		 	"xor",
 		 	"stloc b_primeiro"
 		};
 		
@@ -359,6 +360,50 @@ public class SemanticTest {
 		 	"ldc.i8 2",
 		 	"ldc.i8 1",
 		 	"cgt",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testOperadorMaiorQueOuIgual() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- 2 >= 1;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i8 2",
+		 	"ldc.i8 1",
+		 	"clt",
+		 	"ldc.i4.1",
+		 	"xor",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testOperadorMenorQueOuIgual() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- 2 <= 1;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i8 2",
+		 	"ldc.i8 1",
+		 	"cgt",
+		 	"ldc.i4.1",
+		 	"xor",
 		 	"stloc b_primeiro"
 		};
 		

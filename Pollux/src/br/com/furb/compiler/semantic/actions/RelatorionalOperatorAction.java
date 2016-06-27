@@ -40,6 +40,18 @@ public class RelatorionalOperatorAction extends ActionSemantic {
 				"ldc.i4.0\n" +
 				"ceq\n"
 			);
+		case ">=":
+			return (
+			 	"clt\n" +
+			 	"ldc.i4.0\n" +
+			 	"ceq\n"
+		 	);
+		case "<=":
+			return (
+			 	"cgt\n" +
+			 	"ldc.i4.0\n" +
+			 	"ceq\n"
+		 	);
 		}
 
 		return null;
