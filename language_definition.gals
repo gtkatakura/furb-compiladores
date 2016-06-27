@@ -116,27 +116,40 @@ while = palavra_reservada : "while"
 <variaveis> ::= ":" <lista_de_variaveis> ";" | î;
 <lista_de_variaveis> ::= <identificador> <lista_de_variaveis2>;
 <lista_de_variaveis2> ::= "," <lista_de_variaveis> | î;
-<identificador> ::= <tipos_de_identificador> #21  <identificador2> #23;
-<identificador2> ::= "[" constante_int #22 "]" | î;
+<identificador> ::= <tipos_de_identificador> #21  <identificador2> #22;
 <tipos_de_identificador> ::= identificador_de_int | identificador_de_float | identificador_de_string | identificador_de_bool;
-<atribuicao> ::= <identificador_para_expressao> "<-" <expressao> #25";";
-<identificador_para_expressao> ::= <tipos_de_identificador> #21 <identificador_para_expressao2>;
-<identificador_para_expressao2> ::= î | #27 "[" <expressao> "]";
-<entrada_de_dados> ::= in "(" <lista_de_identificadores> ")" ";";
-<lista_de_identificadores> ::= <identificador_para_expressao> <lista_de_identificadores2>;
-<lista_de_identificadores2> ::= "," <lista_de_identificadores> | î;
-<saida_de_dados> ::= out "(" <lista_de_expressoes> ")" ";";
-<lista_de_expressoes> ::= <expressao> #11 <lista_de_expressoes2>;
-<lista_de_expressoes2> ::= "," <lista_de_expressoes> | î;
-<comando_de_selecao> ::= if "(" <expressao> ")" <comando_de_selecao2>;
-<comando_de_selecao2> ::= isFalseDo #28 ":" "{" <lista_de_comandos> "}" <fluxo_true_do> #29 | isTrueDo #28 ":" "{" <lista_de_comandos> "}" <fluxo_false_do> #29;
-<fluxo_false_do> ::= isFalseDo #30 ":" "{" <lista_de_comandos> "}" | î;
-<fluxo_true_do> ::= isTrueDo #30 ":" "{" <lista_de_comandos> "}" | î;
-<comando_de_repeticao> ::= #31 while "(" <expressao> ")" <comando_de_repeticao2>;
-<comando_de_repeticao2> ::= isTrueDo #32 ":" "{" <lista_de_comandos> #33 "}" | isFalseDo #32 ":" "{" <lista_de_comandos> #33 "}";
-<comando> ::= <entrada_de_dados> | <saida_de_dados> | <atribuicao> | <comando_de_selecao> |<comando_de_repeticao>;
+<identificador2> ::= "[" constante_int #26 "]" | î;
+
 <lista_de_comandos> ::= <comando> <lista_de_comandos2>;
 <lista_de_comandos2> ::= <lista_de_comandos> | î;
+<comando> ::= <entrada_de_dados> | <saida_de_dados> | <atribuicao> | <comando_de_selecao> |<comando_de_repeticao>;
+
+<atribuicao> ::= <identificador_para_expressao> "<-" <expressao> #25";";
+<identificador_para_expressao> ::= <tipos_de_identificador> #21 <identificador_para_expressao2>;
+
+<vetor_uso> ::= î | #27 "[" <expressao> "]";
+<identificador_para_expressao2> ::= î | #27 "[" <expressao> "]";
+
+<entrada_de_dados> ::= in "(" <lista_de_identificadores> ")" ";";
+
+<lista_de_identificadores> ::= <identificador_para_expressao> #23 <lista_de_identificadores2>;
+<lista_de_identificadores2> ::= "," <lista_de_identificadores> | î;
+
+<saida_de_dados> ::= out "(" <lista_de_expressoes> ")" ";";
+
+<lista_de_expressoes> ::= <expressao> #11 <lista_de_expressoes2>;
+<lista_de_expressoes2> ::= "," <lista_de_expressoes> | î;
+
+<comando_de_selecao> ::= if "(" <expressao> ")" <comando_de_selecao2>;
+<comando_de_selecao2> ::= isFalseDo #28 ":" "{" <lista_de_comandos> "}" <fluxo_true_do> #29 | 
+                             isTrueDo #28 ":" "{" <lista_de_comandos> "}" <fluxo_false_do> #29;
+<fluxo_false_do> ::= isFalseDo #30 ":" "{" <lista_de_comandos> "}" | î;
+<fluxo_true_do> ::= isTrueDo #30 ":" "{" <lista_de_comandos> "}" | î;
+
+<comando_de_repeticao> ::= #31 while "(" <expressao> ")" <comando_de_repeticao2>;
+<comando_de_repeticao2> ::= isTrueDo #32 ":" "{" <lista_de_comandos> #33 "}" | 
+                               isFalseDo #32 ":" "{" <lista_de_comandos> #33 "}";
+
 <expressao> ::= <elemento> <expressao2>;
 <expressao2> ::= and <elemento> #14 <expressao2> | or <elemento> #15 <expressao2> | î;
 <elemento> ::= <relacional> | true #16 | false #17 | not <elemento> #18;
@@ -147,6 +160,11 @@ while = palavra_reservada : "while"
 <aritmetica2> ::= "+" <termo> #1 <aritmetica2> | "-" <termo> #2 <aritmetica2> | î ;
 <termo> ::= <fator> <termo2>;
 <termo2> ::= "*" <fator> #3 <termo2> | "/" <fator> #4 <termo2>| î;
-<fator> ::= <tipos_de_identificador> #21 <vetor_uso> #24 | constante_int #5 | constante_float #6 | constante_string #19 | "(" <expressao> ")" | "+" <fator> #7 | "-" <fator> #8;
-<vetor_uso> ::= î | #27 "[" <expressao> "]";
+<fator> ::= <tipos_de_identificador> #21 <vetor_uso> #24 | 
+	    constante_int #5 | 
+	    constante_float #6 | 
+	    constante_string #19 | 
+	    "(" <expressao> ")" | 
+	    "+" <fator> #7 | 
+	    "-" <fator> #8;
 
