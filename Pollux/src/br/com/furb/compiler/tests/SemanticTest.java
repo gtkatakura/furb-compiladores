@@ -222,6 +222,33 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testEscreveStringSetaValor() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : s_primeiro, s_segundo;",
+			"{",
+				"s_primeiro <- \"Primeiro\";",
+				"s_segundo <- \"Segundo\";",
+				"out(s_primeiro, s_segundo);",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (string s_primeiro)",
+		 	".locals (string s_segundo)",
+		 	"ldstr \"Primeiro\"",
+		 	"stloc s_primeiro",
+		 	"ldstr \"Segundo\"",
+		 	"stloc s_segundo",
+		 	"ldloc s_primeiro",
+		 	"call void [mscorlib]System.Console::Write(string)",
+		 	"ldloc s_segundo",
+		 	"call void [mscorlib]System.Console::Write(string)"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testDeclaraBooleanoSetaTrue() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : b_primeiro;",
