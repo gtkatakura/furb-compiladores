@@ -19,6 +19,7 @@ public enum EActionSemantics {
 	Number19(19, AllocateString.class),
 	Number21(21, AllocateIdentifier.class),
 	Number22(22, DeclareVariable.class),
+	Number24(24, DeallocateIdentifier.class),
 	Number25(25, StoreValueInVariable.class);
 	
 	private int action;

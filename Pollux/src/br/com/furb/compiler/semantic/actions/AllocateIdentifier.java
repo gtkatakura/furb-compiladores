@@ -14,7 +14,7 @@ public class AllocateIdentifier extends ActionSemantic {
 		SymbolTable symbolTable = this.getSymbolTable();
 		Identifier identifier = new Identifier(token.getLexeme());
 
-		symbolTable.setIdentifier(identifier);
+		symbolTable.getIdentifiers().push(identifier);
 		symbolTable.getTypes().push(identifier.getType());
 		return null;
 	}

@@ -10,7 +10,7 @@ public class DeclareVariable extends ActionSemantic {
 	}
 
 	public String execute(Token token) {
-		Identifier identifier = this.getSymbolTable().getIdentifier();
+		Identifier identifier = this.getSymbolTable().getIdentifiers().pop();
 		return ".locals (" + identifier.getType() + " " + identifier + ")\n";
 	}
 }

@@ -3,19 +3,16 @@ package br.com.furb.compiler.semantic;
 import java.util.Stack;
 
 public class SymbolTable {
-	private Identifier identifier;
+	private Stack<Identifier> identifiers;
 	private Stack<String> types;
 	
 	public SymbolTable() {
+		this.identifiers = new Stack<Identifier>();
 		this.types = new Stack<String>();
 	}
 	
-	public void setIdentifier(Identifier identifier) {
-		this.identifier = identifier;
-	}
-	
-	public Identifier getIdentifier() {
-		return this.identifier;
+	public Stack<Identifier> getIdentifiers() {
+		return this.identifiers;
 	}
 	
 	public Stack<String> getTypes() {

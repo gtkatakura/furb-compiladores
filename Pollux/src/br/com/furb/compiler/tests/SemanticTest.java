@@ -233,6 +233,30 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testSomaVariaveis() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_primeiro, i_segundo;",
+			"{",
+				"i_primeiro <- 1;",
+				"i_segundo <- i_primeiro + i_primeiro;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+			".locals (int64 i_primeiro)",
+			".locals (int64 i_segundo)",
+		 	"ldc.i8 1",
+		 	"stloc i_primeiro",
+		 	"ldloc i_primeiro",
+		 	"ldloc i_primeiro",
+		 	"add",
+		 	"stloc i_segundo"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testSomaIntComFloat() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : f_primeiro;",
