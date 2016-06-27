@@ -1,5 +1,8 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
+import br.com.furb.compiler.semantic.ActionSemantic;
+import br.com.furb.compiler.semantic.EActionSemantics;
+
 public class Semantico implements Constants
 {
 	private StringBuilder codigoObjeto = new StringBuilder();
@@ -11,12 +14,15 @@ public class Semantico implements Constants
 
 	public void executeAction(int action, Token token) throws SemanticError
     {
+		ActionSemantic actionSemantic = null;
 		switch (action) {
 		case 5:
-			this.codigoObjeto.append("ldc.i8 " + token.getLexeme() + "\n");
+			actionSemantic = EActionSemantics.Number5.getActionSemantic();
+			this.codigoObjeto.append(actionSemantic.buildObjectCode(token));
 			break;
 		case 6:
-			this.codigoObjeto.append("ldc.r8 " + token.getLexeme().replace(",", ".") + "\n");
+			actionSemantic = EActionSemantics.Number6.getActionSemantic();
+			this.codigoObjeto.append(actionSemantic.buildObjectCode(token));
 			break;
 		case 12:
 			this.codigoObjeto.append(".assembly extern mscorlib {}\n");
