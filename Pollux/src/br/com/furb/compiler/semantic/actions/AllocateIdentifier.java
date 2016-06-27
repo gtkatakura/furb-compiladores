@@ -11,10 +11,9 @@ public class AllocateIdentifier extends ActionSemantic {
 
 	@Override
 	public String execute(Token token) {
-		SymbolTable symbolTable = this.getSymbolTable();
-		Identifier identifier = new Identifier(token.getLexeme());
-		symbolTable.getIdentifiers().push(identifier);
-		return null;
+		Identifier identifier = this.getSymbolTable().getIdentifiers().pop();
+		this.getSymbolTable().getTypes().push(identifier.getType());
+		return "ldloc " + identifier + "\n";
 	}
 
 }

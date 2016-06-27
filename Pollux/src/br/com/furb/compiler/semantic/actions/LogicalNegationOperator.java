@@ -6,8 +6,8 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class NegateExpression extends ActionSemantic {
-	public NegateExpression(SymbolTable symbolTable) {
+public class LogicalNegationOperator extends ActionSemantic {
+	public LogicalNegationOperator(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
@@ -17,7 +17,7 @@ public class NegateExpression extends ActionSemantic {
 		
 		if (type != "bool") {
 			throw new SemanticError(
-				"Operador Unário (not) só aceita expressões booleanas.",
+				"Operador 'not' só pode ser aplicado sobre expressões booleanas.",
 				token.getPosition()
 			);
 		}

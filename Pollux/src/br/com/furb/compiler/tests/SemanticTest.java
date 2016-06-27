@@ -496,7 +496,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "O Operador Unário (-) só aceita os tipos int e float.");
+		verificaMensagemDeErro(programaFonte, "Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'.");
 	}
 	
 	@Test
@@ -508,7 +508,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "O Operador Unário (+) só aceita os tipos int e float.");
+		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'.");
 	}
 	
 	@Test
@@ -521,7 +521,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "O Operador Unário (+) só aceita os tipos int e float.");
+		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'.");
 	}
 	
 	@Test
@@ -557,7 +557,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador Unário (not) só aceita expressões booleanas.");
+		verificaMensagemDeErro(programaFonte, "Operador 'not' só pode ser aplicado sobre expressões booleanas.");
 	}
 	
 	@Test

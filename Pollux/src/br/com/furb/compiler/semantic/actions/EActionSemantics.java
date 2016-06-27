@@ -6,14 +6,14 @@ import java.util.Arrays;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public enum EActionSemantics {
-	Number1(1, AddExpression.class),
-	Number2(2, SubtractExpression.class),
-	Number3(3, MultiplyExpression.class),
-	Number4(4, DivideExpression.class),
+	Number1(1, AdditionOperator.class),
+	Number2(2, SubtractionOperator.class),
+	Number3(3, MultiplicationOperator.class),
+	Number4(4, DivisionOperator.class),
 	Number5(5, AllocateInt.class),
 	Number6(6, AllocateFloat.class),
-	Number7(7, PositiveExpression.class),
-	Number8(8, NegativeExpression.class),
+	Number7(7, UnaryPlusOperator.class),
+	Number8(8, UnaryNegationOperator.class),
 	Number9(9, RelationalOperation.class),
 	Number10(10, PushRelationalOperator.class),
 	Number11(11, OutAction.class),
@@ -21,11 +21,11 @@ public enum EActionSemantics {
 	Number13(13, FooterCode.class),
 	Number16(16, AllocateTrue.class),
 	Number17(17, AllocateFalse.class),
-	Number18(18, NegateExpression.class),
+	Number18(18, LogicalNegationOperator.class),
 	Number19(19, AllocateString.class),
-	Number21(21, AllocateIdentifier.class),
+	Number21(21, PushIdentifier.class),
 	Number22(22, DeclareVariable.class),
-	Number24(24, DeallocateIdentifier.class),
+	Number24(24, AllocateIdentifier.class),
 	Number25(25, StoreValueInVariable.class);
 	
 	private int action;

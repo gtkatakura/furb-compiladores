@@ -6,8 +6,8 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public abstract class BinaryOperatorAction extends ActionSemantic {
-	public BinaryOperatorAction(SymbolTable symbolTable) {
+public abstract class BinaryOperator extends ActionSemantic {
+	public BinaryOperator(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 

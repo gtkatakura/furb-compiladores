@@ -1,22 +1,16 @@
 package br.com.furb.compiler.semantic.actions;
 
-import java.util.Stack;
-
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class DivideExpression extends BinaryOperatorAction {
-	public DivideExpression(SymbolTable symbolTable) {
+public class MultiplicationOperator extends BinaryOperator {
+	public MultiplicationOperator(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
 	public String execute(Token token) throws SemanticError {
 		super.execute(token);
-		Stack<String> types = this.getSymbolTable().getTypes();
-		types.pop();
-		types.push("float64");
-
-		return "div\n";
+		return "mul\n";
 	}
 }

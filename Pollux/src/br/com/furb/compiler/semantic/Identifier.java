@@ -13,20 +13,20 @@ public class Identifier {
 	
 	public String getType() {
 		switch (this.getHungarianConvention()) {
-		case "i_":
+		case 'i':
 			return "int64";
-		case "f_":
+		case 'f':
 			return "float64";
-		case "s_":
+		case 's':
 			return "string";
-		case "b_":
+		case 'b':
 			return "bool";
 		default:
 			return null;
 		}
 	}
 	
-	private String getHungarianConvention() {
-		return this.name.substring(0, 2);
+	private char getHungarianConvention() {
+		return this.name.toCharArray()[0];
 	}
 }

@@ -10,8 +10,7 @@ public class PushRelationalOperator extends ActionSemantic {
 
 	@Override
 	public String execute(Token token) {
-		SymbolTable symbolTable = this.getSymbolTable();
-		symbolTable.getRelationalOperators().push(token.getLexeme());
+		this.getSymbolTable().getRelationalOperators().push(token.getLexeme());
 		return null;
 	}
 
