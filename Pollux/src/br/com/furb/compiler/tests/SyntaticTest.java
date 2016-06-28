@@ -40,7 +40,7 @@ public class SyntaticTest {
 		);
 		
 		String result = this.getErrorMessage(input);
-		assertEquals(result, "Erro na linha 3 - constante string inválida");
+		assertEquals(result, "Erro na linha 3 - constante string invï¿½lida");
 	}
 	
 	@Test
@@ -70,8 +70,4 @@ public class SyntaticTest {
 		assertEquals(message, "Erro na linha 1 - encontrado ; esperado identificador");
 	}
 
-	/*
-	main module {
-		if (i_teste > i_teste2
-  	*/
 }
