@@ -12,7 +12,7 @@ public class StoreValueInVariableAction extends ActionSemantic {
 
 	@Override
 	public String execute(Token token) throws SemanticError {
-		Identifier identifier = this.getSymbolTable().getIdentifiers().pop();
+		Identifier identifier = this.getSymbolTable().getStackIdentifiers().pop();
 		String type = this.getSymbolTable().getTypes().pop();
 		
 		if (identifier.getType() != type) {
