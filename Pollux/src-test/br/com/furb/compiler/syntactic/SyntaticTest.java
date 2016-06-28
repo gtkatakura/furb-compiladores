@@ -1,4 +1,4 @@
-package br.com.furb.compiler.tests;
+package br.com.furb.compiler.syntactic;
 
 import static org.junit.Assert.*;
 
@@ -8,8 +8,6 @@ import br.com.furb.compiler.lexical.impl.gals.LexicalError;
 import br.com.furb.compiler.lexical.impl.gals.Lexico;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Semantico;
-import br.com.furb.compiler.lexical.impl.gals.Sintatico;
-import br.com.furb.compiler.lexical.impl.gals.SyntaticError;
 
 public class SyntaticTest {
 	
