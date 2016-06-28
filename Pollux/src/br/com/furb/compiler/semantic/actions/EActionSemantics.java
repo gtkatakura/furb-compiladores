@@ -19,6 +19,8 @@ public enum EActionSemantics {
 	Number11(11, OutAction.class),
 	Number12(12, HeaderAction.class),
 	Number13(13, FooterAction.class),
+	Number14(14, LogicalAndOperatorAction.class),
+	Number15(15, LogicalOrOperatorAction.class),
 	Number16(16, AllocateTrueAction.class),
 	Number17(17, AllocateFalseAction.class),
 	Number18(18, LogicalNegationOperatorAction.class),

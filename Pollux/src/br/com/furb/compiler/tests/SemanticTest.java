@@ -305,6 +305,46 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testOperadorRelacionalAnd() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- true and true;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i4.1",
+		 	"ldc.i4.1",
+		 	"and",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testOperadorRelacionalPr() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : b_primeiro;",
+			"{",
+				"b_primeiro <- true or false;",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+		 	".locals (bool b_primeiro)",
+		 	"ldc.i4.1",
+		 	"ldc.i4.0",
+		 	"or",
+		 	"stloc b_primeiro"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testOperadorIgualdade() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : b_primeiro;",
