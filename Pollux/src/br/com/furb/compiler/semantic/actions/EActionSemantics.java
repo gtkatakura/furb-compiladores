@@ -28,7 +28,9 @@ public enum EActionSemantics {
 	Number21(21, PushIdentifierAction.class),
 	Number22(22, DeclareVariableAction.class),
 	Number24(24, AllocateIdentifierAction.class),
-	Number25(25, StoreValueInVariableAction.class);
+	Number25(25, StoreValueInVariableAction.class),
+	Number28(28, DefineRotuleSelection.class),
+	Number29(29, EndBlockSelection.class);
 	
 	private int action;
 	private Class<? extends ActionSemantic> classe;

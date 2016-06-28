@@ -9,12 +9,15 @@ public class SymbolTable {
 	private Map<String, Identifier> identifiers;
 	private Stack<String> types;
 	private Stack<String> relationalOperators;
+	private Stack<String> rotules;
+	private int lastRotule = 0;
 	
 	public SymbolTable() {
 		this.stackIdentifiers = new Stack<Identifier>();
 		this.identifiers = new HashMap<String, Identifier>();
 		this.types = new Stack<String>();
 		this.relationalOperators = new Stack<String>();
+		this.rotules = new Stack<String>();
 	}
 	
 	public Stack<Identifier> getStackIdentifiers() {
@@ -31,5 +34,16 @@ public class SymbolTable {
 	
 	public Stack<String> getRelationalOperators() {
 		return this.relationalOperators;
+	}
+	
+	public Stack<String> getRotules() {
+		return this.rotules;
+	}
+	
+	public String createRotule() {
+		String rotule = "R" + this.lastRotule;
+		this.rotules.push(rotule);
+		lastRotule++;
+		return rotule;
 	}
 }
