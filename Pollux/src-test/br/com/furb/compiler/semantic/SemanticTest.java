@@ -473,6 +473,31 @@ public class SemanticTest {
 	@Test
 	public void testEstruturaSelecaoIf() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
+			"main module : i_xpto;",
+			"{",
+				"if (2 = 2) isTrueDo : {",
+			    	"i_xpto <- 1;",
+			  	"}",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+			".locals (int64 i_xpto)",
+			"ldc.i8 2",
+		 	"ldc.i8 2",
+		 	"ceq",
+		 	"brfalse R0",
+		 	"ldc.i8 1",
+		 	"stloc i_xpto",
+		 	"R0:"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
+	public void testEstruturaSelecaoIfComplexa() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
 			"main module : i_xpto, i_abc;",
 			"{",
 				"i_xpto <- 2;",
@@ -674,7 +699,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '-' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -686,7 +711,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -699,7 +724,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -711,7 +736,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operadores Binï¿½rios sï¿½ aceitam operandos do tipo int e/ou float.");
+		verificaMensagemDeErro(programaFonte, "Operadores Binários só aceitam operandos do tipo int e/ou float.");
 	}
 
 	@Test
@@ -723,7 +748,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Tipos incompatï¿½veis em comando de atribuiï¿½ï¿½o");
+		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em comando de atribuição");
 	}
 	
 	@Test
@@ -735,7 +760,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador 'not' sï¿½ pode ser aplicado sobre operandos de tipo 'bool'");
+		verificaMensagemDeErro(programaFonte, "Operador 'not' só pode ser aplicado sobre operandos de tipo 'bool'");
 	}
 	
 	@Test
@@ -747,6 +772,6 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Tipos incompatï¿½veis em expressï¿½o relacional");
+		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em expressão relacional");
 	}
 }
