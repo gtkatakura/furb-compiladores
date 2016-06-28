@@ -262,6 +262,7 @@ public class CompilerView implements IView {
 					int line = CompilerView.getNumberLine(input, error.getPosition());
 					messageArea.update("Erro na linha " + line + " - " + error.getMessage());
 				}
+
 			}
 		});
 
@@ -289,7 +290,38 @@ public class CompilerView implements IView {
 		toolbar.addAction(key, Tool.GENERATE_CODE, new AbstractAction(GENERATE_CODE.caption, IconProvider.GENERATE_CODE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageArea.update("Geração de código ainda não foi implementada");
+				String input = editor.getContent();
+				String objectCode = "";
+				try {
+					Lexico lexico = new Lexico();
+					Sintatico sintatico = new Sintatico();
+					Semantico semantico = new Semantico();
+
+					lexico.setInput(input);
+					sintatico.parse(lexico, semantico);
+					objectCode = semantico.getObjectCode();
+					if (source == null) {
+						source = chooseFile(null);
+						source = new File(source.getAbsolutePath() + ".txt");
+					}
+
+					if (source != null) {
+						String content = editor.getContent();
+						currentContent = content;
+						SourceUtils.save(source, currentContent);
+						messageArea.clean();
+						statusBar.notModified(source.toString());
+						String nome = source.getName().substring(0, source.getName().lastIndexOf("."));
+						File objectCodeFile= new File(source.getParent(),nome+".il");
+						SourceUtils.save(objectCodeFile, objectCode);
+						messageArea.update("Código objeto gerado com sucesso");
+					}else{
+						messageArea.update("Arquivo fonte não foi salvo ainda, não é possível gerar o código objeto"); //VERIFICAR MENSAGEM CORRETA
+					}
+				} catch (LexicalError | SyntaticError | SemanticError error) {
+					int line = CompilerView.getNumberLine(input, error.getPosition());
+					messageArea.update("Erro na linha " + line + " - " + error.getMessage());
+				}
 			}
 		});
 	}
@@ -316,6 +348,7 @@ public class CompilerView implements IView {
 		final JFileChooser chooser = new JFileChooser(source);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setMultiSelectionEnabled(false);
+		chooser.setCurrentDirectory(new File("C:\\Temp"));
 
 		if (chooser.showOpenDialog(window) == JFileChooser.APPROVE_OPTION) {
 			return chooser.getSelectedFile();
