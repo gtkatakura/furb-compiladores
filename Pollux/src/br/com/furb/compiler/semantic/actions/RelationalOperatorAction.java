@@ -6,8 +6,8 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class RelatorionalOperatorAction extends ActionSemantic {
-	public RelatorionalOperatorAction(SymbolTable symbolTable) {
+public class RelationalOperatorAction extends ActionSemantic {
+	public RelationalOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
@@ -37,20 +37,20 @@ public class RelatorionalOperatorAction extends ActionSemantic {
 		case "!=":
 			return (
 				"ceq\n" +
-				"ldc.i4.0\n" +
-				"ceq\n"
+				"ldc.i4.1\n" +
+		 		"xor\n"
 			);
 		case ">=":
 			return (
 			 	"clt\n" +
-			 	"ldc.i4.0\n" +
-			 	"ceq\n"
+			 	"ldc.i4.1\n" +
+				"xor\n"
 		 	);
 		case "<=":
 			return (
 			 	"cgt\n" +
-			 	"ldc.i4.0\n" +
-			 	"ceq\n"
+			 	"ldc.i4.1\n" +
+				"xor\n"
 		 	);
 		}
 

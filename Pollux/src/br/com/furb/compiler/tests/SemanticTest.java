@@ -338,8 +338,8 @@ public class SemanticTest {
 		 	"ldc.i8 1",
 		 	"ldc.i8 1",
 		 	"ceq",
-		 	"ldc.i4.0",
-		 	"ceq",
+		 	"ldc.i4.1",
+			"xor",
 		 	"stloc b_primeiro"
 		};
 		
