@@ -23,9 +23,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
@@ -34,16 +31,12 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import br.com.furb.compiler.io.SourceUtils;
-import br.com.furb.compiler.lexical.ILexico;
-import br.com.furb.compiler.lexical.IToken;
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
 import br.com.furb.compiler.lexical.impl.gals.Lexico;
-import br.com.furb.compiler.lexical.impl.gals.LexicoAdapter;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Semantico;
-import br.com.furb.compiler.lexical.impl.gals.Sintatico;
-import br.com.furb.compiler.lexical.impl.gals.SyntaticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.syntactic.Sintatico;
+import br.com.furb.compiler.syntactic.SyntaticError;
 import br.com.furb.compiler.view.IEditor;
 import br.com.furb.compiler.view.IMessageArea;
 import br.com.furb.compiler.view.IStatusBar;
@@ -256,7 +249,7 @@ public class CompilerView implements IView {
 
 					lexico.setInput(input);
 					sintatico.parse(lexico, semantico);
-				
+
 					messageArea.update("Programado compilado com sucesso");
 				} catch (LexicalError | SyntaticError | SemanticError error) {
 					int line = CompilerView.getNumberLine(input, error.getPosition());
@@ -267,63 +260,67 @@ public class CompilerView implements IView {
 		});
 
 	}
-	
+
 	private static int getNumberLine(String input, int positionError) {
 		int line = 1;
 		char[] chars = input.toCharArray();
-		
+
 		for (int position = 0; position < chars.length; position++) {
 			if (chars[position] == '\n') {
 				line++;
 			}
-			
+
 			if (position >= positionError) {
 				return line;
 			}
 		}
-		
+
 		return line;
 	}
 
 	private void generateCodeAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0);
-		toolbar.addAction(key, Tool.GENERATE_CODE, new AbstractAction(GENERATE_CODE.caption, IconProvider.GENERATE_CODE.get()) {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String input = editor.getContent();
-				String objectCode = "";
-				try {
-					Lexico lexico = new Lexico();
-					Sintatico sintatico = new Sintatico();
-					Semantico semantico = new Semantico();
+		toolbar.addAction(key, Tool.GENERATE_CODE,
+				new AbstractAction(GENERATE_CODE.caption, IconProvider.GENERATE_CODE.get()) {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String input = editor.getContent();
+						String objectCode = "";
+						try {
+							Lexico lexico = new Lexico();
+							Sintatico sintatico = new Sintatico();
+							Semantico semantico = new Semantico();
 
-					lexico.setInput(input);
-					sintatico.parse(lexico, semantico);
-					objectCode = semantico.getObjectCode();
-					if (source == null) {
-						source = chooseFile(null);
-						source = new File(source.getAbsolutePath() + ".txt");
-					}
+							lexico.setInput(input);
+							sintatico.parse(lexico, semantico);
+							objectCode = semantico.getObjectCode();
+							if (source == null) {
+								source = chooseFile(null);
+								source = new File(source.getAbsolutePath() + ".txt");
+							}
 
-					if (source != null) {
-						String content = editor.getContent();
-						currentContent = content;
-						SourceUtils.save(source, currentContent);
-						messageArea.clean();
-						statusBar.notModified(source.toString());
-						String nome = source.getName().substring(0, source.getName().lastIndexOf("."));
-						File objectCodeFile= new File(source.getParent(),nome+".il");
-						SourceUtils.save(objectCodeFile, objectCode);
-						messageArea.update("Código objeto gerado com sucesso");
-					}else{
-						messageArea.update("Arquivo fonte não foi salvo ainda, não é possível gerar o código objeto"); //VERIFICAR MENSAGEM CORRETA
+							if (source != null) {
+								String content = editor.getContent();
+								currentContent = content;
+								SourceUtils.save(source, currentContent);
+								messageArea.clean();
+								statusBar.notModified(source.toString());
+								String nome = source.getName().substring(0, source.getName().lastIndexOf("."));
+								File objectCodeFile = new File(source.getParent(), nome + ".il");
+								SourceUtils.save(objectCodeFile, objectCode);
+								messageArea.update("Código objeto gerado com sucesso");
+							} else {
+								messageArea.update(
+										"Arquivo fonte não foi salvo ainda, não é possível gerar o código objeto"); // VERIFICAR
+																													// MENSAGEM
+																													// CORRETA
+							}
+						} catch (LexicalError | SyntaticError | SemanticError error) {
+							int line = CompilerView.getNumberLine(input, error.getPosition());
+							messageArea.update("Erro na linha " + line + " - " + error.getMessage());
+						}
 					}
-				} catch (LexicalError | SyntaticError | SemanticError error) {
-					int line = CompilerView.getNumberLine(input, error.getPosition());
-					messageArea.update("Erro na linha " + line + " - " + error.getMessage());
-				}
-			}
-		});
+				});
 	}
 
 	private void createPanelContainer() {

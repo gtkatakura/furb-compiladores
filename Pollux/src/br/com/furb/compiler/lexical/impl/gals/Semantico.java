@@ -3,21 +3,18 @@ package br.com.furb.compiler.lexical.impl.gals;
 import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.actions.ActionSemantic;
 import br.com.furb.compiler.semantic.actions.ActionSemanticFactory;
-import br.com.furb.compiler.semantic.actions.EActionSemantics;
 
-public class Semantico implements Constants
-{
+public class Semantico implements Constants {
 	private StringBuilder objectCode = new StringBuilder();
 	private SymbolTable symbolTable = new SymbolTable();
-	
+
 	public String getObjectCode() {
 		return this.objectCode.toString();
 	}
 
-	public void executeAction(int action, Token token) throws SemanticError
-    {
+	public void executeAction(int action, Token token) throws SemanticError {
 		ActionSemantic actionSemantic = ActionSemanticFactory.create(action, symbolTable);
-		
+
 		if (actionSemantic != null) {
 			String generatedCode = actionSemantic.execute(token);
 
@@ -25,7 +22,7 @@ public class Semantico implements Constants
 				this.objectCode.append(generatedCode);
 			}
 		} else {
-			System.out.println("Ação ainda não implementada: " + action);
+			System.out.println("Aï¿½ï¿½o ainda nï¿½o implementada: " + action);
 		}
-    }
+	}
 }
