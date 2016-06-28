@@ -471,6 +471,57 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testEstruturaSelecaoIf() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_xpto, i_abc;",
+			"{",
+				"i_xpto <- 2;",
+				"i_abc <- 2;",
+				"if (i_xpto = i_abc) isTrueDo : {",
+			    	"out(\"i_xpto = i_abc\");",
+			  	"} isFalseDo : {",
+			  		"if (i_xpto = 2) isTrueDo : {",
+			  			"out(\"i_xpto = 2\");",
+			    	"} isFalseDo : {",
+			        	"out(\"i_xpto != 2\");",
+			    	"}",
+			  	"}",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+			".locals (int64 i_xpto)",
+			".locals (int64 i_abc)",
+			"ldc.i8 2",
+		 	"stloc i_xpto",
+		 	"ldc.i8 2",
+		 	"stloc i_abc",
+		 	"ldloc i_xpto",
+		 	"ldloc i_abc",
+		 	"ceq",
+		 	"brfalse R0",
+		 	"ldstr \"i_xpto = i_abc\"",
+		 	"call void [mscorlib]System.Console::Write(string)",
+		 	"br R1",
+		 	"R0:",
+		 	"ldloc i_xpto",
+		 	"ldc.i8 2",
+		 	"ceq",
+		 	"brfalse R2",
+		 	"ldstr \"i_xpto = 2\"",
+		 	"call void [mscorlib]System.Console::Write(string)",
+		 	"br R3",
+		 	"R2:",
+		 	"ldstr \"i_xpto != 2\"",
+		 	"call void [mscorlib]System.Console::Write(string)",
+		 	"R3:",
+		 	"R1:"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testSomaConstantes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : i_primeiro;",

@@ -6,7 +6,7 @@ set ilasm="C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm.exe"
 
 pushd %tmp%
 
-for %%f in (*.txt) do (
+for %%f in (*.il) do (
 		echo.
 		echo.
 		echo Iniciado %%f
