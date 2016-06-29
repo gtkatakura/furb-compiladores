@@ -1,0 +1,60 @@
+main module 
+: i_var1, i_var2, b_var1, s_msg, f_var1, i_sum, i_qtd, b_parar; 
+{
+ i_sum <- 0;
+ i_qtd <- 0;
+
+in(i_var1, i_var2);
+
+/* 
+ i_var1 <- 10;
+ i_var2 <- 1; 
+*/
+
+ b_var1 <- false;
+ b_parar <- false;
+ s_msg <- "Mensagem padrao";
+ f_var1 <- i_var1 / i_var2; 
+ while(((i_var1 * 2) > i_var2) and not b_parar) isTrueDo : {
+ 
+  if(i_qtd > 100) isTrueDo : {
+   b_parar <- true;
+  }
+ 
+  out("valor da variavel i_sum eh ", i_sum, "\r\n");
+  out("valor da variavel i_qtd eh ", i_qtd, "\r\n");
+  out("valor da variavel i_var1 eh  ", i_var1, "\r\n");
+  out("valor da variavel i_var2 eh ", i_var2, "\r\n"); 
+  out("valor da variavel b_var1 eh ", b_var1, "\r\n");
+  out("valor da variavel s_msg eh '", s_msg,"'", "\r\n");
+   if(b_var1) isTrueDo : {
+    out("Entrou no IF do B_VAR1", "\r\n"); 
+    out( "A variavel i_var1 tem o valor: ",i_var1, "\r\n");
+    out( "A variavel i_var2 tem o valor: ",i_var2, "\r\n");
+    out( "A mehdia entre i_var1 e i_var2 eh ",((i_var1 + i_var2) / 2) , "\r\n");
+    out( "O total atual eh de ", i_sum, "\r\n");
+    if((i_var1 *5) > (i_var2 * 4)) isTrueDo :{
+       out(i_var1, " * 5 (", i_var1*5,") eh maior que ",i_var2," * 4 (", i_var2*4,")", "\r\n"); 
+       out("Alterado B_VAR1 para FALSO", "\r\n");
+       b_var1 <- false;
+       s_msg <- "ENTROU NO ISTRUEDO DA CONDICAO INTERNA";
+    } isFalseDo :{
+       out(i_var1, " * 5 (", i_var1*5,") nao eh maior que ",i_var2," * 4 (", i_var2*4,")", "\r\n"); 
+       out("Alterado B_VAR1 para TRUE", "\r\n");
+       b_var1 <- true;
+       s_msg <-"ENTROU NO ISFALSEDO DA CONDICAO INTERNA";
+       i_var2 <- i_var2 + 2;
+    }
+    i_qtd <- i_qtd + 1; /* apenas para ter uma variação no meio*/
+   }isFalseDo :{
+    b_var1 <- true; /* verificar problema na compilação, não avisou que estava errado ao usar b_var */
+    out("Entrou no ELSE do B_VAR1", "\r\n"); 
+    i_qtd <- i_qtd + 2; /* apenas para ter uma variação no meio*/
+    i_var2 <- i_var2 + 1;
+   }
+   i_sum <- i_sum + i_var1; /* soma sempre o i_var1 ao total para fazer a mehdia do mesmo ao final */
+  out( "\r\n","\r\n");
+  }
+  out( " O total final eh de ", i_sum, "\r\n");
+  out( " O mehdia final eh de ", i_sum / i_qtd, "\r\n"); 
+}

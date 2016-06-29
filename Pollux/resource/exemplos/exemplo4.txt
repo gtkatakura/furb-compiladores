@@ -1,0 +1,64 @@
+main module 
+: i_valor1, f_valor2; 
+
+{
+
+
+	out("\r\n"); /* aka Quebra de linha */
+	out("Exemplo 4: Teste com multiplos comandos de seleção");
+	out("\r\n"); /* aka Quebra de linha */
+
+	if(true) isTrueDo : {
+		out("Entrou no fluxo isTrueDo com constante true");
+		out("\r\n"); /* aka Quebra de linha */
+	}
+
+	if(false) isTrueDo : {
+		out("Entrou no fluxo isTrueDo com constante true ?");
+		out("\r\n"); /* aka Quebra de linha */
+	} isFalseDo : {
+		out("Entrou no fluxo isFalseDo com constante false (else)");
+		out("\r\n"); /* aka Quebra de linha */
+	}
+
+	if(false) isFalseDo : {
+		out("Entrou no fluxo isFalseDo com constante false");
+		out("\r\n"); /* aka Quebra de linha */
+	}
+
+	if(true) isFalseDo : {
+		out("Entrou no fluxo isFalseDo com constante true ?");
+		out("\r\n"); /* aka Quebra de linha */
+	} isTrueDo : {
+		out("Entrou no fluxo isTrueDo com constante true (else)");
+		out("\r\n"); /* aka Quebra de linha */
+	}
+	
+	if(true) isTrueDo : {
+		out("Entrou no fluxo isTrueDo 1");
+		out("\r\n"); /* aka Quebra de linha */
+		if(true) isTrueDo : {
+			out("Entrou no fluxo isTrueDo 1-1");
+			out("\r\n"); /* aka Quebra de linha */
+			if(true) isTrueDo : {
+				out("Entrou no fluxo isTrueDo 1-1-1");
+				out("\r\n"); /* aka Quebra de linha */
+				if(false) isTrueDo : {
+					out("Entrou no fluxo isTrueDo 1-1-1?");
+					out("\r\n"); /* aka Quebra de linha */
+				} isFalseDo : {
+					out("Entrou no fluxo isFalseDo 1-1-1-1");
+					out("\r\n"); /* aka Quebra de linha */
+				}
+			}
+		}
+	} isFalseDo : {
+		out("Entrou no fluxo isFalseDo?");
+		out("\r\n"); /* aka Quebra de linha */
+	}
+	
+	
+	out("\r\n"); /* aka Quebra de linha */
+	out("EXEMPLO 4 EXECUCAO CONCLUIDA COM SUCESSO!");
+	out("\r\n"); /* aka Quebra de linha */
+}

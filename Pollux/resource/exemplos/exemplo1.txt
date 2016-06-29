@@ -1,0 +1,30 @@
+main module 
+: i_valor1, i_valor2; 
+{
+
+
+	out("\r\n"); /* aka Quebra de linha */
+	out("Exemplo 1: Operações aritmeticas entre dois numeros inteiros");
+	out("\r\n"); /* aka Quebra de linha */
+
+	out("Informe um valor inteiro :");
+	in(i_valor1);
+	out("Informe outro valor inteiro :");
+	in(i_valor2);
+	
+	out(i_valor1 , " + ", i_valor2, " = ", i_valor1 + i_valor2);
+	out("\r\n"); /* aka Quebra de linha */
+	out(i_valor1, " - ", i_valor2, " = ", i_valor1 - i_valor2);
+	out("\r\n"); /* aka Quebra de linha */
+	out(i_valor1, " * ", i_valor2, " = ", i_valor1 * i_valor2);
+	out("\r\n"); /* aka Quebra de linha */
+	if(i_valor2 = 0) isFalseDo : {
+		out(i_valor1, " / ", i_valor2, " = ", i_valor1 / i_valor2);
+	} isTrueDo : {
+		out("Divisor zero, desconsiderado");
+	}
+	
+	out("\r\n"); /* aka Quebra de linha */
+	out("EXEMPLO 1 EXECUCAO CONCLUIDA COM SUCESSO!");
+	out("\r\n"); /* aka Quebra de linha */
+}
