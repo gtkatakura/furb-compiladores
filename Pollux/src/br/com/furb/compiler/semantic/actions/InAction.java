@@ -21,13 +21,6 @@ public class InAction extends ActionSemantic {
 		StringBuilder code = new StringBuilder(READ_FUNCTION_SIGNATURE);
 
 		Identifier inputId = new Identifier(token.getLexeme());
-		
-		if (!this.getSymbolTable().getIdentifiers().containsKey(inputId.toString())) {
-			throw new SemanticError(
-				inputId.toString() + " não declarado",
-				token.getPosition()
-			);
-		}
 
 		Type idType = inputId.getType();
 		if (idType != Type.STRING) {
