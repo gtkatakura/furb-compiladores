@@ -847,4 +847,17 @@ public class SemanticTest {
 		
 		verificaCodigoGerado(programaFonte, codigoGerado);
 	}
+	
+	// TODO
+	@Test
+	public void testDeclaracaoVetor() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[]{
+			"main module : i_CH[6]",
+			"{",
+			"}"
+		};
+		
+		String[] codigoObjetoEsperado = new String[2];
+		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
+	}
 }

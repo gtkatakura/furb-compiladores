@@ -39,4 +39,8 @@ public class Identifier {
 	private char getHungarianConvention() {
 		return this.name.toCharArray()[0];
 	}
+	
+	public boolean isVector() {
+		return this.name.matches(".+\\[\\d+\\]"); // FIXME
+	}
 }
