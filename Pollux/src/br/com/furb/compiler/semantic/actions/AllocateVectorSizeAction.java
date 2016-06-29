@@ -12,6 +12,6 @@ public class AllocateVectorSizeAction extends ActionSemantic {
 
 	@Override
 	public String execute(Token token) throws SemanticError {
-		return "ldci8 " + token.getLexeme() + "\n";
+		return "ldc.i8 " + token.getLexeme() + "\n";
 	}
 }
