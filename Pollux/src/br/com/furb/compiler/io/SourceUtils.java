@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class SourceUtils {
 
-	public static void save(File file, String content) {
+	public static void save(File file, String content) throws IOException {
 		try {
 			if (!file.exists()) {
 				file.getParentFile().mkdirs();
@@ -17,11 +17,13 @@ public class SourceUtils {
 			}
 
 			try (FileOutputStream fos = new FileOutputStream(file);
-					BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+				BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+				content = content.replaceAll("\n", "\r\n");
 				fos.write(content.getBytes());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new IOException("Check the file name again! ("+file.getName()+")", e);
 		}
 	}
 
@@ -40,6 +42,6 @@ public class SourceUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return sb.toString();
+		return sb.toString().replaceAll("\r\n", "\n");
 	}
 }

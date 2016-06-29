@@ -135,7 +135,7 @@ public class CompilerView implements IView {
 		toolbar.addAction(key, Tool.TEAM, new AbstractAction(TEAM.caption, IconProvider.TEAM.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageArea.update("Equipe: Alesson Bernardo, Gabriel Katakura, Leonardo Bona.");
+				messageArea.update("Equipe: Alesson Bernardo, Gabriel Katakura, Leonardo Farias Bona.");
 			}
 		});
 	}
@@ -161,13 +161,16 @@ public class CompilerView implements IView {
 		toolbar.addAction(key, Tool.OPEN_FILE, new AbstractAction(OPEN_FILE.caption, IconProvider.OPEN_FILE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				File file = chooseFile(source);
-				if (file != null) {
+				File file;
+				try {
+					file = chooseFile(source);
 					source = file;
 					currentContent = SourceUtils.read(file);
 					editor.update(currentContent);
 					messageArea.clean();
 					statusBar.notModified(source.toString());
+				} catch (Exception e1) {
+					// e1.printStackTrace();
 				}
 			}
 		});
@@ -178,19 +181,20 @@ public class CompilerView implements IView {
 		toolbar.addAction(key, Tool.SAVE_FILE, new AbstractAction(SAVE_FILE.caption, IconProvider.SAVE_FILE.get()) {
 
 			public void actionPerformed(ActionEvent e) {
-
-				if (source == null) {
-					source = chooseFile(null);
-					source = new File(source.getAbsolutePath() + ".txt");
-				}
-
-				if (source != null) {
+				try {
+					if (source == null) {
+						source = chooseFile(null);
+						source = new File(source.getAbsolutePath() + ".txt");
+					}
 					String content = editor.getContent();
 					currentContent = content;
 					SourceUtils.save(source, currentContent);
 					messageArea.clean();
 					statusBar.notModified(source.toString());
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
+
 			}
 		});
 	}
@@ -294,26 +298,26 @@ public class CompilerView implements IView {
 							lexico.setInput(input);
 							sintatico.parse(lexico, semantico);
 							objectCode = semantico.getObjectCode();
-							if (source == null) {
-								source = chooseFile(null);
-								source = new File(source.getAbsolutePath() + ".txt");
-							}
-
-							if (source != null) {
-								String content = editor.getContent();
-								currentContent = content;
-								SourceUtils.save(source, currentContent);
-								messageArea.clean();
-								statusBar.notModified(source.toString());
-								String nome = source.getName().substring(0, source.getName().lastIndexOf("."));
-								File objectCodeFile = new File(source.getParent(), nome + ".il");
-								SourceUtils.save(objectCodeFile, objectCode);
-								messageArea.update("Código objeto gerado com sucesso");
-							} else {
-								messageArea.update(
-										"Arquivo fonte não foi salvo ainda, não é possível gerar o código objeto"); // VERIFICAR
-																													// MENSAGEM
-																													// CORRETA
+							try{
+								if (source == null) {
+									source = chooseFile(null);
+									source = new File(source.getAbsolutePath() + ".txt");
+								}
+	
+								if (source != null) {
+									String content = editor.getContent();
+									currentContent = content;
+									SourceUtils.save(source, currentContent);
+									messageArea.clean();
+									statusBar.notModified(source.toString());
+									String nome = source.getName().substring(0, source.getName().lastIndexOf("."));
+									File objectCodeFile = new File(source.getParent(), nome + ".il");
+									SourceUtils.save(objectCodeFile, objectCode);
+									messageArea.update("Código objeto gerado com sucesso");
+								}
+							}catch (Exception e1) {
+								
+								
 							}
 						} catch (LexicalError | SyntaticError | SemanticError error) {
 							int line = CompilerView.getNumberLine(input, error.getPosition());
@@ -341,7 +345,7 @@ public class CompilerView implements IView {
 		editor.clean();
 	}
 
-	private File chooseFile(File directory) {
+	private File chooseFile(File directory) throws Exception {
 		final JFileChooser chooser = new JFileChooser(source);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.setMultiSelectionEnabled(false);
@@ -349,8 +353,9 @@ public class CompilerView implements IView {
 
 		if (chooser.showOpenDialog(window) == JFileChooser.APPROVE_OPTION) {
 			return chooser.getSelectedFile();
+		} else {
+			throw new Exception("Processo cancelado");
 		}
-		return null; // :(
 	}
 
 	private static void copyToClipboard(String text) {
