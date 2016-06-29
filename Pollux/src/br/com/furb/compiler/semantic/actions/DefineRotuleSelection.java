@@ -14,7 +14,7 @@ public class DefineRotuleSelection extends ActionSemantic {
 		
 		if (type != "bool") {
 			throw new SemanticError(
-				"Instrução 'if' só pode ser manipulada com expressões booleanas",
+				"Essa instrução só pode ser manipulada com expressões booleanas",
 				token.getPosition()
 			);
 		}

@@ -547,6 +547,33 @@ public class SemanticTest {
 	}
 	
 	@Test
+	public void testEstruturaSelecaoWhile() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_xpto;",
+			"{",
+				"while (i_xpto = 2) isTrueDo : {",
+			    	"i_xpto <- 1;",
+			  	"}",
+			"}"
+		};
+		
+		String[] codigoObjeto = new String[] {
+			".locals (int64 i_xpto)",
+			"R0:",
+		 	"ldloc i_xpto",
+			"ldc.i8 2",
+		 	"ceq",
+		 	"brfalse R1",
+		 	"ldc.i8 1",
+		 	"stloc i_xpto",
+		 	"br R0",
+		 	"R1:"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjeto);
+	}
+	
+	@Test
 	public void testSomaConstantes() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[] {
 			"main module : i_primeiro;",
