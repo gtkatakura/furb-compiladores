@@ -17,7 +17,7 @@ public class AllocateIdentifierAction extends ActionSemantic {
 		
 		if (!this.getSymbolTable().getIdentifiers().containsKey(identifier.toString())) {
 			throw new SemanticError(
-				identifier.toString() + " nï¿½o declarado",
+				identifier.toString() + " não declarado",
 				token.getPosition()
 			);
 		}

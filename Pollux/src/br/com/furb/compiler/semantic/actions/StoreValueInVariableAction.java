@@ -14,10 +14,17 @@ public class StoreValueInVariableAction extends ActionSemantic {
 	public String execute(Token token) throws SemanticError {
 		Identifier identifier = this.getSymbolTable().getStackIdentifiers().pop();
 		String type = this.getSymbolTable().getTypes().pop();
+
+		if (!this.getSymbolTable().getIdentifiers().containsKey(identifier.toString())) {
+			throw new SemanticError(
+					identifier.toString() + " não declarado",
+				token.getPosition()
+			);
+		}
 		
 		if (identifier.getTypeDescription() != type) {
 			throw new SemanticError(
-				"Tipos incompatï¿½veis em comando de atribuiï¿½ï¿½o",
+				"Tipos incompatíveis em comando de atribuição",
 				token.getPosition()
 			);
 		}
