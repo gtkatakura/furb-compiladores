@@ -13,11 +13,11 @@ public class AllocateIdentifierAction extends ActionSemantic {
 	@Override
 	public String execute(Token token) throws SemanticError {
 		Identifier identifier = this.getSymbolTable().getStackIdentifiers().pop();
-		this.getSymbolTable().getTypes().push(identifier.getType());
+		this.getSymbolTable().getTypes().push(identifier.getTypeDescription());
 		
 		if (!this.getSymbolTable().getIdentifiers().containsKey(identifier.toString())) {
 			throw new SemanticError(
-				identifier.toString() + " não declarado",
+				identifier.toString() + " nï¿½o declarado",
 				token.getPosition()
 			);
 		}

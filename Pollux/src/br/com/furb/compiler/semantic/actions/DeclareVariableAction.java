@@ -16,12 +16,12 @@ public class DeclareVariableAction extends ActionSemantic {
 		
 		if (symbolTable.getIdentifiers().containsKey(identifier.toString())) {
 			throw new SemanticError(
-				identifier.toString() + " já declarado",
+				identifier.toString() + " jï¿½ declarado",
 				token.getPosition()
 			);
 		}
 
 		symbolTable.getIdentifiers().put(identifier.toString(), identifier);
-		return ".locals (" + identifier.getType() + " " + identifier + ")\n";
+		return ".locals (" + identifier.getTypeDescription() + " " + identifier + ")\n";
 	}
 }

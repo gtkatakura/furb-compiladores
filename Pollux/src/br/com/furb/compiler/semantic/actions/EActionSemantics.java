@@ -27,6 +27,7 @@ public enum EActionSemantics {
 	Number19(19, AllocateStringAction.class),
 	Number21(21, PushIdentifierAction.class),
 	Number22(22, DeclareVariableAction.class),
+	Number23(23, InAction.class),
 	Number24(24, AllocateIdentifierAction.class),
 	Number25(25, StoreValueInVariableAction.class),
 	Number28(28, DefineRotuleSelection.class),

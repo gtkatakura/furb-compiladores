@@ -15,9 +15,9 @@ public class StoreValueInVariableAction extends ActionSemantic {
 		Identifier identifier = this.getSymbolTable().getStackIdentifiers().pop();
 		String type = this.getSymbolTable().getTypes().pop();
 		
-		if (identifier.getType() != type) {
+		if (identifier.getTypeDescription() != type) {
 			throw new SemanticError(
-				"Tipos incompatíveis em comando de atribuição",
+				"Tipos incompatï¿½veis em comando de atribuiï¿½ï¿½o",
 				token.getPosition()
 			);
 		}

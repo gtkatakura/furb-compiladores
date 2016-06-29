@@ -71,7 +71,7 @@ public class SemanticTest {
 	
 		String codigo = cabecalho() + "\n" + codigoObjetoEsperado + "\n" + rodape();
 		assertEquals(codigo, semantico.getObjectCode());
-		criarArquivoTest(codigo);
+//		criarArquivoTest(codigo);
 	 }
 		 
 	private void criarArquivoTest(String codigo) {
@@ -699,7 +699,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '-' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -711,7 +711,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -724,7 +724,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -736,7 +736,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operadores Binários só aceitam operandos do tipo int e/ou float.");
+		verificaMensagemDeErro(programaFonte, "Operadores Binï¿½rios sï¿½ aceitam operandos do tipo int e/ou float.");
 	}
 
 	@Test
@@ -748,7 +748,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em comando de atribuição");
+		verificaMensagemDeErro(programaFonte, "Tipos incompatï¿½veis em comando de atribuiï¿½ï¿½o");
 	}
 	
 	@Test
@@ -760,7 +760,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador 'not' só pode ser aplicado sobre operandos de tipo 'bool'");
+		verificaMensagemDeErro(programaFonte, "Operador 'not' sï¿½ pode ser aplicado sobre operandos de tipo 'bool'");
 	}
 	
 	@Test
@@ -772,6 +772,52 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em expressão relacional");
+		verificaMensagemDeErro(programaFonte, "Tipos incompatï¿½veis em expressï¿½o relacional");
+	}
+	
+	@Test
+	public void testLeituraTipoInteiro() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+			"main module : i_lado;",
+			"{",
+				"out (\"input some value: \");",
+				"in (i_lado);",
+				"out(i_lado);" ,
+			 "}"
+		};
+		
+		String[] codigoGerado = new String[] {
+			".locals (int64 i_lado)",
+			"ldstr \"input some value: \"",
+			"call void [mscorlib]System.Console::Write(string)",
+			"call string [mscorlib]System.Console::ReadLine()",
+			"call int64 [mscorlib]System.Int64::Parse(string)",
+			"stloc i_lado",
+			"ldloc i_lado",
+			"call void [mscorlib]System.Console::Write(int64)",
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoGerado);
+	} 
+	
+	@Test
+	public void testLeituraTipoString() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[] {
+				"main module : s_desc;",
+				"{",
+					"out (\"desc: \");",
+					"in (s_desc);",
+				 "}"
+			};
+		
+		String[] codigoGerado = new String[] {
+				".locals (string s_desc)",
+				"ldstr \"desc: \"",
+				"call void [mscorlib]System.Console::Write(string)",
+				"call string [mscorlib]System.Console::ReadLine()",
+				"stloc s_desc"	
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoGerado);
 	}
 }
