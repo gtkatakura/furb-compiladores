@@ -17,7 +17,7 @@ public class StoreValueInVariableAction extends ActionSemantic {
 		
 		if (identifier.getTypeDescription() != type) {
 			throw new SemanticError(
-				"Tipos incompatï¿½veis em comando de atribuiï¿½ï¿½o",
+				"Tipos incompatíveis em comando de atribuição",
 				token.getPosition()
 			);
 		}
