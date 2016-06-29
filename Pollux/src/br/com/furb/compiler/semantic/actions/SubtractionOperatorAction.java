@@ -6,7 +6,7 @@ import br.com.furb.compiler.semantic.SymbolTable;
 
 public class SubtractionOperatorAction extends BinaryOperatorAction {
 	public SubtractionOperatorAction(SymbolTable symbolTable) {
-		super(symbolTable);
+		super(symbolTable, '-');
 	}
 
 	@Override

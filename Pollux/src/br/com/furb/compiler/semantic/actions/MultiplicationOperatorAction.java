@@ -6,7 +6,7 @@ import br.com.furb.compiler.semantic.SymbolTable;
 
 public class MultiplicationOperatorAction extends BinaryOperatorAction {
 	public MultiplicationOperatorAction(SymbolTable symbolTable) {
-		super(symbolTable);
+		super(symbolTable, '*');
 	}
 
 	public String execute(Token token) throws SemanticError {

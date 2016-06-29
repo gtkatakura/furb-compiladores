@@ -16,7 +16,7 @@ public class DeclareVariableAction extends ActionSemantic {
 		
 		if (symbolTable.getIdentifiers().containsKey(identifier.toString())) {
 			throw new SemanticError(
-				identifier.toString() + " jï¿½ declarado",
+				identifier.toString() + " já declarado",
 				token.getPosition()
 			);
 		}

@@ -763,7 +763,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operadores Binï¿½rios sï¿½ aceitam operandos do tipo int e/ou float.");
+		verificaMensagemDeErro(programaFonte, "Operador '/' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
 	}
 
 	@Test
