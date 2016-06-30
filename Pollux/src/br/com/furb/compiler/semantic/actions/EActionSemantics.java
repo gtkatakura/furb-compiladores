@@ -30,7 +30,7 @@ public enum EActionSemantics {
 	Number23(23, InAction.class),
 	Number24(24, AllocateIdentifierAction.class),
 	Number25(25, StoreValueInVariableAction.class),
-	// TODO 27
+	Number27(27, VectorAccessAction.class),
 	Number26(26, AllocateVectorSizeAction.class),
 	Number28(28, DefineRotuleSelection.class),
 	Number29(29, EndSelectionAction.class),

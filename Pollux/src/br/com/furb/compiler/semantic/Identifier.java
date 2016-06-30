@@ -7,6 +7,7 @@ import static br.com.furb.compiler.semantic.Type.STRING;
 
 public class Identifier {
 	private String name;
+	private Integer size;
 
 	public Identifier(String name) {
 		this.name = name;
@@ -39,8 +40,12 @@ public class Identifier {
 	private char getHungarianConvention() {
 		return this.name.toCharArray()[0];
 	}
-	
-	public boolean isVector() {
-		return this.name.matches(".+\\[\\d+\\]"); // FIXME
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	public Integer getSize() {
+		return size;
 	}
 }

@@ -763,7 +763,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '/' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '/' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
 	}
 
 	@Test
@@ -848,16 +848,23 @@ public class SemanticTest {
 		verificaCodigoGerado(programaFonte, codigoGerado);
 	}
 	
-	// TODO
 	@Test
 	public void testDeclaracaoVetor() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[]{
-			"main module : i_CH[6]",
+			"main module : i_CH [6];",
 			"{",
+				"out(\"...\");",
 			"}"
 		};
 		
-		String[] codigoObjetoEsperado = new String[2];
+		String[] codigoObjetoEsperado = new String[] {
+			".locals (int64[]  i_CH)",
+			"ldc.i8 6",
+			"newarr [mscorlib]Sytem.Int64",
+			"stloc i_CH",
+			"ldstr \"...\"",
+			"call void [mscorlib]System.Console::Write(string)",
+		};
 		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
 	}
 }
