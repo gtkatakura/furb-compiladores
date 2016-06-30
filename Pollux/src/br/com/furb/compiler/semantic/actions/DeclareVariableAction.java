@@ -8,7 +8,7 @@ import br.com.furb.compiler.semantic.Type;
 
 public class DeclareVariableAction extends ActionSemantic {
 
-	private static final String VECTOR_DECLARATION = "newarr [mscorlib]Sytem.%s";
+	private static final String VECTOR_DECLARATION = "newarr [mscorlib]System.%s";
 	private static final String VECTOR_BRACKETS = "[] ";
 
 	public DeclareVariableAction(SymbolTable symbolTable) {

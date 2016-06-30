@@ -860,7 +860,7 @@ public class SemanticTest {
 		String[] codigoObjetoEsperado = new String[] {
 			".locals (int64[]  i_CH)",
 			"ldc.i8 6",
-			"newarr [mscorlib]Sytem.Int64",
+			"newarr [mscorlib]System.Int64",
 			"stloc i_CH",
 			"ldstr \"...\"",
 			"call void [mscorlib]System.Console::Write(string)",
@@ -880,7 +880,7 @@ public class SemanticTest {
 		String[] codigoObjetoEsperado = new String[] {
 			".locals (int64[]  i_CH)",
 			"ldc.i8 2",
-			"newarr [mscorlib]Sytem.Int64",
+			"newarr [mscorlib]System.Int64",
 			"stloc i_CH",
 			"ldloc i_CH",
 			"ldc.i8 0",
@@ -903,7 +903,7 @@ public class SemanticTest {
 		String[] codigoObjetoEsperado = new String[] {
 			".locals (int64[]  i_CH)",
 			"ldc.i8 2",
-			"newarr [mscorlib]Sytem.Int64",
+			"newarr [mscorlib]System.Int64",
 			"stloc i_CH",
 			"ldloc i_CH",
 			"ldc.i8 0",
@@ -932,7 +932,7 @@ public class SemanticTest {
 		String[] codigoObjetoEsperado = new String[] {
 			".locals (int64[]  i_CH)",
 			"ldc.i8 3",
-			"newarr [mscorlib]Sytem.Int64",
+			"newarr [mscorlib]System.Int64",
 			"stloc i_CH",
 			".locals (int64 i_value)",
 			"ldc.i8 1",
