@@ -4,12 +4,10 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
-import br.com.furb.compiler.semantic.Type;
 
 public class DeclareVariableAction extends ActionSemantic {
 
-	private static final String VECTOR_DECLARATION = "newarr [mscorlib] Sytem.%s";
-	private static final String VECTOR_BRACKETS = "[ ] ";
+	private static final String VECTOR_BRACKETS = "[] ";
 
 	public DeclareVariableAction(SymbolTable symbolTable) {
 		super(symbolTable);
@@ -29,26 +27,15 @@ public class DeclareVariableAction extends ActionSemantic {
 
 	private String buildDeclarationFor(Identifier identifier) {
 		StringBuilder declaration = new StringBuilder(".locals (");
-		declaration.append(identifier.getTypeDescription()).append(" ");
+		declaration.append(identifier.getTypeDescription());
 
-		String closeDeclaration = ")\n";
 		if (identifier.isVector()) {
-			declaration.append(formatVectorDeclaration(identifier, closeDeclaration));
-		} else {
-			declaration.append(identifier).append(closeDeclaration);
+			declaration.append(VECTOR_BRACKETS);
 		}
-		return declaration.toString();
-	}
 
-	public String formatVectorDeclaration(Identifier id, String pieceOfCode) {
-		return new StringBuilder(VECTOR_BRACKETS) //
-				.append(id) //
-				.append(pieceOfCode) //
-				.append(buildNewArrayFunctionCallFor(id.getType())) //
+		return declaration.append(" ") //
+				.append(identifier) //
+				.append(")\n") //
 				.toString();
-	}
-
-	public String buildNewArrayFunctionCallFor(Type type) {
-		return String.format(VECTOR_DECLARATION, type.getCorrespondingClass());
 	}
 }
