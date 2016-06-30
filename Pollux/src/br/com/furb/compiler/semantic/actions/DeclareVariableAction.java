@@ -34,7 +34,24 @@ public class DeclareVariableAction extends ActionSemantic {
 		if (identifier.getSize() != null) {
 			return formatVectorDeclaration(identifier, declaration, closeDeclaration);
 		}
-		return (declaration + " " + identifier + closeDeclaration);
+		
+		declaration += " " + identifier + closeDeclaration;
+		
+		if (identifier.getTypeDescription() == "int64") {
+			return (
+				declaration +
+				"ldc.i8 0\n" +
+				"stloc " + identifier.toString() + "\n"
+			);
+		} else if (identifier.getTypeDescription() == "float64") {
+			return (
+				declaration +
+				"ldc.r8 0.0\n" +
+				"stloc " + identifier.toString() + "\n"
+			);
+		}
+		
+		return declaration;
 	}
 
 	public String formatVectorDeclaration(Identifier id, String declaration, String closeDeclaration) {

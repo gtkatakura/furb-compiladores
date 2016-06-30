@@ -121,6 +121,8 @@ public class SemanticTest {
 		String[] codigoObjeto = new String[] {
 		 	".locals (int64 i_primeiro)",
 		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
+		 	"ldc.i8 0",
 		 	"stloc i_primeiro"
 		};
 		
@@ -138,6 +140,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
 		 	"ldc.i8 1",
 		 	"stloc i_primeiro"
 		};
@@ -156,6 +160,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.i8 -1",
 		 	"mul",
@@ -177,6 +183,8 @@ public class SemanticTest {
 		String[] codigoObjeto = new String[] {
 		 	".locals (float64 f_primeiro)",
 		 	"ldc.r8 0.0",
+		 	"stloc f_primeiro",
+		 	"ldc.r8 0.0",
 		 	"stloc f_primeiro"
 		};
 		
@@ -194,6 +202,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (float64 f_primeiro)",
+		 	"ldc.r8 0.0",
+		 	"stloc f_primeiro",
 		 	"ldc.r8 1.0",
 		 	"ldc.i8 -1",
 		 	"mul",
@@ -483,6 +493,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 			".locals (int64 i_xpto)",
+		 	"ldc.i8 0",
+		 	"stloc i_xpto",
 			"ldc.i8 2",
 		 	"ldc.i8 2",
 		 	"ceq",
@@ -516,7 +528,11 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 			".locals (int64 i_xpto)",
+		 	"ldc.i8 0",
+		 	"stloc i_xpto",
 			".locals (int64 i_abc)",
+		 	"ldc.i8 0",
+		 	"stloc i_abc",
 			"ldc.i8 2",
 		 	"stloc i_xpto",
 		 	"ldc.i8 2",
@@ -559,6 +575,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 			".locals (int64 i_xpto)",
+		 	"ldc.i8 0",
+		 	"stloc i_xpto",
 			"R0:",
 		 	"ldloc i_xpto",
 			"ldc.i8 2",
@@ -584,6 +602,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.i8 2",
 		 	"add",
@@ -605,7 +625,11 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 			".locals (int64 i_primeiro)",
+		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
 			".locals (int64 i_segundo)",
+		 	"ldc.i8 0",
+		 	"stloc i_segundo",
 		 	"ldc.i8 1",
 		 	"stloc i_primeiro",
 		 	"ldloc i_primeiro",
@@ -628,6 +652,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (float64 f_primeiro)",
+		 	"ldc.r8 0.0",
+		 	"stloc f_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.r8 2.5",
 		 	"add",
@@ -648,6 +674,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.i8 2",
 		 	"sub",
@@ -668,6 +696,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (int64 i_primeiro)",
+		 	"ldc.i8 0",
+		 	"stloc i_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.i8 2",
 		 	"mul",
@@ -688,8 +718,11 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (float64 f_primeiro)",
+		 	"ldc.r8 0.0",
+		 	"stloc f_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.i8 2",
+		 	"conv.r8",
 		 	"div",
 		 	"stloc f_primeiro"
 		};
@@ -708,6 +741,8 @@ public class SemanticTest {
 		
 		String[] codigoObjeto = new String[] {
 		 	".locals (float64 f_primeiro)",
+		 	"ldc.r8 0.0",
+		 	"stloc f_primeiro",
 		 	"ldc.i8 1",
 		 	"ldc.r8 2.5",
 		 	"div",
@@ -726,7 +761,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '-' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -738,7 +773,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -751,7 +786,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -763,7 +798,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '/' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '/' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
 	}
 
 	@Test
@@ -787,7 +822,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador 'not' sï¿½ pode ser aplicado sobre operandos de tipo 'bool'");
+		verificaMensagemDeErro(programaFonte, "Operador 'not' só pode ser aplicado sobre operandos de tipo 'bool'");
 	}
 	
 	@Test
@@ -799,7 +834,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Tipos incompatï¿½veis em expressï¿½o relacional");
+		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em expressão relacional");
 	}
 	
 	@Test
@@ -815,6 +850,8 @@ public class SemanticTest {
 		
 		String[] codigoGerado = new String[] {
 			".locals (int64 i_lado)",
+		 	"ldc.i8 0",
+		 	"stloc i_lado",
 			"ldstr \"input some value: \"",
 			"call void [mscorlib]System.Console::Write(string)",
 			"call string [mscorlib]System.Console::ReadLine()",
@@ -935,6 +972,8 @@ public class SemanticTest {
 			"newarr [mscorlib]System.Int64",
 			"stloc i_CH",
 			".locals (int64 i_value)",
+		 	"ldc.i8 0",
+		 	"stloc i_value",
 			"ldc.i8 1",
 			"stloc i_value",
 			"ldloc i_CH",
