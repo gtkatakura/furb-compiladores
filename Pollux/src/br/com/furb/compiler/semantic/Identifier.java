@@ -48,4 +48,8 @@ public class Identifier {
 	public Integer getSize() {
 		return size;
 	}
+
+	public boolean isVector() {
+		return getSize() != null;
+	}
 }

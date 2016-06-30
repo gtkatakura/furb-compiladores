@@ -31,8 +31,7 @@ public class DeclareVariableAction extends ActionSemantic {
 		String declaration = ".locals (" + identifier.getTypeDescription();
 		String closeDeclaration = ")\n";
 
-		Integer size = identifier.getSize();
-		if (size != null) {
+		if (identifier.getSize() != null) {
 			return formatVectorDeclaration(identifier, declaration, closeDeclaration);
 		}
 		return (declaration + " " + identifier + closeDeclaration);

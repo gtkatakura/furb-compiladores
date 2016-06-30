@@ -11,9 +11,14 @@ public class PushIdentifierAction extends ActionSemantic {
 
 	@Override
 	public String execute(Token token) {
-		Identifier identifier = new Identifier(token.getLexeme());
+		String lexeme = token.getLexeme();
+		Identifier identifier = getSymbolTable().getIdentifiers().get(lexeme);
+
+		if (identifier == null) {
+			identifier = new Identifier(lexeme);
+		}
+
 		this.getSymbolTable().getStackIdentifiers().push(identifier);
 		return null;
 	}
-
 }

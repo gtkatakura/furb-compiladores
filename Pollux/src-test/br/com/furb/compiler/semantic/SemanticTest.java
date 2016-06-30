@@ -867,4 +867,25 @@ public class SemanticTest {
 		};
 		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
 	}
+	
+	@Test
+	public void testAtribuicaoEmVetor() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[]{
+				"main module : i_CH [2];",
+				"{",
+					"i_CH [0] <- 10;",
+				"}"
+		};
+		String[] codigoObjetoEsperado = new String[] {
+			".locals (int64[]  i_CH)",
+			"ldc.i8 2",
+			"newarr [mscorlib]Sytem.Int64",
+			"stloc i_CH",
+			"ldloc i_CH",
+			"ldc.i8 0",
+			"ldc.i8 10",
+			"stelem int64"
+		};
+		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
+	}
 }
