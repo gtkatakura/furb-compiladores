@@ -871,11 +871,12 @@ public class SemanticTest {
 	@Test
 	public void testAtribuicaoEmVetor() throws LexicalError, SyntaticError, SemanticError {
 		String[] programaFonte = new String[]{
-				"main module : i_CH [2];",
-				"{",
-					"i_CH [0] <- 10;",
-				"}"
+			"main module : i_CH [2];",
+			"{",
+				"i_CH [0] <- 10;",
+			"}"
 		};
+		
 		String[] codigoObjetoEsperado = new String[] {
 			".locals (int64[]  i_CH)",
 			"ldc.i8 2",
@@ -886,6 +887,66 @@ public class SemanticTest {
 			"ldc.i8 10",
 			"stelem int64"
 		};
+		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
+	}
+	
+	@Test
+	public void testUsoVetor() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[]{
+			"main module : i_CH [2];",
+			"{",
+				"i_CH [0] <- 10;",
+				"out(i_CH [0]);",
+			"}"
+		};
+		
+		String[] codigoObjetoEsperado = new String[] {
+			".locals (int64[]  i_CH)",
+			"ldc.i8 2",
+			"newarr [mscorlib]Sytem.Int64",
+			"stloc i_CH",
+			"ldloc i_CH",
+			"ldc.i8 0",
+			"ldc.i8 10",
+			"stelem int64",
+			"ldloc i_CH",
+			"ldc.i8 0",
+			"ldelem int64",
+			"call void [mscorlib]System.Console::Write(int64)"
+		};
+		
+		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
+	}
+	
+	@Test
+	public void testAcessoVetorComIdentificador() throws LexicalError, SyntaticError, SemanticError {
+		String[] programaFonte = new String[]{
+			"main module : i_CH [3], i_value;",
+			"{",
+				"i_value <- 1;",
+				"i_CH [i_value] <- 10;",
+				"out(i_CH [i_value]);",
+			"}"
+		};
+		
+		String[] codigoObjetoEsperado = new String[] {
+			".locals (int64[]  i_CH)",
+			"ldc.i8 3",
+			"newarr [mscorlib]Sytem.Int64",
+			"stloc i_CH",
+			".locals (int64 i_value)",
+			"ldc.i8 1",
+			"stloc i_value",
+			"ldloc i_CH",
+			"ldloc i_value",
+			"ldc.i8 10",
+			"stelem int64",
+			"ldloc i_CH",
+			"ldloc i_value",
+			"ldelem int64",
+			"call void [mscorlib]System.Console::Write(int64)"
+		};
+		
 		verificaCodigoGerado(programaFonte, codigoObjetoEsperado);
 	}
 }
