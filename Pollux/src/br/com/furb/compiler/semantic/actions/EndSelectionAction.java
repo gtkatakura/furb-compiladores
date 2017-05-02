@@ -11,6 +11,6 @@ public class EndSelectionAction extends ActionSemantic {
 	public String execute(Token token) {
 		String rotule = this.getSymbolTable().getRotules().pop();
 		
-		return rotule + ":\n";
+		return rotule + ":";
 	}
 }

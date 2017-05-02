@@ -11,6 +11,6 @@ public class MultiplicationOperatorAction extends BinaryOperatorAction {
 
 	public String execute(Token token) throws SemanticError {
 		super.execute(token);
-		return "mul\n";
+		return "mul";
 	}
 }

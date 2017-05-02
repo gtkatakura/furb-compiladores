@@ -24,7 +24,7 @@ public class LogicalAndOperatorAction extends ActionSemantic {
 		}
 
 		types.push("bool");
-		return "and\n";
+		return "and";
 	}
 }
 

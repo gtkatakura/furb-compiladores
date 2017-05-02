@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class DivisionOperatorAction extends BinaryOperatorAction {
@@ -17,13 +18,13 @@ public class DivisionOperatorAction extends BinaryOperatorAction {
 
 		if (types.pop() == "int64") {
 			types.push("float64");
-			return (
-				"conv.r8\n" +
-				"div\n"
-			);
+			return new ObjectCode(
+				"conv.r8",
+				"div"
+			).toString();
 		};
 
 		types.push("float64");
-		return "div\n";
+		return "div";
 	}
 }

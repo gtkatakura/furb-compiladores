@@ -10,6 +10,6 @@ public class AllocateIntAction extends ActionSemantic {
 
 	public String execute(Token token) {
 		this.getSymbolTable().getTypes().push("int64");
-		return "ldc.i8 " + token.getLexeme() + "\n";
+		return "ldc.i8 " + token.getLexeme();
 	}
 }

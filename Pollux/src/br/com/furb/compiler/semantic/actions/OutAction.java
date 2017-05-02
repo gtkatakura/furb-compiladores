@@ -11,6 +11,6 @@ public class OutAction extends ActionSemantic {
 
 	public String execute(Token token) throws SemanticError {
 		String type = this.getSymbolTable().getTypes().pop();
-		return "call void [mscorlib]System.Console::Write(" + type + ")\n";
+		return "call void [mscorlib]System.Console::Write(" + type + ")";
 	}
 }

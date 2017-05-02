@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class LogicalNegationOperatorAction extends ActionSemantic {
@@ -23,9 +24,9 @@ public class LogicalNegationOperatorAction extends ActionSemantic {
 		}
 		
 		types.push("bool");
-		return (
-			"ldc.i4.1\n" +
-			"xor\n"
-		);
+		return new ObjectCode(
+			"ldc.i4.1",
+			"xor"
+		).toString();
 	}
 }

@@ -12,7 +12,7 @@ public class AdditionOperatorAction extends BinaryOperatorAction {
 	@Override
 	public String execute(Token token) throws SemanticError {
 		super.execute(token);
-		return "add\n";
+		return "add";
 	}
 
 }

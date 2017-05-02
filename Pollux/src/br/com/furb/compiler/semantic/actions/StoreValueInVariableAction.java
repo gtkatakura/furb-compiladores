@@ -24,9 +24,9 @@ public class StoreValueInVariableAction extends ActionSemantic {
 		}
 
 		if (identifier.isVector()) {
-			return "stelem " + identifier.getTypeDescription() + "\n";
+			return "stelem " + identifier.getTypeDescription();
 		}
 
-		return "stloc " + identifier + "\n";
+		return "stloc " + identifier;
 	}
 }

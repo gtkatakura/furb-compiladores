@@ -1,11 +1,12 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.actions.ActionSemantic;
 import br.com.furb.compiler.semantic.actions.ActionSemanticFactory;
 
 public class Semantico implements Constants {
-	private StringBuilder objectCode = new StringBuilder();
+	private ObjectCode objectCode = new ObjectCode();
 	private SymbolTable symbolTable = new SymbolTable();
 
 	public String getObjectCode() {
@@ -19,7 +20,7 @@ public class Semantico implements Constants {
 			String generatedCode = actionSemantic.execute(token);
 
 			if (generatedCode != null) {
-				this.objectCode.append(generatedCode);
+				this.objectCode.add(generatedCode);
 			}
 		} else {
 			System.out.println("A��o ainda n�o implementada: " + action);

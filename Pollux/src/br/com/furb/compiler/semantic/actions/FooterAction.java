@@ -1,6 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class FooterAction extends ActionSemantic {
@@ -9,10 +10,10 @@ public class FooterAction extends ActionSemantic {
 	}
 
 	public String execute(Token token) {
-		return (
-					"ret\n" +
-				"}\n" +
+		return new ObjectCode(
+					"ret",
+				"}",
 			"}"
-		);
+		).toString();
 	}
 }

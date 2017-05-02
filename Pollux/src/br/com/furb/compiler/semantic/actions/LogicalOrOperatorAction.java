@@ -24,7 +24,7 @@ public class LogicalOrOperatorAction extends ActionSemantic {
 		}
 
 		types.push("bool");
-		return "or\n";
+		return "or";
 	}
 }
 

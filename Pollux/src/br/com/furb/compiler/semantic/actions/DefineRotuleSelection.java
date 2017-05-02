@@ -22,9 +22,9 @@ public class DefineRotuleSelection extends ActionSemantic {
 		String rotule = this.getSymbolTable().createRotule();
 
 		if (token.getLexeme().equals("isTrueDo")) {
-			return "brfalse " + rotule + "\n";
+			return "brfalse " + rotule;
 		}
 		
-		return "brtrue " + rotule + "\n";
+		return "brtrue " + rotule;
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class EndBlockRepetitionAction extends ActionSemantic {
@@ -12,9 +13,9 @@ public class EndBlockRepetitionAction extends ActionSemantic {
 		String rotule = this.getSymbolTable().getRotules().pop();
 		String brRotule = this.getSymbolTable().getRotules().pop();
 		
-		return (
-			"br " + brRotule + "\n" +
-		 	rotule + ":\n"
-	 	);
+		return new ObjectCode(
+			"br " + brRotule,
+		 	rotule + ":"
+	 	).toString();
 	}
 }

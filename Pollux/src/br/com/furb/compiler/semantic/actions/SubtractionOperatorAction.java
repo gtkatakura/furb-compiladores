@@ -12,7 +12,7 @@ public class SubtractionOperatorAction extends BinaryOperatorAction {
 	@Override
 	public String execute(Token token) throws SemanticError {
 		super.execute(token);
-		return "sub\n";
+		return "sub";
 	}
 
 }

@@ -11,6 +11,6 @@ public class AllocateRotuleAction extends ActionSemantic {
 
 	public String execute(Token token) throws SemanticError {
 		String rotule = this.getSymbolTable().createRotule();
-		return rotule + ":\n";
+		return rotule + ":";
 	}
 }

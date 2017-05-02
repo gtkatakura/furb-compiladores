@@ -33,7 +33,7 @@ public class InAction extends ActionSemantic {
 		if (idType != Type.STRING) {
 			code.append(buildParseFunctionCallFor(idType));
 		}
-		code.append("stloc ").append(inputId).append("\n");
+		code.append("stloc ").append(inputId);
 
 		return code.toString();
 	}

@@ -29,7 +29,7 @@ public class DeclareVariableAction extends ActionSemantic {
 
 	private String buildDeclarationFor(Identifier identifier) {
 		String declaration = ".locals (" + identifier.getTypeDescription();
-		String closeDeclaration = ")\n";
+		String closeDeclaration = ")";
 
 		if (identifier.getSize() != null) {
 			return formatVectorDeclaration(identifier, declaration, closeDeclaration);
@@ -39,15 +39,15 @@ public class DeclareVariableAction extends ActionSemantic {
 		
 		if (identifier.getTypeDescription() == "int64") {
 			return (
-				declaration +
+				declaration + "\n" +
 				"ldc.i8 0\n" +
-				"stloc " + identifier.toString() + "\n"
+				"stloc " + identifier.toString()
 			);
 		} else if (identifier.getTypeDescription() == "float64") {
 			return (
-				declaration +
+				declaration + "\n" +
 				"ldc.r8 0.0\n" +
-				"stloc " + identifier.toString() + "\n"
+				"stloc " + identifier.toString()
 			);
 		}
 		
@@ -56,10 +56,10 @@ public class DeclareVariableAction extends ActionSemantic {
 
 	public String formatVectorDeclaration(Identifier id, String declaration, String closeDeclaration) {
 		return new StringBuilder(declaration).append(VECTOR_BRACKETS) //
-				.append(" ").append(id).append(closeDeclaration) //
+				.append(" ").append(id).append(closeDeclaration).append("\n") //
 				.append("ldc.i8 ").append(id.getSize()).append("\n") //
 				.append(buildNewArrayFunctionCallFor(id.getType())).append("\n") //
-				.append("stloc ").append(id).append("\n") //
+				.append("stloc ").append(id) //
 				.toString();
 	}
 

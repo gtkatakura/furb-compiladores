@@ -14,6 +14,6 @@ public class VectorAccessAction extends ActionSemantic {
 	@Override
 	public String execute(Token token) throws SemanticError {
 		Identifier identifier = this.getSymbolTable().getLastAllocated();
-		return "ldloc " + identifier + "\n";
+		return "ldloc " + identifier;
 	}
 }

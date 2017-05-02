@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class RelationalOperatorAction extends ActionSemantic {
@@ -29,29 +30,29 @@ public class RelationalOperatorAction extends ActionSemantic {
 		
 		switch (symbolTable.getRelationalOperators().pop()) {
 		case "=":
-			return "ceq\n";
+			return "ceq";
 		case ">":
-			return "cgt\n";
+			return "cgt";
 		case "<":
-			return "clt\n";
+			return "clt";
 		case "!=":
-			return (
-				"ceq\n" +
-				"ldc.i4.1\n" +
-		 		"xor\n"
-			);
+			return new ObjectCode(
+				"ceq",
+				"ldc.i4.1",
+		 		"xor"
+			).toString();
 		case ">=":
-			return (
-			 	"clt\n" +
-			 	"ldc.i4.1\n" +
-				"xor\n"
-		 	);
+			return new ObjectCode(
+			 	"clt",
+			 	"ldc.i4.1",
+				"xor"
+		 	).toString();
 		case "<=":
-			return (
-			 	"cgt\n" +
-			 	"ldc.i4.1\n" +
-				"xor\n"
-		 	);
+			return new ObjectCode(
+			 	"cgt",
+			 	"ldc.i4.1",
+				"xor"
+		 	).toString();
 		}
 
 		return null;

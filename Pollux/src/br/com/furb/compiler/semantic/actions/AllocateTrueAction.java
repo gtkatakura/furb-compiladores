@@ -10,6 +10,6 @@ public class AllocateTrueAction extends AllocateBooleanAction {
 
 	public String execute(Token token) {
 		super.execute(token);
-		return "ldc.i4.1\n";
+		return "ldc.i4.1";
 	}
 }

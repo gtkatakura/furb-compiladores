@@ -2,6 +2,7 @@ package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.semantic.ObjectCode;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class UnaryNegationOperatorAction extends ActionSemantic {
@@ -19,9 +20,9 @@ public class UnaryNegationOperatorAction extends ActionSemantic {
 			);
 		}
 		
-		return (
-			"ldc.i8 -1\n" +
-			"mul\n"
-		);
+		return new ObjectCode(
+			"ldc.i8 -1",
+			"mul"
+		).toString();
 	}
 }

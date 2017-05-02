@@ -20,9 +20,9 @@ public class AllocateIdentifierAction extends ActionSemantic {
 		}
 
 		if (identifier.isVector()) {
-			return "ldelem " + identifier.getTypeDescription() + "\n";
+			return "ldelem " + identifier.getTypeDescription();
 		}
-		return "ldloc " + identifier + "\n";
+		return "ldloc " + identifier;
 	}
 
 }
