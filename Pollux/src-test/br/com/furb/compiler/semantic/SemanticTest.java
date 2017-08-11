@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 import org.junit.Test;
 
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.Lexico;
+import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Semantico;
+import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
 import br.com.furb.compiler.syntactic.Sintatico;
 import br.com.furb.compiler.syntactic.SyntaticError;
 
@@ -21,9 +21,9 @@ public class SemanticTest {
 	
 	public String verificaMensagemDeErro(String programaFonte) {
 		try {
-			Lexico lexico = new Lexico();
+			LexicalAnalyser lexico = new LexicalAnalyser();
 			Sintatico sintatico = new Sintatico();
-			Semantico semantico = new Semantico();
+			SemanticAnalyser semantico = new SemanticAnalyser();
 
 			lexico.setInput(programaFonte);
 			sintatico.parse(lexico, semantico);
@@ -62,9 +62,9 @@ public class SemanticTest {
 	}
 	
 	private void verificaCodigoGerado(String programaFonte, String codigoObjetoEsperado) throws LexicalError, SyntaticError, SemanticError {
-		Lexico lexico = new Lexico();
+		LexicalAnalyser lexico = new LexicalAnalyser();
 		Sintatico sintatico = new Sintatico();
-		Semantico semantico = new Semantico();
+		SemanticAnalyser semantico = new SemanticAnalyser();
 
 		lexico.setInput(programaFonte);
 		sintatico.parse(lexico, semantico);
@@ -761,7 +761,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '-' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '-' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -773,7 +773,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -786,7 +786,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'");
 	}
 	
 	@Test
@@ -798,7 +798,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador '/' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
+		verificaMensagemDeErro(programaFonte, "Operador '/' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
 	}
 
 	@Test
@@ -822,7 +822,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Operador 'not' só pode ser aplicado sobre operandos de tipo 'bool'");
+		verificaMensagemDeErro(programaFonte, "Operador 'not' sï¿½ pode ser aplicado sobre operandos de tipo 'bool'");
 	}
 	
 	@Test
@@ -834,7 +834,7 @@ public class SemanticTest {
 			"}"
 		};
 		
-		verificaMensagemDeErro(programaFonte, "Tipos incompatíveis em expressão relacional");
+		verificaMensagemDeErro(programaFonte, "Tipos incompatï¿½veis em expressï¿½o relacional");
 	}
 	
 	@Test

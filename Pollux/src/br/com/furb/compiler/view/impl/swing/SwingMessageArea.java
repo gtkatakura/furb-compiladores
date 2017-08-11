@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import br.com.furb.compiler.view.IMessageArea;
+import br.com.furb.compiler.view.MessageArea;
 
-public class MessageArea implements IMessageArea {
+public class SwingMessageArea implements MessageArea {
 
 	private JTextArea messageArea;
 

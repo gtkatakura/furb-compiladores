@@ -5,17 +5,17 @@ import java.util.Stack;
 import br.com.furb.compiler.lexical.impl.gals.Constants;
 import br.com.furb.compiler.lexical.impl.gals.EKind;
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.Lexico;
+import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Semantico;
+import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 
 public class Sintatico implements Constants {
 	private Stack stack = new Stack();
 	private Token currentToken;
 	private Token previousToken;
-	private Lexico scanner;
-	private Semantico semanticAnalyser;
+	private LexicalAnalyser scanner;
+	private SemanticAnalyser semanticAnalyser;
 
 	private static final boolean isTerminal(int x) {
 		return x < FIRST_NON_TERMINAL;
@@ -83,7 +83,7 @@ public class Sintatico implements Constants {
 			return false;
 	}
 
-	public void parse(Lexico scanner, Semantico semanticAnalyser) throws LexicalError, SyntaticError, SemanticError {
+	public void parse(LexicalAnalyser scanner, SemanticAnalyser semanticAnalyser) throws LexicalError, SyntaticError, SemanticError {
 		this.scanner = scanner;
 		this.semanticAnalyser = semanticAnalyser;
 

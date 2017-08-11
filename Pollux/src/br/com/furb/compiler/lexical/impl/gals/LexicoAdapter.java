@@ -8,11 +8,11 @@ import br.com.furb.compiler.lexical.IToken;
 
 public class LexicoAdapter implements ILexico {
 
-	private Lexico lexico;
+	private LexicalAnalyser lexico;
 	private List<IToken> tokens;
 	
 	public LexicoAdapter(String input) throws LexicalError {
-		this.lexico = new Lexico(input);
+		this.lexico = new LexicalAnalyser(input);
 		this.tokens = this.buildTokens(lexico);
 	}
 	
@@ -20,7 +20,7 @@ public class LexicoAdapter implements ILexico {
 		return this.tokens;
 	}
 	
-	private List<IToken> buildTokens(Lexico lexico) throws LexicalError {
+	private List<IToken> buildTokens(LexicalAnalyser lexico) throws LexicalError {
 		List<IToken> tokens = new ArrayList<IToken>();
 		Token token = null;
 		

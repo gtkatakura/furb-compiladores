@@ -1,16 +1,13 @@
 package br.com.furb.compiler.view;
 
-import java.awt.Component;
 import java.awt.event.KeyListener;
 
 /**
- * Define um editor de código
+ * Define um editor de cï¿½digo
  * 
  * @author alesson.bernardo
  */
-public interface IEditor {
-
-	Component build();
+public interface Editor extends BuildableComponent {
 
 	void update(String content);
 

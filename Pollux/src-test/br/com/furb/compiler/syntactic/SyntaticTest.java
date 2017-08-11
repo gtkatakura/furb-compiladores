@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.Lexico;
+import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Semantico;
+import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
 
 public class SyntaticTest {
 	
 	public String getErrorMessage(String input) {
 		try {
-			Lexico lexico = new Lexico();
+			LexicalAnalyser lexico = new LexicalAnalyser();
 			Sintatico sintatico = new Sintatico();
-			Semantico semantico = new Semantico();
+			SemanticAnalyser semantico = new SemanticAnalyser();
 
 			lexico.setInput(input);
 			sintatico.parse(lexico, semantico);

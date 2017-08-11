@@ -15,19 +15,19 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 
-import br.com.furb.compiler.view.IToolBar;
-import br.com.furb.compiler.view.Tool;
+import br.com.furb.compiler.view.ToolBar;
+import br.com.furb.compiler.view.EditorTool;
 
 /**
  * Representa a barra de ferramentas do compilador
  * 
  * @author alesson.bernardo
  */
-public class ToolBar implements IToolBar {
+public class SwingToolBar implements ToolBar {
 
-	private final Map<Tool, JButton> tools = new EnumMap<>(Tool.class);
+	private final Map<EditorTool, JButton> tools = new EnumMap<>(EditorTool.class);
 
-	JButton createButton(Container parent, Tool tool) {
+	JButton createButton(Container parent, EditorTool tool) {
 		final JButton button = new JButton();
 		parent.add(button, tool.layout());
 		return button;
@@ -39,12 +39,12 @@ public class ToolBar implements IToolBar {
 		pnlTools.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		pnlTools.setLayout(createContainerLayout());
 
-		Arrays.asList(Tool.values()).forEach(tool -> tools.put(tool, createButton(pnlTools, tool)));
+		Arrays.asList(EditorTool.values()).forEach(tool -> tools.put(tool, createButton(pnlTools, tool)));
 
 		return pnlTools;
 	}
 
-	public void addAction(KeyStroke keyStroke, Tool tool, Action action) {
+	public void addAction(KeyStroke keyStroke, EditorTool tool, Action action) {
 		JButton button = tools.get(tool);
 		button.setAction(action);
 		mapAction(keyStroke, action, button);

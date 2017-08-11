@@ -4,7 +4,7 @@ import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.actions.ActionSemantic;
 import br.com.furb.compiler.semantic.actions.ActionSemanticFactory;
 
-public class Semantico implements Constants {
+public class SemanticAnalyser implements Constants {
 	private StringBuilder objectCode = new StringBuilder();
 	private SymbolTable symbolTable = new SymbolTable();
 

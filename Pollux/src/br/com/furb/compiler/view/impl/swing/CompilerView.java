@@ -1,14 +1,14 @@
 package br.com.furb.compiler.view.impl.swing;
 
-import static br.com.furb.compiler.view.Tool.COMPILE;
-import static br.com.furb.compiler.view.Tool.COPY;
-import static br.com.furb.compiler.view.Tool.CUT;
-import static br.com.furb.compiler.view.Tool.GENERATE_CODE;
-import static br.com.furb.compiler.view.Tool.NEW_FILE;
-import static br.com.furb.compiler.view.Tool.OPEN_FILE;
-import static br.com.furb.compiler.view.Tool.PASTE;
-import static br.com.furb.compiler.view.Tool.SAVE_FILE;
-import static br.com.furb.compiler.view.Tool.TEAM;
+import static br.com.furb.compiler.view.EditorTool.COMPILE;
+import static br.com.furb.compiler.view.EditorTool.COPY;
+import static br.com.furb.compiler.view.EditorTool.CUT;
+import static br.com.furb.compiler.view.EditorTool.GENERATE_CODE;
+import static br.com.furb.compiler.view.EditorTool.NEW_FILE;
+import static br.com.furb.compiler.view.EditorTool.OPEN_FILE;
+import static br.com.furb.compiler.view.EditorTool.PASTE;
+import static br.com.furb.compiler.view.EditorTool.SAVE_FILE;
+import static br.com.furb.compiler.view.EditorTool.TEAM;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -30,19 +30,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import br.com.furb.compiler.io.SourceUtils;
+import br.com.furb.compiler.io.SourceFile;
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.Lexico;
+import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Semantico;
+import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
 import br.com.furb.compiler.syntactic.Sintatico;
 import br.com.furb.compiler.syntactic.SyntaticError;
-import br.com.furb.compiler.view.IEditor;
-import br.com.furb.compiler.view.IMessageArea;
-import br.com.furb.compiler.view.IStatusBar;
-import br.com.furb.compiler.view.IToolBar;
-import br.com.furb.compiler.view.IView;
-import br.com.furb.compiler.view.Tool;
+import br.com.furb.compiler.view.Editor;
+import br.com.furb.compiler.view.MessageArea;
+import br.com.furb.compiler.view.StatusBar;
+import br.com.furb.compiler.view.ToolBar;
+import br.com.furb.compiler.view.View;
+import br.com.furb.compiler.view.EditorTool;
 import br.com.furb.compiler.view.resources.IconProvider;
 
 /**
@@ -51,7 +51,7 @@ import br.com.furb.compiler.view.resources.IconProvider;
  *
  * @author alesson.bernardo
  */
-public class CompilerView implements IView {
+public class CompilerView implements View {
 
 	private final JFrame window = new JFrame();
 	private JPanel pnlContainer;
@@ -59,12 +59,12 @@ public class CompilerView implements IView {
 	private File source;
 	private String currentContent = "";
 
-	private IToolBar toolbar;
-	private IEditor editor;
-	private IMessageArea messageArea;
-	private IStatusBar statusBar;
+	private ToolBar toolbar;
+	private Editor editor;
+	private MessageArea messageArea;
+	private StatusBar statusBar;
 
-	public CompilerView(IToolBar toolbar, IEditor editor, IMessageArea messageArea, IStatusBar statusBar) {
+	public CompilerView(ToolBar toolbar, Editor editor, MessageArea messageArea, StatusBar statusBar) {
 		this.toolbar = toolbar;
 		this.editor = editor;
 		this.messageArea = messageArea;
@@ -74,7 +74,7 @@ public class CompilerView implements IView {
 	}
 
 	@Override
-	public void setEditor(IEditor editor) {
+	public void setEditor(Editor editor) {
 		pnlContainer.add(editor.build(), BorderLayout.CENTER);
 
 		editor.addKeyListener(new KeyAdapter() {
@@ -92,17 +92,17 @@ public class CompilerView implements IView {
 	}
 
 	@Override
-	public void setMessageArea(IMessageArea messageArea) {
+	public void setMessageArea(MessageArea messageArea) {
 		pnlContainer.add(messageArea.build(), BorderLayout.SOUTH);
 	}
 
 	@Override
-	public void setStatusBar(IStatusBar statusBar) {
+	public void setStatusBar(StatusBar statusBar) {
 		contentPane().add(statusBar.build(), BorderLayout.SOUTH);
 	}
 
 	@Override
-	public void setToolBar(IToolBar toolBar) {
+	public void setToolBar(ToolBar toolBar) {
 		contentPane().add(toolBar.build(), BorderLayout.WEST);
 		configureActions();
 	}
@@ -132,7 +132,7 @@ public class CompilerView implements IView {
 
 	private void showTeamAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0);
-		toolbar.addAction(key, Tool.TEAM, new AbstractAction(TEAM.caption, IconProvider.TEAM.get()) {
+		toolbar.addAction(key, EditorTool.TEAM, new AbstractAction(TEAM.caption, IconProvider.TEAM.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				messageArea.update("Equipe: Alesson Bernardo, Gabriel Katakura, Leonardo Farias Bona.");
@@ -148,7 +148,7 @@ public class CompilerView implements IView {
 
 	private void newFileAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK);
-		toolbar.addAction(key, Tool.NEW_FILE, new AbstractAction(NEW_FILE.caption, IconProvider.NEW_FILE.get()) {
+		toolbar.addAction(key, EditorTool.NEW_FILE, new AbstractAction(NEW_FILE.caption, IconProvider.NEW_FILE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				newFile();
@@ -158,14 +158,14 @@ public class CompilerView implements IView {
 
 	private void openFileAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_O, Event.CTRL_MASK);
-		toolbar.addAction(key, Tool.OPEN_FILE, new AbstractAction(OPEN_FILE.caption, IconProvider.OPEN_FILE.get()) {
+		toolbar.addAction(key, EditorTool.OPEN_FILE, new AbstractAction(OPEN_FILE.caption, IconProvider.OPEN_FILE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				File file;
 				try {
 					file = chooseFile(source);
 					source = file;
-					currentContent = SourceUtils.read(file);
+					currentContent = SourceFile.read(file);
 					editor.update(currentContent);
 					messageArea.clean();
 					statusBar.notModified(source.toString());
@@ -178,7 +178,7 @@ public class CompilerView implements IView {
 
 	private void saveFileAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);
-		toolbar.addAction(key, Tool.SAVE_FILE, new AbstractAction(SAVE_FILE.caption, IconProvider.SAVE_FILE.get()) {
+		toolbar.addAction(key, EditorTool.SAVE_FILE, new AbstractAction(SAVE_FILE.caption, IconProvider.SAVE_FILE.get()) {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -188,7 +188,7 @@ public class CompilerView implements IView {
 					}
 					String content = editor.getContent();
 					currentContent = content;
-					SourceUtils.save(source, currentContent);
+					SourceFile.save(source, currentContent);
 					messageArea.clean();
 					statusBar.notModified(source.toString());
 				} catch (Exception e1) {
@@ -207,7 +207,7 @@ public class CompilerView implements IView {
 
 	private void copyAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK);
-		toolbar.addAction(key, Tool.COPY, new AbstractAction(COPY.caption, IconProvider.COPY.get()) {
+		toolbar.addAction(key, EditorTool.COPY, new AbstractAction(COPY.caption, IconProvider.COPY.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				copyToClipboard(editor.getSelectedContent());
@@ -217,7 +217,7 @@ public class CompilerView implements IView {
 
 	private void pasteAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK);
-		toolbar.addAction(key, Tool.PASTE, new AbstractAction(PASTE.caption, IconProvider.PASTE.get()) {
+		toolbar.addAction(key, EditorTool.PASTE, new AbstractAction(PASTE.caption, IconProvider.PASTE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paste();
@@ -227,7 +227,7 @@ public class CompilerView implements IView {
 
 	private void cutAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK);
-		toolbar.addAction(key, Tool.CUT, new AbstractAction(CUT.caption, IconProvider.CUT.get()) {
+		toolbar.addAction(key, EditorTool.CUT, new AbstractAction(CUT.caption, IconProvider.CUT.get()) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cut();
@@ -242,14 +242,14 @@ public class CompilerView implements IView {
 
 	private void compileAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0);
-		toolbar.addAction(key, Tool.COMPILE, new AbstractAction(COMPILE.caption, IconProvider.COMPILE.get()) {
+		toolbar.addAction(key, EditorTool.COMPILE, new AbstractAction(COMPILE.caption, IconProvider.COMPILE.get()) {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				String input = editor.getContent();
 				try {
-					Lexico lexico = new Lexico();
+					LexicalAnalyser lexico = new LexicalAnalyser();
 					Sintatico sintatico = new Sintatico();
-					Semantico semantico = new Semantico();
+					SemanticAnalyser semantico = new SemanticAnalyser();
 
 					lexico.setInput(input);
 					sintatico.parse(lexico, semantico);
@@ -284,16 +284,16 @@ public class CompilerView implements IView {
 
 	private void generateCodeAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0);
-		toolbar.addAction(key, Tool.GENERATE_CODE,
+		toolbar.addAction(key, EditorTool.GENERATE_CODE,
 				new AbstractAction(GENERATE_CODE.caption, IconProvider.GENERATE_CODE.get()) {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						String input = editor.getContent();
 						String objectCode = "";
 						try {
-							Lexico lexico = new Lexico();
+							LexicalAnalyser lexico = new LexicalAnalyser();
 							Sintatico sintatico = new Sintatico();
-							Semantico semantico = new Semantico();
+							SemanticAnalyser semantico = new SemanticAnalyser();
 
 							lexico.setInput(input);
 							sintatico.parse(lexico, semantico);
@@ -307,12 +307,12 @@ public class CompilerView implements IView {
 								if (source != null) {
 									String content = editor.getContent();
 									currentContent = content;
-									SourceUtils.save(source, currentContent);
+									SourceFile.save(source, currentContent);
 									messageArea.clean();
 									statusBar.notModified(source.toString());
 									String nome = source.getName().substring(0, source.getName().lastIndexOf("."));
 									File objectCodeFile = new File(source.getParent(), nome + ".il");
-									SourceUtils.save(objectCodeFile, objectCode);
+									SourceFile.save(objectCodeFile, objectCode);
 									messageArea.update("Código objeto gerado com sucesso");
 								}
 							}catch (Exception e1) {

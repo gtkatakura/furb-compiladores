@@ -9,17 +9,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import br.com.furb.compiler.view.IEditor;
+import br.com.furb.compiler.view.Editor;
 
 /**
  *
- * @see NumberedBorder implementação de terceiros de uma borda numerada
- *      utilizada em conjunto com a área de edição.
+ * @see NumberedBorder implementaï¿½ï¿½o de terceiros de uma borda numerada
+ *      utilizada em conjunto com a ï¿½rea de ediï¿½ï¿½o.
  * 
  * @author alesson.bernardo
  *
  */
-public class Editor implements IEditor {
+public class SwingEditor implements Editor {
 
 	private JTextArea editorArea;
 

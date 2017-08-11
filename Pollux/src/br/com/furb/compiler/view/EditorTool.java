@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 import br.com.furb.compiler.view.resources.IconProvider;
 
 /**
- * Definição das ações disponíveis
+ * Definiï¿½ï¿½o das aï¿½ï¿½es disponï¿½veis
  */
-public enum Tool {
+public enum EditorTool {
 
 	NEW_FILE(0, "novo [ctrl-n]", IconProvider.NEW_FILE), //
 	OPEN_FILE(1, "abrir [ctrl-o]", IconProvider.OPEN_FILE), //
@@ -18,7 +18,7 @@ public enum Tool {
 	PASTE(4, "colar [ctrl-v]", IconProvider.PASTE), //
 	CUT(5, "recortar [ctrl-x]", IconProvider.CUT), //
 	COMPILE(6, "compilar [F8]", IconProvider.COMPILE), //
-	GENERATE_CODE(7, "gerar código [F9]", IconProvider.GENERATE_CODE), //
+	GENERATE_CODE(7, "gerar cï¿½digo [F9]", IconProvider.GENERATE_CODE), //
 	TEAM(8, "equipe [F1]", IconProvider.TEAM);
 
 	private int id;
@@ -27,7 +27,7 @@ public enum Tool {
 
 	public final ImageIcon icon;
 
-	Tool(int id, String caption, IconProvider iconProvider) {
+	EditorTool(int id, String caption, IconProvider iconProvider) {
 		this.id = id;
 		this.caption = caption;
 		this.icon = iconProvider.get();

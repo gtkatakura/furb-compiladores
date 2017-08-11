@@ -7,11 +7,11 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import br.com.furb.compiler.view.IStatusBar;
+import br.com.furb.compiler.view.StatusBar;
 
-public class StatusBar implements IStatusBar {
+public class SwingStatusBar implements StatusBar {
 
-	private static final String EDITOR_NOT_MODIFIED = "Não modificado";
+	private static final String EDITOR_NOT_MODIFIED = "Nï¿½o modificado";
 	private static final String MODIFIED = "Modificado ";
 
 	private JLabel lblStatus;

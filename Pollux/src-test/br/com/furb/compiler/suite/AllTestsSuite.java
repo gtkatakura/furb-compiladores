@@ -7,13 +7,13 @@ import br.com.furb.compiler.semantic.SemanticTest;
 import br.com.furb.compiler.syntactic.SyntaticTest;
 
 /**
- * Agrupador de testes do compilador 
+ * Agrupador de testes do compilador
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ //
 		SemanticTest.class, //
 		SyntaticTest.class //
 })
-public class CompilerAllTests {
+public class AllTestsSuite {
 
 }

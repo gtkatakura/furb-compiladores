@@ -1,10 +1,6 @@
 package br.com.furb.compiler.view;
 
-import java.awt.Component;
-
-public interface IStatusBar {
-
-	Component build();
+public interface StatusBar extends BuildableComponent {
 
 	void notModified(String file);
 

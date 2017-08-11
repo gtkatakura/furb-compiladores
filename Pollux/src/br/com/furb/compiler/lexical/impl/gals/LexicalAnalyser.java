@@ -1,15 +1,16 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
-public class Lexico implements Constants {
+public class LexicalAnalyser implements Constants {
+
 	private int position;
 	private String input;
 	private int line = 1;
 
-	public Lexico() {
+	public LexicalAnalyser() {
 		this("");
 	}
 
-	public Lexico(String input) {
+	public LexicalAnalyser(String input) {
 		setInput(input);
 	}
 
@@ -51,11 +52,11 @@ public class Lexico implements Constants {
 		}
 		if (endState < 0 || (endState != state && tokenForState(lastState) == -2)) {
 			String lexeme = null;
-			
+
 			if (lastState == 0) {
 				lexeme = input.substring(start, position);
 			}
-			
+
 			throw new LexicalError(SCANNER_ERROR[lastState], start, lexeme);
 		}
 
@@ -69,11 +70,11 @@ public class Lexico implements Constants {
 		else {
 			String lexeme = input.substring(start, end);
 			token = lookupToken(token, lexeme);
-			
+
 			if (token == EKind.PALAVRA_RESERVADA.getId()) {
 				throw new LexicalError(EKind.PALAVRA_RESERVADA.getDescription(), start, lexeme);
 			}
-		
+
 			return new Token(EKind.getClasseById(token), lexeme, start);
 		}
 	}
