@@ -1,6 +1,7 @@
 package br.com.furb.compiler.analysis.lexical;
 
 import br.com.furb.compiler.gals.Constants;
+import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.lexical.TokenImpl;
 import br.com.furb.compiler.model.lexical.TokenKind;
 
@@ -27,12 +28,11 @@ public final class LexicalAnalyser implements Constants {
 		position = pos;
 	}
 
-	public TokenImpl nextToken() throws LexicalError {
+	public Token nextToken() throws LexicalError {
 		if (!hasInput())
 			return null;
 
 		int start = position;
-		int startLine = line;
 		int state = 0;
 		int lastState = 0;
 		int endState = -1;

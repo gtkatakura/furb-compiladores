@@ -1,7 +1,7 @@
 package br.com.furb.compiler.analysis.semantic;
 
 import br.com.furb.compiler.gals.Constants;
-import br.com.furb.compiler.model.lexical.TokenImpl;
+import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.actions.SemanticAction;
 import br.com.furb.compiler.semantic.actions.SemanticActionFactory;
@@ -15,7 +15,7 @@ public final class SemanticAnalyser implements Constants {
 		return this.objectCode.toString();
 	}
 
-	public void execute(int actionId, TokenImpl token) throws SemanticError {
+	public void execute(int actionId, Token token) throws SemanticError {
 		SemanticAction action = SemanticActionFactory.create(actionId, symbolTable);
 
 		if (action != null) {

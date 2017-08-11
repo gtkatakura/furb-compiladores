@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.model.lexical.TokenImpl;
+import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 
 public class MultiplicationOperatorAction extends BinaryOperatorAction {
@@ -9,7 +9,7 @@ public class MultiplicationOperatorAction extends BinaryOperatorAction {
 		super(symbolTable, '*');
 	}
 
-	public String execute(TokenImpl token) throws SemanticError {
+	public String execute(Token token) throws SemanticError {
 		super.execute(token);
 		return "mul\n";
 	}

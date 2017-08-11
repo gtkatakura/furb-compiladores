@@ -7,14 +7,15 @@ import br.com.furb.compiler.analysis.lexical.LexicalError;
 import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.gals.Constants;
+import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.lexical.TokenImpl;
 import br.com.furb.compiler.model.lexical.TokenKind;
 
 public class SyntaticAnalyser implements Constants {
 
 	private Stack stack = new Stack();
-	private TokenImpl currentToken;
-	private TokenImpl previousToken;
+	private Token currentToken;
+	private Token previousToken;
 	private LexicalAnalyser scanner;
 	private SemanticAnalyser semanticAnalyser;
 
