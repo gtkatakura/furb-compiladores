@@ -1,6 +1,6 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class EndBlockRepetitionAction extends SemanticAction {
@@ -8,13 +8,10 @@ public class EndBlockRepetitionAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(TokenImpl token) {
+	public String execute(Token token) {
 		String rotule = this.getSymbolTable().getRotules().pop();
 		String brRotule = this.getSymbolTable().getRotules().pop();
-		
-		return (
-			"br " + brRotule + "\n" +
-		 	rotule + ":\n"
-	 	);
+
+		return ("br " + brRotule + "\n" + rotule + ":\n");
 	}
 }

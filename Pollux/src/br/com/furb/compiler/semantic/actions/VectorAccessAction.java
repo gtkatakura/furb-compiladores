@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
@@ -12,7 +12,7 @@ public class VectorAccessAction extends SemanticAction {
 	}
 
 	@Override
-	public String execute(TokenImpl token) throws SemanticError {
+	public String execute(Token token) throws SemanticError {
 		Identifier identifier = this.getSymbolTable().getLastAllocated();
 		return "ldloc " + identifier + "\n";
 	}

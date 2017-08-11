@@ -1,6 +1,6 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class AllocateFalseAction extends AllocateBooleanAction {
@@ -8,7 +8,7 @@ public class AllocateFalseAction extends AllocateBooleanAction {
 		super(symbolTable);
 	}
 
-	public String execute(TokenImpl token) {
+	public String execute(Token token) {
 		super.execute(token);
 		return "ldc.i4.0\n";
 	}

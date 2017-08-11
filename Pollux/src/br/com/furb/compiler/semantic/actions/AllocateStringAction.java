@@ -1,6 +1,6 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class AllocateStringAction extends SemanticAction {
@@ -8,7 +8,7 @@ public class AllocateStringAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(TokenImpl token) {
+	public String execute(Token token) {
 		this.getSymbolTable().getTypes().push("string");
 		return "ldstr " + token.getLexeme() + "\n";
 	}

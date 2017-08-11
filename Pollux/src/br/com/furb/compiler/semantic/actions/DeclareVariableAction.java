@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.Type;
@@ -15,7 +15,7 @@ public class DeclareVariableAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(TokenImpl token) throws SemanticError {
+	public String execute(Token token) throws SemanticError {
 		SymbolTable symbolTable = this.getSymbolTable();
 		Identifier identifier = symbolTable.getStackIdentifiers().pop();
 
@@ -34,23 +34,15 @@ public class DeclareVariableAction extends SemanticAction {
 		if (identifier.getSize() != null) {
 			return formatVectorDeclaration(identifier, declaration, closeDeclaration);
 		}
-		
+
 		declaration += " " + identifier + closeDeclaration;
-		
+
 		if (identifier.getTypeDescription() == "int64") {
-			return (
-				declaration +
-				"ldc.i8 0\n" +
-				"stloc " + identifier.toString() + "\n"
-			);
+			return (declaration + "ldc.i8 0\n" + "stloc " + identifier.toString() + "\n");
 		} else if (identifier.getTypeDescription() == "float64") {
-			return (
-				declaration +
-				"ldc.r8 0.0\n" +
-				"stloc " + identifier.toString() + "\n"
-			);
+			return (declaration + "ldc.r8 0.0\n" + "stloc " + identifier.toString() + "\n");
 		}
-		
+
 		return declaration;
 	}
 

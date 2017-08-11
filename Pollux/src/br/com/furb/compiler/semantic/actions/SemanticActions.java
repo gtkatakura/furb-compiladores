@@ -1,11 +1,14 @@
 package br.com.furb.compiler.semantic.actions;
 
+import static java.util.Arrays.asList;
+
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
+import java.util.Optional;
 
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public enum EActionSemantics {
+public enum SemanticActions {
+	
 	Number1(1, AdditionOperatorAction.class),
 	Number2(2, SubtractionOperatorAction.class),
 	Number3(3, MultiplicationOperatorAction.class),
@@ -39,14 +42,14 @@ public enum EActionSemantics {
 	Number32(32, DefineRotuleSelection.class),
 	Number33(33, EndBlockRepetitionAction.class);
 	
-	private int action;
+	private final int action;
 	private Class<? extends SemanticAction> classe;
-	
+
 	public int getAction() {
 		return this.action;
 	}
-	
-	public SemanticAction buildActionSemantic(SymbolTable symbolTable) {
+
+	public SemanticAction build(SymbolTable symbolTable) {
 		try {
 			return this.classe.getConstructor(SymbolTable.class).newInstance(symbolTable);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -55,16 +58,13 @@ public enum EActionSemantics {
 			return null;
 		}
 	}
-	
-	EActionSemantics(int action, Class<? extends SemanticAction> classe) {
+
+	SemanticActions(int action, Class<? extends SemanticAction> clazz) {
 		this.action = action;
-		this.classe = classe;
+		this.classe = clazz;
 	}
-	
-	public static EActionSemantics find(int action) {
-		return Arrays.asList(values()).stream()
-			.filter(record -> record.getAction() == action)
-			.findAny()
-			.orElse(null);
+
+	public static Optional<SemanticActions> find(int action) {
+		return asList(values()).stream().filter(record -> record.getAction() == action).findAny();
 	}
 }

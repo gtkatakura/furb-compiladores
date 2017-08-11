@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class AllocateRotuleAction extends SemanticAction {
@@ -9,7 +9,7 @@ public class AllocateRotuleAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(TokenImpl token) throws SemanticError {
+	public String execute(Token token) throws SemanticError {
 		String rotule = this.getSymbolTable().createRotule();
 		return rotule + ":\n";
 	}

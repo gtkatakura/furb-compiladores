@@ -8,4 +8,6 @@ public interface Token {
 
 	int getLine();
 
+	int getPosition();
+
 }

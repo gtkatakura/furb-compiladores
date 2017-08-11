@@ -3,7 +3,7 @@ package br.com.furb.compiler.semantic.actions;
 import java.util.Stack;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class LogicalNegationOperatorAction extends SemanticAction {
@@ -11,7 +11,7 @@ public class LogicalNegationOperatorAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(TokenImpl token) throws SemanticError {
+	public String execute(Token token) throws SemanticError {
 		Stack<String> types = this.getSymbolTable().getTypes();
 		String type = types.pop();
 		

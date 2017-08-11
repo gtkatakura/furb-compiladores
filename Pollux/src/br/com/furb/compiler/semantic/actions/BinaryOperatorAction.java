@@ -3,7 +3,7 @@ package br.com.furb.compiler.semantic.actions;
 import java.util.Stack;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public abstract class BinaryOperatorAction extends SemanticAction {
@@ -14,16 +14,15 @@ public abstract class BinaryOperatorAction extends SemanticAction {
 		this.operator = operator;
 	}
 
-	public String execute(TokenImpl token) throws SemanticError {
+	public String execute(Token token) throws SemanticError {
 		Stack<String> types = this.getSymbolTable().getTypes();
 		String type1 = types.pop();
 		String type2 = types.pop();
-		
+
 		if (!isTypeValid(type1) || !isTypeValid(type2)) {
 			throw new SemanticError(
-				"Operador '" + this.operator + "' s� pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'",
-				token.getPosition()
-			);
+					"Operador '" + this.operator + "' s� pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'",
+					token.getPosition());
 		}
 
 		if (type1 == "float64" || type2 == "float64") {
@@ -34,9 +33,8 @@ public abstract class BinaryOperatorAction extends SemanticAction {
 
 		return null;
 	}
-	
+
 	private boolean isTypeValid(String type) {
 		return type == "float64" || type == "int64";
 	}
 }
-

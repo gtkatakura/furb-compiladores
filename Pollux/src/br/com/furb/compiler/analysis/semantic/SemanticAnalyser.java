@@ -4,7 +4,7 @@ import br.com.furb.compiler.gals.Constants;
 import br.com.furb.compiler.lexical.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.actions.SemanticAction;
-import br.com.furb.compiler.semantic.actions.ActionSemanticFactory;
+import br.com.furb.compiler.semantic.actions.SemanticActionFactory;
 
 public final class SemanticAnalyser implements Constants {
 
@@ -15,17 +15,17 @@ public final class SemanticAnalyser implements Constants {
 		return this.objectCode.toString();
 	}
 
-	public void executeAction(int action, TokenImpl token) throws SemanticError {
-		SemanticAction actionSemantic = ActionSemanticFactory.create(action, symbolTable);
+	public void execute(int actionId, TokenImpl token) throws SemanticError {
+		SemanticAction action = SemanticActionFactory.create(actionId, symbolTable);
 
-		if (actionSemantic != null) {
-			String generatedCode = actionSemantic.execute(token);
+		if (action != null) {
+			String generatedCode = action.execute(token);
 
 			if (generatedCode != null) {
 				this.objectCode.append(generatedCode);
 			}
 		} else {
-			System.out.println("A��o ainda n�o implementada: " + action);
+			System.out.println("A��o ainda n�o implementada: " + actionId);
 		}
 	}
 }

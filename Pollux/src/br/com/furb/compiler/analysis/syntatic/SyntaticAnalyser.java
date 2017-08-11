@@ -66,7 +66,7 @@ public class SyntaticAnalyser implements Constants {
 			}
 		} else // isSemanticAction(x)
 		{
-			semanticAnalyser.executeAction(x - FIRST_SEMANTIC_ACTION, previousToken);
+			semanticAnalyser.execute(x - FIRST_SEMANTIC_ACTION, previousToken);
 			return false;
 		}
 	}
