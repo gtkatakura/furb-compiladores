@@ -1,8 +1,8 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.Token;
-import br.com.furb.compiler.semantic.Identifier;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.model.lexical.Token;
+import br.com.furb.compiler.model.semantic.Identifier;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
 public class PushIdentifierAction extends SemanticAction {
 	public PushIdentifierAction(SymbolTable symbolTable) {

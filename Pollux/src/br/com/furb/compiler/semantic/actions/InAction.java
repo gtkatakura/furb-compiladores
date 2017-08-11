@@ -1,10 +1,10 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
-import br.com.furb.compiler.lexical.Token;
-import br.com.furb.compiler.semantic.Identifier;
-import br.com.furb.compiler.semantic.SymbolTable;
-import br.com.furb.compiler.semantic.Type;
+import br.com.furb.compiler.model.lexical.Token;
+import br.com.furb.compiler.model.semantic.Identifier;
+import br.com.furb.compiler.model.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.Type;
 
 public class InAction extends SemanticAction {
 

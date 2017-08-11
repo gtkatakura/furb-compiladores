@@ -7,8 +7,8 @@ import br.com.furb.compiler.analysis.lexical.LexicalError;
 import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.gals.Constants;
-import br.com.furb.compiler.lexical.TokenImpl;
-import br.com.furb.compiler.lexical.TokenKind;
+import br.com.furb.compiler.model.lexical.TokenImpl;
+import br.com.furb.compiler.model.lexical.TokenKind;
 
 public class SyntaticAnalyser implements Constants {
 

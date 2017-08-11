@@ -1,4 +1,4 @@
-package br.com.furb.compiler.semantic;
+package br.com.furb.compiler.model.semantic;
 
 public enum Type {
 

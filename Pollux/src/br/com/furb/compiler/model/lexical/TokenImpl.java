@@ -1,4 +1,4 @@
-package br.com.furb.compiler.lexical;
+package br.com.furb.compiler.model.lexical;
 
 public final class TokenImpl implements Token {
 

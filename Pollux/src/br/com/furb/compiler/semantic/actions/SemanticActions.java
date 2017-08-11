@@ -5,7 +5,7 @@ import static java.util.Arrays.asList;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
 public enum SemanticActions {
 	

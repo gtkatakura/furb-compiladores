@@ -1,7 +1,5 @@
 package br.com.furb.compiler.analysis.lexical;
 
-import br.com.furb.compiler.lexical.impl.gals.AnalysisError;
-
 public class LexicalError extends AnalysisError {
 
 	private static final long serialVersionUID = 1L;

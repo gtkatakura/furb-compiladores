@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.TokenImpl;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.model.lexical.TokenImpl;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
 public class AllocateTrueAction extends AllocateBooleanAction {
 	public AllocateTrueAction(SymbolTable symbolTable) {

@@ -1,4 +1,4 @@
-package br.com.furb.compiler.semantic;
+package br.com.furb.compiler.model.semantic;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,9 +1,9 @@
-package br.com.furb.compiler.semantic;
+package br.com.furb.compiler.model.semantic;
 
-import static br.com.furb.compiler.semantic.Type.BOOLEAN;
-import static br.com.furb.compiler.semantic.Type.FLOAT;
-import static br.com.furb.compiler.semantic.Type.INT;
-import static br.com.furb.compiler.semantic.Type.STRING;
+import static br.com.furb.compiler.model.semantic.Type.BOOLEAN;
+import static br.com.furb.compiler.model.semantic.Type.FLOAT;
+import static br.com.furb.compiler.model.semantic.Type.INT;
+import static br.com.furb.compiler.model.semantic.Type.STRING;
 
 public final class Identifier {
 

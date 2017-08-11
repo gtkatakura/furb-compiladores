@@ -1,6 +1,6 @@
 package br.com.furb.compiler.analysis.syntatic;
 
-import br.com.furb.compiler.lexical.impl.gals.AnalysisError;
+import br.com.furb.compiler.analysis.lexical.AnalysisError;
 
 public class SyntaticError extends AnalysisError {
 

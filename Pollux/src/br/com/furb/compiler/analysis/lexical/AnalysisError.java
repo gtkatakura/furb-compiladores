@@ -1,4 +1,4 @@
-package br.com.furb.compiler.lexical.impl.gals;
+package br.com.furb.compiler.analysis.lexical;
 
 public class AnalysisError extends Exception {
 

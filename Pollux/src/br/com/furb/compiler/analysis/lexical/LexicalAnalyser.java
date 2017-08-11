@@ -1,8 +1,8 @@
 package br.com.furb.compiler.analysis.lexical;
 
 import br.com.furb.compiler.gals.Constants;
-import br.com.furb.compiler.lexical.TokenImpl;
-import br.com.furb.compiler.lexical.TokenKind;
+import br.com.furb.compiler.model.lexical.TokenImpl;
+import br.com.furb.compiler.model.lexical.TokenKind;
 
 public final class LexicalAnalyser implements Constants {
 

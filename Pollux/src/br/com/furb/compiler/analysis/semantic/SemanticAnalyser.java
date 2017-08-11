@@ -1,8 +1,8 @@
 package br.com.furb.compiler.analysis.semantic;
 
 import br.com.furb.compiler.gals.Constants;
-import br.com.furb.compiler.lexical.TokenImpl;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.model.lexical.TokenImpl;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.actions.SemanticAction;
 import br.com.furb.compiler.semantic.actions.SemanticActionFactory;
 
