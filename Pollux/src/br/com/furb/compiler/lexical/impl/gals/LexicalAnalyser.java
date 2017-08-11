@@ -1,5 +1,7 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
+import br.com.furb.compiler.gals.Constants;
+
 public class LexicalAnalyser implements Constants {
 
 	private int position;
@@ -71,11 +73,11 @@ public class LexicalAnalyser implements Constants {
 			String lexeme = input.substring(start, end);
 			token = lookupToken(token, lexeme);
 
-			if (token == EKind.PALAVRA_RESERVADA.getId()) {
-				throw new LexicalError(EKind.PALAVRA_RESERVADA.getDescription(), start, lexeme);
+			if (token == TokenKind.PALAVRA_RESERVADA.getId()) {
+				throw new LexicalError(TokenKind.PALAVRA_RESERVADA.getDescription(), start, lexeme);
 			}
 
-			return new Token(EKind.getClasseById(token), lexeme, start);
+			return new Token(TokenKind.getClasseById(token), lexeme, start);
 		}
 	}
 

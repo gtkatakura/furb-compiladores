@@ -3,7 +3,7 @@ package br.com.furb.compiler.semantic.actions;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class AllocateFloatAction extends ActionSemantic {
+public class AllocateFloatAction extends SemanticAction {
 	public AllocateFloatAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}

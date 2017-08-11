@@ -6,7 +6,7 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class LogicalNegationOperatorAction extends ActionSemantic {
+public class LogicalNegationOperatorAction extends SemanticAction {
 	public LogicalNegationOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
@@ -17,7 +17,7 @@ public class LogicalNegationOperatorAction extends ActionSemantic {
 		
 		if (type != "bool") {
 			throw new SemanticError(
-				"Operador 'not' só pode ser aplicado sobre operandos de tipo 'bool'",
+				"Operador 'not' sï¿½ pode ser aplicado sobre operandos de tipo 'bool'",
 				token.getPosition()
 			);
 		}

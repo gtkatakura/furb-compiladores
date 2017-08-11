@@ -6,7 +6,7 @@ import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.Type;
 
-public class InAction extends ActionSemantic {
+public class InAction extends SemanticAction {
 
 	private static final String READ_FUNCTION_SIGNATURE = "call string [mscorlib]System.Console::ReadLine()\n";
 	
@@ -24,7 +24,7 @@ public class InAction extends ActionSemantic {
 		
 		if (!this.getSymbolTable().getIdentifiers().containsKey(inputId.toString())) {
 			throw new SemanticError(
-				inputId.toString() + " não declarado",
+				inputId.toString() + " nï¿½o declarado",
 				token.getPosition()
 			);
 		}

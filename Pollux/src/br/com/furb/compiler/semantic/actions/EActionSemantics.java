@@ -40,13 +40,13 @@ public enum EActionSemantics {
 	Number33(33, EndBlockRepetitionAction.class);
 	
 	private int action;
-	private Class<? extends ActionSemantic> classe;
+	private Class<? extends SemanticAction> classe;
 	
 	public int getAction() {
 		return this.action;
 	}
 	
-	public ActionSemantic buildActionSemantic(SymbolTable symbolTable) {
+	public SemanticAction buildActionSemantic(SymbolTable symbolTable) {
 		try {
 			return this.classe.getConstructor(SymbolTable.class).newInstance(symbolTable);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -56,13 +56,13 @@ public enum EActionSemantics {
 		}
 	}
 	
-	EActionSemantics(int action, Class<? extends ActionSemantic> classe) {
+	EActionSemantics(int action, Class<? extends SemanticAction> classe) {
 		this.action = action;
 		this.classe = classe;
 	}
 	
 	public static EActionSemantics find(int action) {
-		return Arrays.asList(EActionSemantics.values()).stream()
+		return Arrays.asList(values()).stream()
 			.filter(record -> record.getAction() == action)
 			.findAny()
 			.orElse(null);

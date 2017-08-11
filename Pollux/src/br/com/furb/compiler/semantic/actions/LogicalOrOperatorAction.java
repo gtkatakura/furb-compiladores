@@ -6,7 +6,7 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class LogicalOrOperatorAction extends ActionSemantic {
+public class LogicalOrOperatorAction extends SemanticAction {
 	public LogicalOrOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
@@ -18,7 +18,7 @@ public class LogicalOrOperatorAction extends ActionSemantic {
 		
 		if (type1 != "bool" || type2 != "bool") {
 			throw new SemanticError(
-				"Operador 'or' só pode ser aplicado sobre operandos de tipo 'bool'",
+				"Operador 'or' sï¿½ pode ser aplicado sobre operandos de tipo 'bool'",
 				token.getPosition()
 			);
 		}

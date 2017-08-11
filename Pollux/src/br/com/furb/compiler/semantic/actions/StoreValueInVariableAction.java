@@ -5,7 +5,7 @@ import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class StoreValueInVariableAction extends ActionSemantic {
+public class StoreValueInVariableAction extends SemanticAction {
 	public StoreValueInVariableAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}

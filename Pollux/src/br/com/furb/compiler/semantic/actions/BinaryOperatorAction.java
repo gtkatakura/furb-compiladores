@@ -6,7 +6,7 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public abstract class BinaryOperatorAction extends ActionSemantic {
+public abstract class BinaryOperatorAction extends SemanticAction {
 	private char operator;
 
 	public BinaryOperatorAction(SymbolTable symbolTable, char operator) {
@@ -21,7 +21,7 @@ public abstract class BinaryOperatorAction extends ActionSemantic {
 		
 		if (!isTypeValid(type1) || !isTypeValid(type2)) {
 			throw new SemanticError(
-				"Operador '" + this.operator + "' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'",
+				"Operador '" + this.operator + "' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'",
 				token.getPosition()
 			);
 		}

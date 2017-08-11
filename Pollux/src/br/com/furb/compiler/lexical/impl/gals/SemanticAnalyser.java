@@ -1,7 +1,8 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
+import br.com.furb.compiler.gals.Constants;
 import br.com.furb.compiler.semantic.SymbolTable;
-import br.com.furb.compiler.semantic.actions.ActionSemantic;
+import br.com.furb.compiler.semantic.actions.SemanticAction;
 import br.com.furb.compiler.semantic.actions.ActionSemanticFactory;
 
 public class SemanticAnalyser implements Constants {
@@ -13,7 +14,7 @@ public class SemanticAnalyser implements Constants {
 	}
 
 	public void executeAction(int action, Token token) throws SemanticError {
-		ActionSemantic actionSemantic = ActionSemanticFactory.create(action, symbolTable);
+		SemanticAction actionSemantic = ActionSemanticFactory.create(action, symbolTable);
 
 		if (actionSemantic != null) {
 			String generatedCode = actionSemantic.execute(token);

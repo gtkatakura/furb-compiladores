@@ -2,9 +2,9 @@ package br.com.furb.compiler.lexical.impl.gals;
 
 import java.util.Arrays;
 
-import br.com.furb.compiler.lexical.IKind;
+import br.com.furb.compiler.lexical.Kind;
 
-public enum EKind implements IKind {
+public enum TokenKind implements Kind {
 	DOLLAR(1, "s�mbolo especial"),
 	VIRGULA(2, "s�mbolo especial"),
 	DOIS_PONTOS(3, "s�mbolo especial"),
@@ -51,7 +51,7 @@ public enum EKind implements IKind {
 	private int id;
 	private String descricao;
 	
-	private EKind(int id, String descricao) {
+	private TokenKind(int id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
 	}
@@ -64,8 +64,8 @@ public enum EKind implements IKind {
 		return descricao;
 	}
 
-	public static EKind getClasseById(int id){
-		return Arrays.asList(EKind.values()).stream()
+	public static TokenKind getClasseById(int id){
+		return Arrays.asList(TokenKind.values()).stream()
 			.filter(classe -> classe.getId() == id)
 			.findFirst()
 			.get();

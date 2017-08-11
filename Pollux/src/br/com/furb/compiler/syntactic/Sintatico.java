@@ -2,9 +2,9 @@ package br.com.furb.compiler.syntactic;
 
 import java.util.Stack;
 
-import br.com.furb.compiler.lexical.impl.gals.Constants;
-import br.com.furb.compiler.lexical.impl.gals.EKind;
+import br.com.furb.compiler.lexical.impl.gals.TokenKind;
 import br.com.furb.compiler.lexical.impl.gals.LexicalError;
+import br.com.furb.compiler.gals.Constants;
 import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
@@ -35,7 +35,7 @@ public class Sintatico implements Constants {
 			if (previousToken != null)
 				pos = previousToken.getPosition() + previousToken.getLexeme().length();
 
-			currentToken = new Token(EKind.getClasseById(DOLLAR), "$", pos);
+			currentToken = new Token(TokenKind.getClasseById(DOLLAR), "$", pos);
 		}
 
 		int x = ((Integer) stack.pop()).intValue();

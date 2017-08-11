@@ -4,7 +4,7 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class AllocateRotuleAction extends ActionSemantic {
+public class AllocateRotuleAction extends SemanticAction {
 	public AllocateRotuleAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}

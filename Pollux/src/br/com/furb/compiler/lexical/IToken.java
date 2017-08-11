@@ -2,7 +2,7 @@ package br.com.furb.compiler.lexical;
 
 public interface IToken {
 
-	IKind getKind();
+	Kind getKind();
 
 	String getLexeme();
 

@@ -5,7 +5,7 @@ import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class AllocateVectorSizeAction extends ActionSemantic {
+public class AllocateVectorSizeAction extends SemanticAction {
 
 	public AllocateVectorSizeAction(SymbolTable symbolTable) {
 		super(symbolTable);

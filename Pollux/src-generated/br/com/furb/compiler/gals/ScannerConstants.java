@@ -1,4 +1,4 @@
-package br.com.furb.compiler.lexical.impl.gals;
+package br.com.furb.compiler.gals;
 
 public interface ScannerConstants
 {
@@ -1486,10 +1486,10 @@ public interface ScannerConstants
 
     String[] SCANNER_ERROR =
     {
-        "simbolo inválido",
+        "simbolo invï¿½lido",
         "",
         "esperava \"!=\"",
-        "constante string inválida", // "constante string não finalizada",
+        "constante string invï¿½lida", // "constante string nï¿½o finalizada",
         "",
         "",
         "",
@@ -1514,7 +1514,7 @@ public interface ScannerConstants
         "",
         "",
         "",
-        "comentário de bloco não finalizado",
+        "comentï¿½rio de bloco nï¿½o finalizado",
         "Erro identificando constante_float",
         "",
         "",
@@ -1524,7 +1524,7 @@ public interface ScannerConstants
         "Erro identificando identificador_de_float",
         "Erro identificando identificador_de_int",
         "Erro identificando identificador_de_string",
-        "comentário de bloco não finalizado",
+        "comentï¿½rio de bloco nï¿½o finalizado",
         "",
         "",
         "",

@@ -6,7 +6,7 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class RelationalOperatorAction extends ActionSemantic {
+public class RelationalOperatorAction extends SemanticAction {
 	public RelationalOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
@@ -20,7 +20,7 @@ public class RelationalOperatorAction extends ActionSemantic {
 		
 		if (type1 != type2) {
 			throw new SemanticError(
-				"Tipos incompatíveis em expressão relacional",
+				"Tipos incompatï¿½veis em expressï¿½o relacional",
 				token.getPosition()
 			);
 		}

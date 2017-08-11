@@ -4,7 +4,7 @@ import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.Token;
 import br.com.furb.compiler.semantic.SymbolTable;
 
-public class DefineRotuleSelection extends ActionSemantic {
+public class DefineRotuleSelection extends SemanticAction {
 	public DefineRotuleSelection(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
@@ -14,7 +14,7 @@ public class DefineRotuleSelection extends ActionSemantic {
 		
 		if (type != "bool") {
 			throw new SemanticError(
-				"Essa instrução só pode ser manipulada com expressões booleanas",
+				"Essa instruï¿½ï¿½o sï¿½ pode ser manipulada com expressï¿½es booleanas",
 				token.getPosition()
 			);
 		}
