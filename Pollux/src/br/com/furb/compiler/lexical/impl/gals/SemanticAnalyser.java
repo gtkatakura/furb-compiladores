@@ -13,7 +13,7 @@ public class SemanticAnalyser implements Constants {
 		return this.objectCode.toString();
 	}
 
-	public void executeAction(int action, Token token) throws SemanticError {
+	public void executeAction(int action, TokenImpl token) throws SemanticError {
 		SemanticAction actionSemantic = ActionSemanticFactory.create(action, symbolTable);
 
 		if (actionSemantic != null) {

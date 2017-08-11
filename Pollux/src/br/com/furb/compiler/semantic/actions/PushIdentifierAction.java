@@ -1,6 +1,6 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 
@@ -10,7 +10,7 @@ public class PushIdentifierAction extends SemanticAction {
 	}
 
 	@Override
-	public String execute(Token token) {
+	public String execute(TokenImpl token) {
 		String lexeme = token.getLexeme();
 		Identifier identifier = getSymbolTable().getIdentifiers().get(lexeme);
 

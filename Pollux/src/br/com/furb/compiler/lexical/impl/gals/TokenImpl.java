@@ -1,14 +1,15 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
+import br.com.furb.compiler.lexical.Token;
 import br.com.furb.compiler.lexical.Kind;
-import br.com.furb.compiler.lexical.IToken;
 
-public class Token implements IToken {
-	private Kind kind;
-	private String lexeme;
-	private int line;
+public final class TokenImpl implements Token {
 
-	public Token(Kind kind, String lexeme, int line) {
+	private final Kind kind;
+	private final String lexeme;
+	private final int line;
+
+	public TokenImpl(Kind kind, String lexeme, int line) {
 		this.kind = kind;
 		this.lexeme = lexeme;
 		this.line = line;
@@ -21,11 +22,10 @@ public class Token implements IToken {
 	public String getLexeme() {
 		return kind.getId() == 1 ? "fim do programa" : lexeme;
 	}
-	
-	public int getPosition()
-    {
-        return line;
-    }
+
+	public int getPosition() {
+		return line;
+	}
 
 	public int getLine() {
 		return line;

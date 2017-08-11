@@ -25,7 +25,7 @@ public class LexicalAnalyser implements Constants {
 		position = pos;
 	}
 
-	public Token nextToken() throws LexicalError {
+	public TokenImpl nextToken() throws LexicalError {
 		if (!hasInput())
 			return null;
 
@@ -77,7 +77,7 @@ public class LexicalAnalyser implements Constants {
 				throw new LexicalError(TokenKind.PALAVRA_RESERVADA.getDescription(), start, lexeme);
 			}
 
-			return new Token(TokenKind.getClasseById(token), lexeme, start);
+			return new TokenImpl(TokenKind.getClassBy(token), lexeme, start);
 		}
 	}
 

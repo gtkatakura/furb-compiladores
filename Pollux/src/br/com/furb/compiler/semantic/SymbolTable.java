@@ -5,11 +5,13 @@ import java.util.Map;
 import java.util.Stack;
 
 public class SymbolTable {
-	private Stack<Identifier> stackIdentifiers;
-	private Map<String, Identifier> identifiers;
-	private Stack<String> types;
-	private Stack<String> relationalOperators;
-	private Stack<String> rotules;
+
+	private final Stack<Identifier> stackIdentifiers;
+	private final Map<String, Identifier> identifiers;
+	private final Stack<String> types;
+	private final Stack<String> relationalOperators;
+	private final Stack<String> rotules;
+
 	private int lastRotule = 0;
 
 	public SymbolTable() {

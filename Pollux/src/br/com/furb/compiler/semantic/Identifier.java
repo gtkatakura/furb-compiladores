@@ -5,16 +5,13 @@ import static br.com.furb.compiler.semantic.Type.FLOAT;
 import static br.com.furb.compiler.semantic.Type.INT;
 import static br.com.furb.compiler.semantic.Type.STRING;
 
-public class Identifier {
-	private String name;
+public final class Identifier {
+
+	private final String name;
 	private Integer size;
 
 	public Identifier(String name) {
 		this.name = name;
-	}
-
-	public String toString() {
-		return this.name;
 	}
 
 	public Type getType() {
@@ -51,5 +48,9 @@ public class Identifier {
 
 	public boolean isVector() {
 		return getSize() != null;
+	}
+
+	public String toString() {
+		return this.name;
 	}
 }

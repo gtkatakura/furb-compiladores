@@ -24,7 +24,7 @@ public enum Type {
 
 	};
 
-	private String description;
+	private final String description;
 
 	private Type(String description) {
 		this.description = description;

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import br.com.furb.compiler.lexical.Kind;
 
 public enum TokenKind implements Kind {
+
 	DOLLAR(1, "s�mbolo especial"),
 	VIRGULA(2, "s�mbolo especial"),
 	DOIS_PONTOS(3, "s�mbolo especial"),
@@ -48,8 +49,8 @@ public enum TokenKind implements Kind {
 	TRUE(41, "palavra reservada"),
 	WHILE(42, "palavra reservada");
 	
-	private int id;
-	private String descricao;
+	private final int id;
+	private final String descricao;
 	
 	private TokenKind(int id, String descricao) {
 		this.id = id;
@@ -64,12 +65,10 @@ public enum TokenKind implements Kind {
 		return descricao;
 	}
 
-	public static TokenKind getClasseById(int id){
+	public static TokenKind getClassBy(int id){
 		return Arrays.asList(TokenKind.values()).stream()
 			.filter(classe -> classe.getId() == id)
 			.findFirst()
 			.get();
 	}
-	
-
 }

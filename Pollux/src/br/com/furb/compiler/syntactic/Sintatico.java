@@ -8,12 +8,12 @@ import br.com.furb.compiler.gals.Constants;
 import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
 import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 
 public class Sintatico implements Constants {
 	private Stack stack = new Stack();
-	private Token currentToken;
-	private Token previousToken;
+	private TokenImpl currentToken;
+	private TokenImpl previousToken;
 	private LexicalAnalyser scanner;
 	private SemanticAnalyser semanticAnalyser;
 
@@ -35,7 +35,7 @@ public class Sintatico implements Constants {
 			if (previousToken != null)
 				pos = previousToken.getPosition() + previousToken.getLexeme().length();
 
-			currentToken = new Token(TokenKind.getClasseById(DOLLAR), "$", pos);
+			currentToken = new TokenImpl(TokenKind.getClassBy(DOLLAR), "$", pos);
 		}
 
 		int x = ((Integer) stack.pop()).intValue();

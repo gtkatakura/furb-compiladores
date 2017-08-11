@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 import br.com.furb.compiler.semantic.Identifier;
 import br.com.furb.compiler.semantic.SymbolTable;
 import br.com.furb.compiler.semantic.Type;
@@ -15,7 +15,7 @@ public class DeclareVariableAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(Token token) throws SemanticError {
+	public String execute(TokenImpl token) throws SemanticError {
 		SymbolTable symbolTable = this.getSymbolTable();
 		Identifier identifier = symbolTable.getStackIdentifiers().pop();
 

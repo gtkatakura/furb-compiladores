@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Lexical {
 
-	List<IToken> getTokens();
+	List<Token> getTokens();
 }

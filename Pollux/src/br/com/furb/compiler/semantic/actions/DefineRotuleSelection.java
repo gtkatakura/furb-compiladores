@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class DefineRotuleSelection extends SemanticAction {
@@ -9,7 +9,7 @@ public class DefineRotuleSelection extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(Token token) throws SemanticError {
+	public String execute(TokenImpl token) throws SemanticError {
 		String type = this.getSymbolTable().getTypes().pop();
 		
 		if (type != "bool") {

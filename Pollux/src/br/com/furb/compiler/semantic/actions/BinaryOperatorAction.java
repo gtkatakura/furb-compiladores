@@ -3,7 +3,7 @@ package br.com.furb.compiler.semantic.actions;
 import java.util.Stack;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public abstract class BinaryOperatorAction extends SemanticAction {
@@ -14,7 +14,7 @@ public abstract class BinaryOperatorAction extends SemanticAction {
 		this.operator = operator;
 	}
 
-	public String execute(Token token) throws SemanticError {
+	public String execute(TokenImpl token) throws SemanticError {
 		Stack<String> types = this.getSymbolTable().getTypes();
 		String type1 = types.pop();
 		String type2 = types.pop();

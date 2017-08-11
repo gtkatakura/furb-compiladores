@@ -1,6 +1,6 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public abstract class AllocateBooleanAction extends SemanticAction {
@@ -8,7 +8,7 @@ public abstract class AllocateBooleanAction extends SemanticAction {
 		super(symbolTable);
 	}
 
-	public String execute(Token token) {
+	public String execute(TokenImpl token) {
 		this.getSymbolTable().getTypes().push("bool");
 		return null;
 	}

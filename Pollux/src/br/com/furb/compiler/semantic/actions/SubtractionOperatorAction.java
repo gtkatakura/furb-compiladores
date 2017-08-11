@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
 import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
+import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class SubtractionOperatorAction extends BinaryOperatorAction {
@@ -10,7 +10,7 @@ public class SubtractionOperatorAction extends BinaryOperatorAction {
 	}
 
 	@Override
-	public String execute(Token token) throws SemanticError {
+	public String execute(TokenImpl token) throws SemanticError {
 		super.execute(token);
 		return "sub\n";
 	}
