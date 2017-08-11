@@ -30,13 +30,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import br.com.furb.compiler.analysis.lexical.LexicalAnalyser;
+import br.com.furb.compiler.analysis.lexical.LexicalError;
+import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.analysis.syntatic.SyntaticAnalyser;
+import br.com.furb.compiler.analysis.syntatic.SyntaticError;
 import br.com.furb.compiler.io.SourceFile;
-import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
-import br.com.furb.compiler.syntactic.Sintatico;
-import br.com.furb.compiler.syntactic.SyntaticError;
 import br.com.furb.compiler.view.Editor;
 import br.com.furb.compiler.view.MessageArea;
 import br.com.furb.compiler.view.StatusBar;
@@ -248,7 +248,7 @@ public class CompilerView implements View {
 				String input = editor.getContent();
 				try {
 					LexicalAnalyser lexico = new LexicalAnalyser();
-					Sintatico sintatico = new Sintatico();
+					SyntaticAnalyser sintatico = new SyntaticAnalyser();
 					SemanticAnalyser semantico = new SemanticAnalyser();
 
 					lexico.setInput(input);
@@ -292,7 +292,7 @@ public class CompilerView implements View {
 						String objectCode = "";
 						try {
 							LexicalAnalyser lexico = new LexicalAnalyser();
-							Sintatico sintatico = new Sintatico();
+							SyntaticAnalyser sintatico = new SyntaticAnalyser();
 							SemanticAnalyser semantico = new SemanticAnalyser();
 
 							lexico.setInput(input);

@@ -1,28 +1,26 @@
 package br.com.furb.compiler.lexical.impl.gals;
 
-public class AnalysisError extends Exception
-{
-    private int position;
+public class AnalysisError extends Exception {
 
-    public AnalysisError(String msg, int position)
-    {
-        super(msg);
-        this.position = position;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public AnalysisError(String msg)
-    {
-        super(msg);
-        this.position = -1;
-    }
+	private int position;
 
-    public int getPosition()
-    {
-        return position;
-    }
+	public AnalysisError(String msg, int position) {
+		super(msg);
+		this.position = position;
+	}
 
-    public String toString()
-    {
-        return super.toString() + ", @ "+position;
-    }
+	public AnalysisError(String msg) {
+		super(msg);
+		this.position = -1;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public String toString() {
+		return super.toString() + ", @ " + position;
+	}
 }

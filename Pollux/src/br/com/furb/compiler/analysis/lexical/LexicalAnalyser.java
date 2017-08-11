@@ -1,8 +1,10 @@
-package br.com.furb.compiler.lexical.impl.gals;
+package br.com.furb.compiler.analysis.lexical;
 
 import br.com.furb.compiler.gals.Constants;
+import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.TokenKind;
 
-public class LexicalAnalyser implements Constants {
+public final class LexicalAnalyser implements Constants {
 
 	private int position;
 	private String input;

@@ -1,16 +1,17 @@
-package br.com.furb.compiler.syntactic;
+package br.com.furb.compiler.analysis.syntatic;
 
 import java.util.Stack;
 
-import br.com.furb.compiler.lexical.impl.gals.TokenKind;
-import br.com.furb.compiler.lexical.impl.gals.LexicalError;
+import br.com.furb.compiler.analysis.lexical.LexicalAnalyser;
+import br.com.furb.compiler.analysis.lexical.LexicalError;
+import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.gals.Constants;
-import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
-import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
+import br.com.furb.compiler.lexical.TokenImpl;
+import br.com.furb.compiler.lexical.TokenKind;
 
-public class Sintatico implements Constants {
+public class SyntaticAnalyser implements Constants {
+
 	private Stack stack = new Stack();
 	private TokenImpl currentToken;
 	private TokenImpl previousToken;
@@ -83,7 +84,8 @@ public class Sintatico implements Constants {
 			return false;
 	}
 
-	public void parse(LexicalAnalyser scanner, SemanticAnalyser semanticAnalyser) throws LexicalError, SyntaticError, SemanticError {
+	public void parse(LexicalAnalyser scanner, SemanticAnalyser semanticAnalyser)
+			throws LexicalError, SyntaticError, SemanticError {
 		this.scanner = scanner;
 		this.semanticAnalyser = semanticAnalyser;
 

@@ -1,7 +1,7 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.lexical.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public class MultiplicationOperatorAction extends BinaryOperatorAction {

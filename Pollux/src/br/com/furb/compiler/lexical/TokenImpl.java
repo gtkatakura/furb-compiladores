@@ -1,7 +1,4 @@
-package br.com.furb.compiler.lexical.impl.gals;
-
-import br.com.furb.compiler.lexical.Token;
-import br.com.furb.compiler.lexical.Kind;
+package br.com.furb.compiler.lexical;
 
 public final class TokenImpl implements Token {
 

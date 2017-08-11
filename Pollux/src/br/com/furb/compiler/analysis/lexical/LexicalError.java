@@ -1,4 +1,6 @@
-package br.com.furb.compiler.lexical.impl.gals;
+package br.com.furb.compiler.analysis.lexical;
+
+import br.com.furb.compiler.lexical.impl.gals.AnalysisError;
 
 public class LexicalError extends AnalysisError {
 

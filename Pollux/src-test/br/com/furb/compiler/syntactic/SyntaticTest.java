@@ -4,17 +4,19 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
+import br.com.furb.compiler.analysis.lexical.LexicalAnalyser;
+import br.com.furb.compiler.analysis.lexical.LexicalError;
+import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.analysis.syntatic.SyntaticAnalyser;
+import br.com.furb.compiler.analysis.syntatic.SyntaticError;
 
 public class SyntaticTest {
 	
 	public String getErrorMessage(String input) {
 		try {
 			LexicalAnalyser lexico = new LexicalAnalyser();
-			Sintatico sintatico = new Sintatico();
+			SyntaticAnalyser sintatico = new SyntaticAnalyser();
 			SemanticAnalyser semantico = new SemanticAnalyser();
 
 			lexico.setInput(input);

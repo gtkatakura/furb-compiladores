@@ -10,19 +10,19 @@ import java.io.PrintWriter;
 
 import org.junit.Test;
 
-import br.com.furb.compiler.lexical.impl.gals.LexicalError;
-import br.com.furb.compiler.lexical.impl.gals.LexicalAnalyser;
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.SemanticAnalyser;
-import br.com.furb.compiler.syntactic.Sintatico;
-import br.com.furb.compiler.syntactic.SyntaticError;
+import br.com.furb.compiler.analysis.lexical.LexicalAnalyser;
+import br.com.furb.compiler.analysis.lexical.LexicalError;
+import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.analysis.syntatic.SyntaticAnalyser;
+import br.com.furb.compiler.analysis.syntatic.SyntaticError;
 
 public class SemanticTest {
 	
 	public String verificaMensagemDeErro(String programaFonte) {
 		try {
 			LexicalAnalyser lexico = new LexicalAnalyser();
-			Sintatico sintatico = new Sintatico();
+			SyntaticAnalyser sintatico = new SyntaticAnalyser();
 			SemanticAnalyser semantico = new SemanticAnalyser();
 
 			lexico.setInput(programaFonte);
@@ -63,7 +63,7 @@ public class SemanticTest {
 	
 	private void verificaCodigoGerado(String programaFonte, String codigoObjetoEsperado) throws LexicalError, SyntaticError, SemanticError {
 		LexicalAnalyser lexico = new LexicalAnalyser();
-		Sintatico sintatico = new Sintatico();
+		SyntaticAnalyser sintatico = new SyntaticAnalyser();
 		SemanticAnalyser semantico = new SemanticAnalyser();
 
 		lexico.setInput(programaFonte);

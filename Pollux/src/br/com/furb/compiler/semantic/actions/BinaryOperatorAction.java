@@ -2,8 +2,8 @@ package br.com.furb.compiler.semantic.actions;
 
 import java.util.Stack;
 
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.TokenImpl;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.lexical.TokenImpl;
 import br.com.furb.compiler.semantic.SymbolTable;
 
 public abstract class BinaryOperatorAction extends SemanticAction {

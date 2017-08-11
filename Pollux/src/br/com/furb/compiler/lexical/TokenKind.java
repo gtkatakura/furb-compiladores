@@ -1,8 +1,6 @@
-package br.com.furb.compiler.lexical.impl.gals;
+package br.com.furb.compiler.lexical;
 
 import java.util.Arrays;
-
-import br.com.furb.compiler.lexical.Kind;
 
 public enum TokenKind implements Kind {
 
