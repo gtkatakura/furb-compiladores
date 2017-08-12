@@ -247,11 +247,10 @@ public class CompilerView implements View {
 			public void actionPerformed(ActionEvent event) {
 				String input = editor.getContent();
 				try {
-					LexicalAnalyser lexico = new LexicalAnalyser();
+					LexicalAnalyser lexico = new LexicalAnalyser(input);
 					SyntaticAnalyser sintatico = new SyntaticAnalyser();
 					SemanticAnalyser semantico = new SemanticAnalyser();
 
-					lexico.setInput(input);
 					sintatico.parse(lexico, semantico);
 
 					messageArea.update("Programado compilado com sucesso");
@@ -291,11 +290,10 @@ public class CompilerView implements View {
 						String input = editor.getContent();
 						String objectCode = "";
 						try {
-							LexicalAnalyser lexico = new LexicalAnalyser();
+							LexicalAnalyser lexico = new LexicalAnalyser(input);
 							SyntaticAnalyser sintatico = new SyntaticAnalyser();
 							SemanticAnalyser semantico = new SemanticAnalyser();
 
-							lexico.setInput(input);
 							sintatico.parse(lexico, semantico);
 							objectCode = semantico.getObjectCode();
 							try {

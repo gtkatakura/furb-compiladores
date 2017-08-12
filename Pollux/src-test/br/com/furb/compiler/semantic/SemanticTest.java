@@ -19,11 +19,10 @@ public class SemanticTest {
 
 	public String verificaMensagemDeErro(String programaFonte) {
 		try {
-			LexicalAnalyser lexico = new LexicalAnalyser();
+			LexicalAnalyser lexico = new LexicalAnalyser(programaFonte);
 			SyntaticAnalyser sintatico = new SyntaticAnalyser();
 			SemanticAnalyser semantico = new SemanticAnalyser();
 
-			lexico.setInput(programaFonte);
 			sintatico.parse(lexico, semantico);
 			return null;
 		} catch (AnalysisError error) {
@@ -51,11 +50,10 @@ public class SemanticTest {
 	}
 
 	private void verificaCodigoGerado(String programaFonte, String codigoObjetoEsperado) throws AnalysisError {
-		LexicalAnalyser lexico = new LexicalAnalyser();
+		LexicalAnalyser lexico = new LexicalAnalyser(programaFonte);
 		SyntaticAnalyser sintatico = new SyntaticAnalyser();
 		SemanticAnalyser semantico = new SemanticAnalyser();
 
-		lexico.setInput(programaFonte);
 		sintatico.parse(lexico, semantico);
 
 		String codigo = cabecalho() + "\n" + codigoObjetoEsperado + "\n" + rodape();

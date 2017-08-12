@@ -7,19 +7,12 @@ import br.com.furb.compiler.model.lexical.TokenKind;
 
 public final class LexicalAnalyser implements Constants {
 
+	private final String input;
+
 	private int position;
-	private String input;
 	private int line = 1;
 
-	public LexicalAnalyser() {
-		this("");
-	}
-
 	public LexicalAnalyser(String input) {
-		setInput(input);
-	}
-
-	public void setInput(String input) {
 		this.input = input;
 		setPosition(0);
 	}
@@ -133,11 +126,11 @@ public final class LexicalAnalyser implements Constants {
 
 	private char nextChar() {
 		if (hasInput()) {
-			char aux = input.charAt(position++);
-			if (aux == '\n') {
+			char current = input.charAt(position++);
+			if (current == '\n') {
 				line++;
 			}
-			return aux;
+			return current;
 		} else
 			return (char) -1;
 	}

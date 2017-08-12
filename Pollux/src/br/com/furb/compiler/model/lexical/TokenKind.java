@@ -64,9 +64,9 @@ public enum TokenKind implements Kind {
 	}
 
 	public static TokenKind getClassBy(int id){
-		return Arrays.asList(TokenKind.values()).stream()
+		return Arrays.asList(values()).stream()
 			.filter(classe -> classe.getId() == id)
 			.findFirst()
-			.get();
+			.orElseThrow(() -> new IllegalArgumentException("Invalid token id: " + id));
 	}
 }

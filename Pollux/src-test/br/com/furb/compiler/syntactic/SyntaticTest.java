@@ -13,11 +13,10 @@ public class SyntaticTest {
 
 	public String getErrorMessage(String input) {
 		try {
-			LexicalAnalyser lexico = new LexicalAnalyser();
+			LexicalAnalyser lexico = new LexicalAnalyser(input);
 			SyntaticAnalyser sintatico = new SyntaticAnalyser();
 			SemanticAnalyser semantico = new SemanticAnalyser();
 
-			lexico.setInput(input);
 			sintatico.parse(lexico, semantico);
 			return null;
 		} catch (AnalysisError error) {
