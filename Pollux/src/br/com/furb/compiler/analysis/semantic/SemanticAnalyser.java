@@ -8,8 +8,8 @@ import br.com.furb.compiler.semantic.actions.SemanticActionFactory;
 
 public final class SemanticAnalyser implements Constants {
 
-	private StringBuilder objectCode = new StringBuilder();
-	private SymbolTable symbolTable = new SymbolTable();
+	private final StringBuilder objectCode = new StringBuilder();
+	private final SymbolTable symbolTable = new SymbolTable();
 
 	public String getObjectCode() {
 		return this.objectCode.toString();
@@ -25,7 +25,7 @@ public final class SemanticAnalyser implements Constants {
 				this.objectCode.append(generatedCode);
 			}
 		} else {
-			System.out.println("A��o ainda n�o implementada: " + actionId);
+			System.out.println("Açãoo ainda não implementada: " + actionId);
 		}
 	}
 }

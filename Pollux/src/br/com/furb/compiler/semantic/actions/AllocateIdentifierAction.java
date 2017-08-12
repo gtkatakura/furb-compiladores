@@ -5,7 +5,7 @@ import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.Identifier;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class AllocateIdentifierAction extends SemanticAction {
+public final class AllocateIdentifierAction extends SemanticAction {
 	public AllocateIdentifierAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}

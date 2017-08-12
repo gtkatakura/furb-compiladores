@@ -1,13 +1,17 @@
 package br.com.furb.compiler.semantic.actions;
 
+import static br.com.furb.compiler.model.semantic.Type.FLOAT;
+import static br.com.furb.compiler.model.semantic.Type.INT;
+
 import java.util.Stack;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
-import br.com.furb.compiler.model.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.SymbolTable;;
 
 public abstract class BinaryOperatorAction extends SemanticAction {
-	private char operator;
+
+	private final char operator;
 
 	public BinaryOperatorAction(SymbolTable symbolTable, char operator) {
 		super(symbolTable);
@@ -21,20 +25,19 @@ public abstract class BinaryOperatorAction extends SemanticAction {
 
 		if (!isTypeValid(type1) || !isTypeValid(type2)) {
 			throw new SemanticError(
-					"Operador '" + this.operator + "' s� pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'",
+					"Operador '" + this.operator + "' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'",
 					token.getPosition());
 		}
 
-		if (type1 == "float64" || type2 == "float64") {
-			types.push("float64");
+		if (type1 == FLOAT.value || type2 == FLOAT.value) {
+			types.push(FLOAT.value);
 		} else {
-			types.push("int64");
+			types.push(INT.value);
 		}
-
 		return null;
 	}
 
 	private boolean isTypeValid(String type) {
-		return type == "float64" || type == "int64";
+		return type == FLOAT.value || type == INT.value;
 	}
 }

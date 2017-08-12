@@ -416,7 +416,7 @@ public class SemanticTest {
 				"s_primeiro <- 1 / \"Palavra\";", "}" };
 
 		verificaMensagemDeErro(programaFonte,
-				"Operador '/' s� pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
+				"Operador '/' só pode ser aplicado sobre operandos de tipo 'int' e/ou 'float'");
 	}
 
 	@Test

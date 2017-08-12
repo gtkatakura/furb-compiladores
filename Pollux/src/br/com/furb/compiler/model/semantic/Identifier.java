@@ -31,7 +31,7 @@ public final class Identifier {
 
 	public String getTypeDescription() {
 		Type type = getType();
-		return type == null ? null : type.getDescription();
+		return type == null ? null : type.value;
 	}
 
 	private char getHungarianConvention() {

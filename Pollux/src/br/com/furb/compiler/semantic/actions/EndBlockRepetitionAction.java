@@ -3,7 +3,7 @@ package br.com.furb.compiler.semantic.actions;
 import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class EndBlockRepetitionAction extends SemanticAction {
+public final class EndBlockRepetitionAction extends SemanticAction {
 	public EndBlockRepetitionAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}

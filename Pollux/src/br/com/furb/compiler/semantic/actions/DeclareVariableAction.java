@@ -6,7 +6,7 @@ import br.com.furb.compiler.model.semantic.Identifier;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 import br.com.furb.compiler.model.semantic.Type;
 
-public class DeclareVariableAction extends SemanticAction {
+public final class DeclareVariableAction extends SemanticAction {
 
 	private static final String VECTOR_DECLARATION = "newarr [mscorlib]System.%s";
 	private static final String VECTOR_BRACKETS = "[] ";

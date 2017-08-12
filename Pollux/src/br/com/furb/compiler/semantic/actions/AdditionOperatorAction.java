@@ -4,7 +4,7 @@ import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class AdditionOperatorAction extends BinaryOperatorAction {
+public final class AdditionOperatorAction extends BinaryOperatorAction {
 	public AdditionOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable, '+');
 	}

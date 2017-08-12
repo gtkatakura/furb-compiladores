@@ -24,18 +24,14 @@ public enum Type {
 
 	};
 
-	private final String description;
+	public final String value;
 
-	private Type(String description) {
-		this.description = description;
-	}
-
-	public String getDescription() {
-		return description;
+	private Type(String value) {
+		this.value = value;
 	}
 
 	public String getCorrespondingClass() {
-		return capitalize(description) + lowerCharsFrom(1, description);
+		return capitalize(value) + lowerCharsFrom(1, value);
 	}
 
 	private String capitalize(String value) {

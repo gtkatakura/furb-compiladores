@@ -6,10 +6,10 @@ import br.com.furb.compiler.model.semantic.Identifier;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 import br.com.furb.compiler.model.semantic.Type;
 
-public class InAction extends SemanticAction {
+public final class InAction extends SemanticAction {
 
 	private static final String READ_FUNCTION_SIGNATURE = "call string [mscorlib]System.Console::ReadLine()\n";
-	
+
 	private static final String PARSE_FUNCTION_SIGNATURE = "call %s [mscorlib]System.%s::Parse(string)\n";
 
 	public InAction(SymbolTable symbolTable) {
@@ -21,12 +21,9 @@ public class InAction extends SemanticAction {
 		StringBuilder code = new StringBuilder(READ_FUNCTION_SIGNATURE);
 
 		Identifier inputId = new Identifier(token.getLexeme());
-		
+
 		if (!this.getSymbolTable().getIdentifiers().containsKey(inputId.toString())) {
-			throw new SemanticError(
-				inputId.toString() + " n�o declarado",
-				token.getPosition()
-			);
+			throw new SemanticError(inputId.toString() + " n�o declarado", token.getPosition());
 		}
 
 		Type idType = inputId.getType();
@@ -39,6 +36,6 @@ public class InAction extends SemanticAction {
 	}
 
 	private String buildParseFunctionCallFor(Type type) {
-		return String.format(PARSE_FUNCTION_SIGNATURE, type.getDescription(), type.getCorrespondingClass());
+		return String.format(PARSE_FUNCTION_SIGNATURE, type.value, type.getCorrespondingClass());
 	}
 }

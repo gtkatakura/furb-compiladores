@@ -4,7 +4,8 @@ import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class DefineRotuleSelection extends SemanticAction {
+public final class DefineRotuleSelection extends SemanticAction {
+	
 	public DefineRotuleSelection(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
