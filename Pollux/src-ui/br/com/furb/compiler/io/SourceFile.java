@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class SourceFile {
+public final class SourceFile {
 
 	public static void save(File file, String content) throws IOException {
 		try {
