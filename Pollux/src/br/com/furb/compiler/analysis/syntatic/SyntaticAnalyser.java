@@ -12,13 +12,15 @@ import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.lexical.TokenImpl;
 import br.com.furb.compiler.model.lexical.TokenKind;
 
-public class SyntaticAnalyser implements Constants {
+public final class SyntaticAnalyser implements Constants {
+
+	private LexicalAnalyser scanner;
+	private SemanticAnalyser semantic;
 
 	private Stack<Integer> stack = new Stack<>();
+
 	private Token currentToken;
 	private Token previousToken;
-	private LexicalAnalyser scanner;
-	private SemanticAnalyser semanticAnalyser;
 
 	private static final boolean isTerminal(int x) {
 		return x < FIRST_NON_TERMINAL;
@@ -64,7 +66,7 @@ public class SyntaticAnalyser implements Constants {
 			}
 		} else // isSemanticAction(x)
 		{
-			semanticAnalyser.execute(x - FIRST_SEMANTIC_ACTION, previousToken);
+			semantic.execute(x - FIRST_SEMANTIC_ACTION, previousToken);
 			return false;
 		}
 	}
@@ -73,18 +75,18 @@ public class SyntaticAnalyser implements Constants {
 		int p = PARSER_TABLE[topStack - FIRST_NON_TERMINAL][tokenInput - 1];
 		if (p >= 0) {
 			int[] production = PRODUCTIONS[p];
-			// empilha a produ��o em ordem reversa
+			// empilha a produção em ordem reversa
 			for (int i = production.length - 1; i >= 0; i--) {
-				stack.push(new Integer(production[i]));
+				stack.push(production[i]);
 			}
 			return true;
-		} else
-			return false;
+		}
+		return false;
 	}
 
-	public void parse(LexicalAnalyser scanner, SemanticAnalyser semanticAnalyser) throws AnalysisError {
+	public void parse(LexicalAnalyser scanner, SemanticAnalyser semantic) throws AnalysisError {
 		this.scanner = scanner;
-		this.semanticAnalyser = semanticAnalyser;
+		this.semantic = semantic;
 
 		stack.clear();
 		stack.push(new Integer(DOLLAR));
