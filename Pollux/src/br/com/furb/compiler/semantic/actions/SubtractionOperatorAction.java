@@ -1,10 +1,11 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.model.lexical.Token;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class SubtractionOperatorAction extends BinaryOperatorAction {
+public final class SubtractionOperatorAction extends BinaryOperatorAction {
+
 	public SubtractionOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable, '-');
 	}

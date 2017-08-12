@@ -1,10 +1,11 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.model.lexical.Token;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class UnaryPlusOperatorAction extends ActionSemantic {
+public final class UnaryPlusOperatorAction extends SemanticAction {
+	
 	public UnaryPlusOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
@@ -14,7 +15,7 @@ public class UnaryPlusOperatorAction extends ActionSemantic {
 		
 		if (type != "float64" && type != "int64") {
 			throw new SemanticError(
-				"Operador '+' só pode ser aplicado sobre operandos de tipo 'int' e 'float'",
+				"Operador '+' sï¿½ pode ser aplicado sobre operandos de tipo 'int' e 'float'",
 				token.getPosition()
 			);
 		}

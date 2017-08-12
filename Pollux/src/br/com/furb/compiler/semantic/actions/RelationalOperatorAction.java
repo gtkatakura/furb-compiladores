@@ -2,11 +2,12 @@ package br.com.furb.compiler.semantic.actions;
 
 import java.util.Stack;
 
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.model.lexical.Token;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class RelationalOperatorAction extends ActionSemantic {
+public final class RelationalOperatorAction extends SemanticAction {
+	
 	public RelationalOperatorAction(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
@@ -20,7 +21,7 @@ public class RelationalOperatorAction extends ActionSemantic {
 		
 		if (type1 != type2) {
 			throw new SemanticError(
-				"Tipos incompatíveis em expressão relacional",
+				"Tipos incompatï¿½veis em expressï¿½o relacional",
 				token.getPosition()
 			);
 		}

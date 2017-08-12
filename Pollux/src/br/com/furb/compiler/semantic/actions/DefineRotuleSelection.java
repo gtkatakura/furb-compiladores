@@ -1,22 +1,21 @@
 package br.com.furb.compiler.semantic.actions;
 
-import br.com.furb.compiler.lexical.impl.gals.SemanticError;
-import br.com.furb.compiler.lexical.impl.gals.Token;
-import br.com.furb.compiler.semantic.SymbolTable;
+import br.com.furb.compiler.analysis.semantic.SemanticError;
+import br.com.furb.compiler.model.lexical.Token;
+import br.com.furb.compiler.model.semantic.SymbolTable;
 
-public class DefineRotuleSelection extends ActionSemantic {
+public final class DefineRotuleSelection extends SemanticAction {
+	
 	public DefineRotuleSelection(SymbolTable symbolTable) {
 		super(symbolTable);
 	}
 
 	public String execute(Token token) throws SemanticError {
 		String type = this.getSymbolTable().getTypes().pop();
-		
+
 		if (type != "bool") {
-			throw new SemanticError(
-				"Essa instrução só pode ser manipulada com expressões booleanas",
-				token.getPosition()
-			);
+			throw new SemanticError("Essa instruï¿½ï¿½o sï¿½ pode ser manipulada com expressï¿½es booleanas",
+					token.getPosition());
 		}
 
 		String rotule = this.getSymbolTable().createRotule();
@@ -24,7 +23,7 @@ public class DefineRotuleSelection extends ActionSemantic {
 		if (token.getLexeme().equals("isTrueDo")) {
 			return "brfalse " + rotule + "\n";
 		}
-		
+
 		return "brtrue " + rotule + "\n";
 	}
 }
