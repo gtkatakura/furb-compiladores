@@ -2,6 +2,7 @@ package br.com.furb.compiler.analysis.syntatic;
 
 import java.util.Stack;
 
+import br.com.furb.compiler.analysis.lexical.AnalysisError;
 import br.com.furb.compiler.analysis.lexical.LexicalAnalyser;
 import br.com.furb.compiler.analysis.lexical.LexicalError;
 import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
@@ -13,7 +14,7 @@ import br.com.furb.compiler.model.lexical.TokenKind;
 
 public class SyntaticAnalyser implements Constants {
 
-	private Stack stack = new Stack();
+	private Stack<Integer> stack = new Stack<>();
 	private Token currentToken;
 	private Token previousToken;
 	private LexicalAnalyser scanner;
@@ -27,10 +28,6 @@ public class SyntaticAnalyser implements Constants {
 		return x >= FIRST_NON_TERMINAL && x < FIRST_SEMANTIC_ACTION;
 	}
 
-	private static final boolean isSemanticAction(int x) {
-		return x >= FIRST_SEMANTIC_ACTION;
-	}
-
 	private boolean step() throws LexicalError, SyntaticError, SemanticError {
 		if (currentToken == null) {
 			int pos = 0;
@@ -40,7 +37,7 @@ public class SyntaticAnalyser implements Constants {
 			currentToken = new TokenImpl(TokenKind.getClassBy(DOLLAR), "$", pos);
 		}
 
-		int x = ((Integer) stack.pop()).intValue();
+		int x = stack.pop().intValue();
 		int a = currentToken.getKind().getId();
 
 		if (x == EPSILON) {
@@ -85,8 +82,7 @@ public class SyntaticAnalyser implements Constants {
 			return false;
 	}
 
-	public void parse(LexicalAnalyser scanner, SemanticAnalyser semanticAnalyser)
-			throws LexicalError, SyntaticError, SemanticError {
+	public void parse(LexicalAnalyser scanner, SemanticAnalyser semanticAnalyser) throws AnalysisError {
 		this.scanner = scanner;
 		this.semanticAnalyser = semanticAnalyser;
 

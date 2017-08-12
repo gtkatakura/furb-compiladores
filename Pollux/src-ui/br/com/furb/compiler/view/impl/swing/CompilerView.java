@@ -30,19 +30,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import br.com.furb.compiler.analysis.lexical.AnalysisError;
 import br.com.furb.compiler.analysis.lexical.LexicalAnalyser;
-import br.com.furb.compiler.analysis.lexical.LexicalError;
 import br.com.furb.compiler.analysis.semantic.SemanticAnalyser;
-import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.analysis.syntatic.SyntaticAnalyser;
-import br.com.furb.compiler.analysis.syntatic.SyntaticError;
 import br.com.furb.compiler.io.SourceFile;
 import br.com.furb.compiler.view.Editor;
+import br.com.furb.compiler.view.EditorTool;
 import br.com.furb.compiler.view.MessageArea;
 import br.com.furb.compiler.view.StatusBar;
 import br.com.furb.compiler.view.ToolBar;
 import br.com.furb.compiler.view.View;
-import br.com.furb.compiler.view.EditorTool;
 import br.com.furb.compiler.view.resources.IconProvider;
 
 /**
@@ -158,45 +156,47 @@ public class CompilerView implements View {
 
 	private void openFileAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_O, Event.CTRL_MASK);
-		toolbar.addAction(key, EditorTool.OPEN_FILE, new AbstractAction(OPEN_FILE.caption, IconProvider.OPEN_FILE.get()) {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				File file;
-				try {
-					file = chooseFile(source);
-					source = file;
-					currentContent = SourceFile.read(file);
-					editor.update(currentContent);
-					messageArea.clean();
-					statusBar.notModified(source.toString());
-				} catch (Exception e1) {
-					// e1.printStackTrace();
-				}
-			}
-		});
+		toolbar.addAction(key, EditorTool.OPEN_FILE,
+				new AbstractAction(OPEN_FILE.caption, IconProvider.OPEN_FILE.get()) {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						File file;
+						try {
+							file = chooseFile(source);
+							source = file;
+							currentContent = SourceFile.read(file);
+							editor.update(currentContent);
+							messageArea.clean();
+							statusBar.notModified(source.toString());
+						} catch (Exception e1) {
+							// e1.printStackTrace();
+						}
+					}
+				});
 	}
 
 	private void saveFileAction() {
 		KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);
-		toolbar.addAction(key, EditorTool.SAVE_FILE, new AbstractAction(SAVE_FILE.caption, IconProvider.SAVE_FILE.get()) {
+		toolbar.addAction(key, EditorTool.SAVE_FILE,
+				new AbstractAction(SAVE_FILE.caption, IconProvider.SAVE_FILE.get()) {
 
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if (source == null) {
-						source = chooseFile(null);
-						source = new File(source.getAbsolutePath() + ".txt");
+					public void actionPerformed(ActionEvent e) {
+						try {
+							if (source == null) {
+								source = chooseFile(null);
+								source = new File(source.getAbsolutePath() + ".txt");
+							}
+							String content = editor.getContent();
+							currentContent = content;
+							SourceFile.save(source, currentContent);
+							messageArea.clean();
+							statusBar.notModified(source.toString());
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+
 					}
-					String content = editor.getContent();
-					currentContent = content;
-					SourceFile.save(source, currentContent);
-					messageArea.clean();
-					statusBar.notModified(source.toString());
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-
-			}
-		});
+				});
 	}
 
 	public void addTextEditionActions() {
@@ -255,7 +255,7 @@ public class CompilerView implements View {
 					sintatico.parse(lexico, semantico);
 
 					messageArea.update("Programado compilado com sucesso");
-				} catch (LexicalError | SyntaticError | SemanticError error) {
+				} catch (AnalysisError error) {
 					int line = CompilerView.getNumberLine(input, error.getPosition());
 					messageArea.update("Erro na linha " + line + " - " + error.getMessage());
 				}
@@ -298,12 +298,12 @@ public class CompilerView implements View {
 							lexico.setInput(input);
 							sintatico.parse(lexico, semantico);
 							objectCode = semantico.getObjectCode();
-							try{
+							try {
 								if (source == null) {
 									source = chooseFile(null);
 									source = new File(source.getAbsolutePath() + ".txt");
 								}
-	
+
 								if (source != null) {
 									String content = editor.getContent();
 									currentContent = content;
@@ -315,11 +315,10 @@ public class CompilerView implements View {
 									SourceFile.save(objectCodeFile, objectCode);
 									messageArea.update("Código objeto gerado com sucesso");
 								}
-							}catch (Exception e1) {
-								
-								
+							} catch (Exception e1) {
+
 							}
-						} catch (LexicalError | SyntaticError | SemanticError error) {
+						} catch (AnalysisError error) {
 							int line = CompilerView.getNumberLine(input, error.getPosition());
 							messageArea.update("Erro na linha " + line + " - " + error.getMessage());
 						}
