@@ -8,18 +8,18 @@ public class SymbolTable {
 
 	private final Stack<Identifier> stackIdentifiers;
 	private final Map<String, Identifier> identifiers;
-	private final Stack<String> types;
+	private final Stack<Type> types;
 	private final Stack<String> relationalOperators;
 	private final Stack<String> rotules;
 
 	private int lastRotule = 0;
 
 	public SymbolTable() {
-		this.stackIdentifiers = new Stack<Identifier>();
-		this.identifiers = new HashMap<String, Identifier>();
-		this.types = new Stack<String>();
-		this.relationalOperators = new Stack<String>();
-		this.rotules = new Stack<String>();
+		this.stackIdentifiers = new Stack<>();
+		this.identifiers = new HashMap<>();
+		this.types = new Stack<>();
+		this.relationalOperators = new Stack<>();
+		this.rotules = new Stack<>();
 	}
 
 	public Stack<Identifier> getStackIdentifiers() {
@@ -34,7 +34,7 @@ public class SymbolTable {
 		return this.identifiers;
 	}
 
-	public Stack<String> getTypes() {
+	public Stack<Type> getTypes() {
 		return this.types;
 	}
 

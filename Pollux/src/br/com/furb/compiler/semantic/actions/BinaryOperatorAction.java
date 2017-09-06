@@ -7,7 +7,8 @@ import java.util.Stack;
 
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
-import br.com.furb.compiler.model.semantic.SymbolTable;;
+import br.com.furb.compiler.model.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.Type;;
 
 public abstract class BinaryOperatorAction extends SemanticAction {
 
@@ -19,9 +20,9 @@ public abstract class BinaryOperatorAction extends SemanticAction {
 	}
 
 	public String execute(Token token) throws SemanticError {
-		Stack<String> types = this.getSymbolTable().getTypes();
-		String type1 = types.pop();
-		String type2 = types.pop();
+		Stack<Type> types = this.getSymbolTable().getTypes();
+		Type type1 = types.pop();
+		Type type2 = types.pop();
 
 		if (!isTypeValid(type1) || !isTypeValid(type2)) {
 			throw new SemanticError(
@@ -29,15 +30,15 @@ public abstract class BinaryOperatorAction extends SemanticAction {
 					token.getPosition());
 		}
 
-		if (type1 == FLOAT.value || type2 == FLOAT.value) {
-			types.push(FLOAT.value);
+		if (type1 == FLOAT || type2 == FLOAT) {
+			types.push(FLOAT);
 		} else {
-			types.push(INT.value);
+			types.push(INT);
 		}
 		return null;
 	}
 
-	private boolean isTypeValid(String type) {
-		return type == FLOAT.value || type == INT.value;
+	private boolean isTypeValid(Type type) {
+		return type == FLOAT || type == INT;
 	}
 }

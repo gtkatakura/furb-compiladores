@@ -5,6 +5,8 @@ import java.util.Stack;
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.Type;
+import static br.com.furb.compiler.model.semantic.Type.*;
 
 public final class DivisionOperatorAction extends BinaryOperatorAction {
 	
@@ -14,17 +16,17 @@ public final class DivisionOperatorAction extends BinaryOperatorAction {
 
 	public String execute(Token token) throws SemanticError {
 		super.execute(token);
-		Stack<String> types = this.getSymbolTable().getTypes();
+		Stack<Type> types = this.getSymbolTable().getTypes();
 
-		if (types.pop() == "int64") {
-			types.push("float64");
+		if (types.pop() == INT) {
+			types.push(FLOAT);
 			return (
 				"conv.r8\n" +
 				"div\n"
 			);
 		};
 
-		types.push("float64");
+		types.push(FLOAT);
 		return "div\n";
 	}
 }

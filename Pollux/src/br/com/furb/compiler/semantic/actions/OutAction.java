@@ -3,6 +3,7 @@ package br.com.furb.compiler.semantic.actions;
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.Type;
 
 public final class OutAction extends SemanticAction {
 	
@@ -11,7 +12,7 @@ public final class OutAction extends SemanticAction {
 	}
 
 	public String execute(Token token) throws SemanticError {
-		String type = this.getSymbolTable().getTypes().pop();
-		return "call void [mscorlib]System.Console::Write(" + type + ")\n";
+		Type type = this.getSymbolTable().getTypes().pop();
+		return "call void [mscorlib]System.Console::Write(" + type.getPrimitiveName() + ")\n";
 	}
 }

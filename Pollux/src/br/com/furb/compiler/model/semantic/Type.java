@@ -1,44 +1,32 @@
 package br.com.furb.compiler.model.semantic;
 
 public enum Type {
+	INT("int64"),
+	FLOAT("float64", "Double"),
+	STRING("string"),
+	BOOLEAN("bool", "Boolean");
 
-	INT("int64"), //
+	private final String primitiveName;
+	private final CorrespondingClass correspondingClass;
 
-	FLOAT("float64") {
-
-		@Override
-		public String getCorrespondingClass() {
-			return "Double";
-		}
-
-	}, //
-
-	STRING("string"), //
-
-	BOOLEAN("bool") {
-
-		@Override
-		public String getCorrespondingClass() {
-			return "Boolean";
-		}
-
-	};
-
-	public final String value;
-
-	private Type(String value) {
-		this.value = value;
+	private Type(String primitiveName) {
+		this(primitiveName, new CorrespondingClass(primitiveName));
+	}
+	
+	private Type(String primitiveName, String correspondingClass) {
+		this(primitiveName, new CorrespondingClass(correspondingClass));
+	}
+	
+	private Type(String primitiveName, CorrespondingClass correspondingClass) {
+		this.primitiveName = primitiveName;
+		this.correspondingClass = correspondingClass;
+	}
+	
+	public String getPrimitiveName() {
+		return this.primitiveName;
 	}
 
-	public String getCorrespondingClass() {
-		return capitalize(value) + lowerCharsFrom(1, value);
-	}
-
-	private String capitalize(String value) {
-		return String.valueOf(value.charAt(0)).toUpperCase();
-	}
-
-	private String lowerCharsFrom(int index, String value) {
-		return value.substring(index).toLowerCase();
+	public CorrespondingClass getCorrespondingClass() {
+		return this.correspondingClass;
 	}
 }

@@ -36,6 +36,6 @@ public final class InAction extends SemanticAction {
 	}
 
 	private String buildParseFunctionCallFor(Type type) {
-		return String.format(PARSE_FUNCTION_SIGNATURE, type.value, type.getCorrespondingClass());
+		return String.format(PARSE_FUNCTION_SIGNATURE, type.getPrimitiveName(), type.getCorrespondingClass());
 	}
 }

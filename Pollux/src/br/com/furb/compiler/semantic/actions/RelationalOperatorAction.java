@@ -5,6 +5,8 @@ import java.util.Stack;
 import br.com.furb.compiler.analysis.semantic.SemanticError;
 import br.com.furb.compiler.model.lexical.Token;
 import br.com.furb.compiler.model.semantic.SymbolTable;
+import br.com.furb.compiler.model.semantic.Type;
+import static br.com.furb.compiler.model.semantic.Type.BOOLEAN;
 
 public final class RelationalOperatorAction extends SemanticAction {
 	
@@ -15,9 +17,9 @@ public final class RelationalOperatorAction extends SemanticAction {
 	@Override
 	public String execute(Token token) throws SemanticError {
 		SymbolTable symbolTable = this.getSymbolTable();
-		Stack<String> types = symbolTable.getTypes();
-		String type1 = types.pop();
-		String type2 = types.pop();
+		Stack<Type> types = symbolTable.getTypes();
+		Type type1 = types.pop();
+		Type type2 = types.pop();
 		
 		if (type1 != type2) {
 			throw new SemanticError(
@@ -26,7 +28,7 @@ public final class RelationalOperatorAction extends SemanticAction {
 			);
 		}
 		
-		types.push("bool");
+		types.push(BOOLEAN);
 		
 		switch (symbolTable.getRelationalOperators().pop()) {
 		case "=":
