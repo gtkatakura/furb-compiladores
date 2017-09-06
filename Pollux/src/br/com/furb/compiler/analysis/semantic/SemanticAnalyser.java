@@ -8,24 +8,18 @@ import br.com.furb.compiler.semantic.actions.SemanticActionFactory;
 
 public final class SemanticAnalyser implements Constants {
 
-	private final StringBuilder objectCode = new StringBuilder();
+	private final ObjectCode objectCode = new ObjectCode();
 	private final SymbolTable symbolTable = new SymbolTable();
+	private final SemanticActionFactory semanticActionFactory = new SemanticActionFactory(this.symbolTable);
 
 	public String getObjectCode() {
 		return this.objectCode.toString();
 	}
 
 	public void execute(int actionId, Token token) throws SemanticError {
-		SemanticAction action = SemanticActionFactory.create(actionId, symbolTable);
-
-		if (action != null) {
-			String generatedCode = action.execute(token);
-
-			if (generatedCode != null) {
-				this.objectCode.append(generatedCode);
-			}
-		} else {
-			System.out.println("Açãoo ainda não implementada: " + actionId);
-		}
+		SemanticAction action = this.semanticActionFactory.create(actionId);
+		String generatedCode = action.execute(token);
+		
+		this.objectCode.add(generatedCode);
 	}
 }

@@ -3,6 +3,7 @@ package br.com.furb.compiler.suite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import br.com.furb.compiler.semantic.SemanticActionFactoryTest;
 import br.com.furb.compiler.semantic.SemanticTest;
 import br.com.furb.compiler.syntactic.SyntaticTest;
 
@@ -12,6 +13,7 @@ import br.com.furb.compiler.syntactic.SyntaticTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ //
 		SemanticTest.class, //
+		SemanticActionFactoryTest.class,
 		SyntaticTest.class //
 })
 public class AllTestsSuite {
